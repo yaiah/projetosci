@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualificando a Problemática - Prof. Conrado Galdino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8ac926;
+            --secondary: #4caf50;
+            --accent: #e6f7ff;
+            --dark: #2c3e50;
+            --light: #ffffff;
+            --shadow: 0 10px 30px rgba(42, 157, 143, 0.1);
+            --gradient: linear-gradient(135deg, #8ac926 0%, #4caf50 100%);
+            --bg-gradient-overlay: linear-gradient(135deg, rgba(31, 66, 135, 0.7) 0%, rgba(42, 157, 143, 0.7) 100%);
+            --bg-color: #875f1f;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image: var(--bg-gradient-overlay), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=884&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        header h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header p {
+            color: var(--dark);
+            font-size: 1.2em;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            animation: expandWidth 2s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 50px; }
+        }
+
+        .section-intro p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+        .rules-list {
+            background: linear-gradient(135deg, var(--accent) 0%, rgba(42, 157, 143, 0.1) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(138, 201, 38, 0.2);
+            position: relative;
+        }
+
+        .rules-list::before {
+            content: '📋';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .rules-list ol {
+            padding-left: 25px;
+        }
+
+        .rules-list li {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: var(--dark);
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .rules-list li:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .area-section {
+            margin-bottom: 60px;
+        }
+
+        .area-section h3 {
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .area-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(138, 201, 38, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(42, 157, 143, 0.2);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 4em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            font-weight: 600;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .card p {
+            font-size: 1em;
+            color: var(--dark);
+            opacity: 0.8;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card .hidden-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            text-align: left;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .card .hidden-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .card .hidden-content p, .card .hidden-content ul {
+            text-align: left;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .card .hidden-content strong {
+            color: var(--primary);
+        }
+
+        .read-more-btn {
+            display: block;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            margin-top: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .read-more-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .strikeout {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .flowchart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .flow-item {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--dark);
+        }
+        
+        @media (max-width: 768px) {
+            .flowchart {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+
+    <div class="container">
+        <header class="loading">
+            <h1>Qualificando a Problemática de um Projeto de Pesquisa</h1>
+            <p>Disciplina: Projetos em Ciências Ambientais</p>
+            <p>Ciências Biológicas - Bacharelado - PUC Minas</p>
+            <p>Ministrada pelo Prof. Conrado Galdino</p>
+        </header>
+
+        <section class="section-intro reveal">
+            <h2>Introdução</h2>
+            <p>
+                A ciência avança através de perguntas bem formuladas. Nesta aula, vamos aprofundar em como descrever um problema de forma clara, contextualizada e, principalmente, como transformá-lo em perguntas que possam ser respondidas por meio da investigação científica, lançando as bases para um projeto robusto e significativo.
+            </p>
+        </section>
+
+        <section class="rules-section reveal">
+            <h2>Regras da Dinâmica</h2>
+            <div class="rules-list">
+                <p style="font-size: 1.1em; margin-bottom: 20px; font-weight: 600;">Por favor, sigam as instruções abaixo para a atividade em grupo:</p>
+                <ol>
+                    <li>Os grupos formados na aula anterior continuarão a trabalhar juntos.</li>
+                    <li>Estudem o conteúdo da página com atenção, explorando os detalhes de cada card.</li>
+                    <li>A cada novo conceito (Tipos de Pesquisa, Objetivo Geral, Objetivos Específicos), façam uma avaliação crítica do objetivo que propuseram na aula anterior, conforme a provocação feita em cada card.</li>
+                    <li>Ao final da página, vocês deverão propor uma reestruturação completa dos objetivos do projeto, levando em consideração tudo o que foi aprendido.</li>
+                    
+                </ol>
+            </div>
+        </section>
+
+        <section class="areas reveal">
+            <h2>Conteúdo para Aprofundamento</h2>
+            
+            <div class="area-section">
+                <h3>A Lógica por Trás da Investigação: Classificando seu Estudo</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="card-icon fas fa-compass"></i>
+                        <h3>Pesquisa Exploratória</h3>
+                        <p>Quando você explora um tema pouco conhecido para se familiarizar com ele. É a fase de sondagem, de levantar as primeiras informações e construir hipóteses preliminares, sem aprofundar em causas ou efeitos diretos.</p>
+                        <div class="hidden-content">
+                            <p>O cientista parte de uma curiosidade, um 'porquê' inicial, para adentrar um campo de conhecimento inexplorado. A pesquisa exploratória não tem o objetivo de resolver um problema, mas de entendê-lo, de 'tatear' o terreno para que futuras pesquisas descritivas ou explicativas possam ser feitas com mais embasamento. É a fase de 'observar sem preconceitos' e de coletar dados preliminares para novas ideias.</p>
+                            <p><strong>Exemplo:</strong> Um estudo para mapear a presença de microplásticos em rios de Belo Horizonte, sem buscar causas ou impactos específicos ainda.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-search"></i>
+                        <h3>Pesquisa Descritiva</h3>
+                        <p>Descreve as características de uma população, fenômeno ou a relação entre variáveis, sem manipulação. Responde a perguntas como 'O que?', 'Onde?', 'Quando?' ou 'Como?'. Foca no 'retrato' do que está acontecendo.</p>
+                        <div class="hidden-content">
+                            <p>Na pesquisa descritiva, o foco é 'quantificar' ou 'qualificar' as observações, documentando fielmente o que existe. Não há intervenção do pesquisador, apenas a coleta e análise sistemática de dados. É crucial para estabelecer a baseline de um fenômeno, permitindo comparações futuras. O objetivo é 'mostrar a realidade' sem explicações causais.</p>
+                            <p><strong>Exemplo:</strong> Um censo da diversidade de espécies de aves em diferentes parques urbanos de Belo Horizonte, listando as espécies e sua frequência.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-lightbulb"></i>
+                        <h3>Pesquisa Explicativa</h3>
+                        <p>Busca explicar o porquê dos fenômenos, identificando as causas de uma relação entre variáveis. É o tipo de pesquisa mais aprofundado, que testa hipóteses e busca estabelecer relações de causa e efeito.</p>
+                        <div class="hidden-content">
+                            <p>A pesquisa explicativa é onde o cientista 'testa suas ideias'. É a fase de intervenção e controle, onde se busca entender 'o que causa o que'. A formulação de hipóteses claras e a operacionalização de variáveis são fundamentais. Os resultados visam a generalizações e à construção de teorias, contribuindo para a compreensão profunda dos mecanismos por trás dos fenômenos. Exige rigor metodológico para evitar conclusões falsas.</p>
+                            <p><strong>Exemplo:</strong> Um experimento para determinar se o aumento de dióxido de carbono no ar (variável independente) afeta a taxa de crescimento de certas plantas nativas do cerrado (variável dependente).</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="area-section">
+                <h3>Variáveis: A Relação Causa e Efeito</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="card-icon fas fa-project-diagram"></i>
+                        <h3>O Que é Variável?</h3>
+                        <p>Variáveis são características, atributos ou fatores que podem ser medidos ou manipulados em uma pesquisa. A forma como elas se relacionam é o ponto central de grande parte dos estudos.</p>
+                        <div class="hidden-content">
+                            <p>Podemos classificá-las de duas formas, que são essenciais para a qualificação do seu problema:</p>
+                            <ul>
+                                <li>**Variável Teórica:** O conceito abstrato que você quer medir, como **estresse** ou **poluição hídrica**.</li>
+                                <li>**Variável Operacional:** A forma prática e concreta de medir a variável teórica (ex: o nível de **cortisol no sangue** para estresse).</li>
+                            </ul>
+                            <p>A relação entre variáveis pode ser visualizada em um fluxo simples:</p>
+                            <div class="flowchart">
+                                <div class="flow-item">Causa</div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                                <div class="flow-item">Efeito</div>
+                            </div>
+                            <p>Essa relação de causa e efeito nos leva a duas classificações principais:</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-cogs"></i>
+                        <h3>Variável Independente e Dependente</h3>
+                        <p>A **Variável Independente** é a causa, o fator que o pesquisador manipula para observar um resultado. A **Variável Dependente** é o efeito, o que é medido ou observado no estudo.</p>
+                        <div class="hidden-content">
+                            <p>Em um estudo que busca entender como a poluição afeta a vida aquática, por exemplo, temos a seguinte relação:</p>
+                            <div class="flowchart">
+                                <div class="flow-item">Variável Independente<br>(Concentração de chumbo)</div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                                <div class="flow-item">Variável Dependente<br>(Riqueza de espécies de peixes)</div>
+                            </div>
+                            <p>Neste caso, a concentração de chumbo seria a causa que o pesquisador está analisando, enquanto a riqueza de espécies seria o efeito observado. É crucial que o objetivo do seu estudo deixe claro qual é a relação entre as variáveis que você busca investigar.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="area-section">
+                <h3>Definindo seus Objetivos: O Caminho Lógico do seu Projeto</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="card-icon fas fa-bullseye"></i>
+                        <h3>O 'Grande Porquê': O Objetivo Geral</h3>
+                        <p>É a meta abrangente do seu projeto. Ele se relaciona com **variáveis teóricas**, que são os conceitos abstratos. Redigir o objetivo geral com variáveis teóricas abre distintas maneiras de se resolver a relação teórica proposta.</p>
+                        <div class="hidden-content">
+                            <p>Ao usar variáveis teóricas (como 'qualidade ambiental' ou 'biodiversidade'), você ganha flexibilidade para abordá-las de diferentes ângulos. O desafio aqui é ser ambicioso, mas realista, evitando termos de metodologia no objetivo.</p>
+                            <p><strong>Exemplo:</strong></p>
+                            <p><strike>Analisar a influência da poluição hídrica na diversidade de peixes em rios urbanos de Belo Horizonte.</strike></p>
+                            <p style="font-weight: 600; color: var(--dark);">Relacionar a poluição hídrica com biodiversidade de peixes em rios urbanos.</p>
+                            <p style="font-weight: 600; color: var(--primary);"><strong>Provocação:</strong> Revisem o objetivo geral que redigiram na aula passada. Ele utiliza uma variável teórica e evita termos de método ou local?</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-tasks"></i>
+                        <h3>O 'Como Fazer': Os Objetivos Específicos</h3>
+                        <p>São as etapas concretas que, quando realizadas, levam ao objetivo geral. Eles se relacionam com **variáveis operacionais**, aquilo que será efetivamente medido para testar a relação teórica. O ideal é não tentar responder a muitas perguntas.</p>
+                        <div class="hidden-content">
+                            <p>Os objetivos específicos são a sua 'receita metodológica'. Eles devem ser claros, mensuráveis e alcançáveis. Uma dica valiosa: muitos excelentes estudos têm apenas 1 ou 2 objetivos específicos, não excedendo 3.</p>
+                            <p><strong>Exemplo:</strong></p>
+                            <ul>
+                                <li>Relacionar a concentração de chumbo e mercúrio com a riqueza de espécies.</li>
+                                <li>Relacionar a concentração de chumbo e mercúrio com a composição de espécies.</li>
+                            </ul>
+                            <p style="font-weight: 600; color: var(--primary);"><strong>Provocação:</strong> Seus objetivos específicos são mensuráveis com variáveis operacionais claras? Quantos você propôs? Considere otimizá-los para não exceder 3.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-comment-dots"></i>
+                        <h3>Dica do Professor: O que não incluir nos Objetivos</h3>
+                        <p>Para que seus objetivos sejam claros e eficazes, evite misturar a sua meta com a forma como você vai alcançá-la.</p>
+                        <div class="hidden-content">
+                            <p>Não se deve citar nos objetivos:</p>
+                            <ul>
+                                <li>**Objeto de estudo:** O tipo de animal, planta ou objeto específico da sua pesquisa.</li>
+                                <li>**Local de estudo:** O local exato onde a pesquisa será realizada.</li>
+                                <li>**Elemento de método:** A ferramenta ou técnica que será utilizada para a coleta de dados.</li>
+                            </ul>
+                            <p>Os objetivos devem ser sobre o **propósito** do estudo, e não sobre os **detalhes** de como ele será executado.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="area-section">
+                <h3>Reestruturação Final: Consolidando seu Projeto</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="card-icon fas fa-edit"></i>
+                        <h3>Hora de Reconstruir!</h3>
+                        <p>Agora é o momento de aplicar tudo o que você aprendeu. Com base na avaliação dos tipos de pesquisa, do uso de variáveis teóricas no objetivo geral e das variáveis operacionais nos objetivos específicos, reestruture completamente os objetivos do seu projeto.</p>
+                        <div class="hidden-content">
+                            <p>Lembre-se do caminho lógico que seu trabalho deve seguir. Esta etapa é fundamental para garantir que seus objetivos sejam claros, mensuráveis, relevantes e que seu projeto tenha um sólido embasamento científico.</p>
+                            <p style="font-weight: 600; color: var(--primary);">Prepare-se para apresentar seus novos objetivos e a lógica por trás de suas escolhas!</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-chart-line"></i>
+                        <h3>Instruções da Atividade</h3>
+                        <p>Com base nos objetivos redefinidos, seu grupo tem um novo desafio para o seu projeto.</p>
+                        <div class="hidden-content">
+                            <ol style="padding-left: 20px; text-align: left;">
+                                <li>**Releia e Analise:** Retomem o objetivo (geral e específicos) que vocês reformularam após a análise dos conteúdos da página.</li>
+                                <li>**Busca por Evidências:** Busquem na literatura **ao menos 5 evidências empíricas** (artigos científicos, relatórios técnicos, dados de órgãos oficiais) que sustentem a relevância e a viabilidade do seu objetivo.</li>
+                                <li>**Formato:** Para cada evidência, anotem o link, o(s) autor(es) e uma breve frase que resuma a sua relevância para o projeto. O grupo pode, e deve, usar outras fontes além das que foram apresentadas em sala.</li>
+                                
+                            </ol>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p class="powered-by">Powered by <a href="https://yaiah.com" target="_blank">Yaiah.com</a></p>
+        <p class="license">Web site projetoscien © 2025 by Conrado Galdino is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+    </footer>
+
+    <script>
+        // Partículas de fundo
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Card "Leia Mais" functionality
+        function setupReadMore() {
+            const buttons = document.querySelectorAll('.read-more-btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const hiddenContent = this.previousElementSibling;
+                    if (hiddenContent.classList.contains('active')) {
+                        hiddenContent.classList.remove('active');
+                        this.textContent = 'Leia mais →';
+                    } else {
+                        hiddenContent.classList.add('active');
+                        this.textContent = 'Ver menos ←';
+                    }
+                });
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setupReadMore();
+            
+            // Remove loading class
+            setTimeout(() => {
+                document.querySelector('.loading').style.opacity = '1';
+            }, 100);
+        });
+
+        // Scroll events
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Reveal inicial
+        revealOnScroll();
+    </script>
+</body>
+</html>
