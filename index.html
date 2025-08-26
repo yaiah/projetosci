@@ -437,6 +437,24 @@
             font-size: 0.9em;
             opacity: 0.8;
         }
+        
+        .cta-link {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -462,7 +480,7 @@
             <div class="rules-list">
                 <p style="font-size: 1.1em; margin-bottom: 20px; font-weight: 600;">Por favor, sigam as instruções abaixo para a atividade:</p>
                 <ol>
-                    <li><span style="font-weight: bold; color: #ff6b35;"> O passo a passo fornecido deve ser seguido para que a atividade transcorra como planejada pelo professor.</li>
+                    <li><span style="font-weight: bold; color: var(--primary);">O passo a passo fornecido deve ser seguido para que a atividade transcorra como planejada pelo professor.</li>
                     <li>A sala será dividida em grupos de 4 ou 5 alunos.</li></span>
                     <li>Cada grupo escolherá uma área de atuação do biólogo: Meio Ambiente, Saúde, Biotecnologia ou Educação, com base na vocação do grupo ou nos temas fornecidos.</li>
                     <li>Após a escolha, os alunos deverão ler os textos fornecidos para a área selecionada.</li>
@@ -563,6 +581,14 @@
                     </div>
                 </div>
             </div>
+        </section>
+        
+        <section class="next-class-section reveal">
+            <h2>Próxima Etapa: Qualificando a Problemática</h2>
+            <p>
+                A ciência avança através de perguntas bem formuladas. Na nossa próxima aula, vamos aprofundar em como descrever um problema de forma clara e contextualizada, e transformá-lo em perguntas que possam ser respondidas por meio da investigação científica.
+            </p>
+            <a href="nova-pagina.html" class="cta-link">Ir para a próxima aula</a>
         </section>
     </div>
 
