@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice da Disciplina - Prof. Conrado Galdino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --secondary: #f7941d;
+            --accent: #fff5f0;
+            --dark: #2c3e50;
+            --light: #ffffff;
+            --shadow: 0 10px 30px rgba(255, 107, 53, 0.1);
+            --gradient: linear-gradient(135deg, #ff6b35 0%, #f7941d 100%);
+            --bg-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient);
+            color: var(--dark);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        header h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header p {
+            color: var(--dark);
+            font-size: 1.2em;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            animation: expandWidth 2s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 50px; }
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 53, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .card p {
+            font-size: 1em;
+            color: var(--dark);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 20px;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .card a:hover {
+            opacity: 0.9;
+        }
+
+        .card-icon {
+            font-size: 3em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .coming-soon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ffcc00;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: 700;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Índice da Disciplina</h1>
+            <p>Projetos em Ciências Ambientais | Ciências Biológicas - PUC Minas</p>
+            <p>Ministrada pelo Prof. Conrado Galdino</p>
+        </header>
+
+        <section>
+            <h2>Aulas Concluídas</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <i class="card-icon fas fa-bullseye"></i>
+                    <h3>Aula 1: Objetivos</h3>
+                    <p>Compreenda a importância de objetivos de pesquisa claros e a sua relação com variáveis teóricas e operacionais.</p>
+                    <a href="index(2).html">Acessar Aula</a>
+                </div>
+                <div class="card">
+                    <i class="card-icon fas fa-book-open"></i>
+                    <h3>Aula 2: Qualificando a Problemática</h3>
+                    <p>Aprenda a construir o alicerce do seu projeto, justificando a relevância do seu problema com embasamento empírico.</p>
+                    <a href="introducao.html">Acessar Aula</a>
+                </div>
+                <div class="card">
+                    <i class="card-icon fas fa-search"></i>
+                    <h3>Estudo de Caso</h3>
+                    <p>Analise a introdução de um artigo científico real para entender a lógica e a estrutura de uma redação de alta qualidade.</p>
+                    <a href="intro_text.html">Acessar Estudo de Caso</a>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Próximas Aulas</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <span class="coming-soon">Em breve</span>
+                    <i class="card-icon fas fa-flask"></i>
+                    <h3>Aula 3: Métodos</h3>
+                    <p>Descubra como planejar e descrever os procedimentos de coleta de dados de forma rigorosa.</p>
+                </div>
+                <div class="card">
+                    <span class="coming-soon">Em breve</span>
+                    <i class="card-icon fas fa-calendar-alt"></i>
+                    <h3>Aula 4: Cronograma</h3>
+                    <p>Aprenda a estruturar o cronograma do seu projeto, organizando as atividades e o tempo de execução.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

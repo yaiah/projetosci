@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Alvo da Pesquisa: Da Curiosidade ao Problema - Prof. Conrado Galdino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8ac926;
+            --secondary: #4caf50;
+            --accent: #e6f7ff;
+            --dark: #2c3e50;
+            --light: #ffffff;
+            --shadow: 0 10px 30px rgba(42, 157, 143, 0.1);
+            --gradient: linear-gradient(135deg, #8ac926 0%, #4caf50 100%);
+            --bg-gradient-overlay: linear-gradient(135deg, rgba(31, 66, 135, 0.7) 0%, rgba(42, 157, 143, 0.7) 100%);
+            --bg-color: #1f4287;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            background-image: var(--bg-gradient-overlay), url('https://images.unsplash.com/photo-1519681393784-a93987cb0f1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1NjYwMjl8MHwxfHNlYXJjaHw3MHx8bmF0dXJlJTIwdGVjaG5vbG9neSUyMHNjaWVuY2VzfGVufDB8fHx8MTcwMzI5MzEzOXww&ixlib=rb-4.0.3&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+            color: var(--dark);
+            min-height: 100vh;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 95%;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .top-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .top-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        header h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header p {
+            color: var(--dark);
+            font-size: 1.2em;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+            animation: expandWidth 2s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 50px; }
+        }
+
+        .section-intro p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+        .rules-list {
+            background: linear-gradient(135deg, var(--accent) 0%, rgba(42, 157, 143, 0.1) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(138, 201, 38, 0.2);
+            position: relative;
+        }
+
+        .rules-list::before {
+            content: '📋';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            opacity: 0.3;
+        }
+
+        .rules-list ol {
+            padding-left: 25px;
+        }
+
+        .rules-list li {
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: var(--dark);
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .rules-list li:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .area-section {
+            margin-bottom: 60px;
+        }
+
+        .area-section h3 {
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--dark);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .area-section h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 40px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(138, 201, 38, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(42, 157, 143, 0.2);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 4em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            font-weight: 600;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .card p {
+            font-size: 1em;
+            color: var(--dark);
+            opacity: 0.8;
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card .hidden-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+            text-align: left;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+        }
+
+        .card .hidden-content.active {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .card .hidden-content p, .card .hidden-content ul {
+            text-align: left;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .card .hidden-content strong {
+            color: var(--primary);
+        }
+
+        .read-more-btn {
+            display: block;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-align: center;
+            margin-top: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .read-more-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .strikeout {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .flowchart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .flow-item {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--dark);
+        }
+        
+        @media (max-width: 768px) {
+            .flowchart {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+        }
+        
+        .next-class-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .next-class-section h2 {
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .next-class-section p {
+            font-size: 1.1em;
+            color: var(--dark);
+            opacity: 0.9;
+        }
+        
+        .cta-link {
+            display: inline-block;
+            background: var(--gradient);
+            color: var(--light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(138, 201, 38, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(138, 201, 38, 0.4);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+
+    <div class="container">
+        <a href="index.html" class="top-link">← Voltar para o Início</a>
+        <header class="loading">
+            <h1>O Alvo da Pesquisa: Da Curiosidade ao Problema</h1>
+            <p>Disciplina: Projetos em Ciências Ambientais</p>
+            <p>Ciências Biológicas - Bacharelado - PUC Minas</p>
+            <p>Ministrada pelo Prof. Conrado Galdino</p>
+        </header>
+
+        <section class="section-intro reveal">
+            <h2>Introdução</h2>
+            <p>
+                Passamos pela definição dos objetivos, agora é o momento de construir o alicerce do seu projeto: a introdução. Usaremos um estudo de caso real para entender como um problema de pesquisa se transforma em uma narrativa lógica, embasada em evidências, que justifica a importância do seu trabalho. A partir desse modelo, vocês aplicarão o mesmo raciocínio aos seus próprios projetos.
+            </p>
+            <p style="text-align: center;">
+                <a href="intro_text.html" class="intro-link-button">Ir para o Estudo de Caso</a>
+            </p>
+        </section>
+
+        <section class="rules-section reveal">
+            <h2>Regras da Dinâmica</h2>
+            <div class="rules-list">
+                <p style="font-size: 1.1em; margin-bottom: 20px; font-weight: 600;">Por favor, sigam as instruções abaixo para a atividade em grupo:</p>
+                <ol>
+                    <li>Os grupos continuarão com seus projetos e objetivos reestruturados da última aula.</li>
+                    <li>Estudem o conteúdo da página para entender o conceito de embasamento empírico.</li>
+                    <li>A partir dos objetivos, busquem ativamente na literatura por evidências que sustentem a importância de seu problema.</li>
+                    <li>Ao final, vocês deverão ter uma lista de evidências que justifiquem a relevância de seus objetivos.</li>
+                    <li>Preparem-se para a próxima etapa, onde vocês organizarão essas evidências em um argumento lógico.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="areas reveal">
+            <h2>A Justificativa do Problema</h2>
+            
+            <div class="area-section">
+                <h3>O Embasamento da sua Pesquisa</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="card-icon fas fa-lightbulb"></i>
+                        <h3>O Contexto da Descoberta</h3>
+                        <p>A introdução é onde o processo criativo de sua pesquisa é apresentado. É nela que a ideia original é formalizada, mostrando ao leitor o caminho lógico que a sua pesquisa vai seguir.</p>
+                        <div class="hidden-content">
+                            <p>Tudo o que você especificar nos objetivos do estudo deve ser claramente fundamentado na introdução. A introdução não apenas apresenta o problema, mas também a sua 'novidade', um aspecto crucial para a aceitação em revistas de qualidade. A criatividade é o ponto de partida, e a justificativa é o que a torna um projeto viável.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-chart-bar"></i>
+                        <h3>A Novidade com Evidências</h3>
+                        <p>Na ciência, as ideias e conclusões precisam ser sustentadas por evidências concretas. Essas evidências formam a 'base empírica' do conhecimento usado em seu projeto.</p>
+                        <div class="hidden-content">
+                            <p>As citações que você faz na introdução são a forma de dar ao leitor a base empírica do conhecimento usado. Elas demonstram que você está a par do que já foi feito na área e que seu problema não é uma simples suposição, mas uma lacuna de conhecimento que merece atenção. A novidade de um estudo, que é o que o torna relevante, não está ligada à sua complexidade metodológica, mas sim à sua contribuição real para o campo de estudo.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                    <div class="card">
+                        <i class="card-icon fas fa-quote-left"></i>
+                        <h3>O Papel das Citações</h3>
+                        <p>As citações são a forma de conectar sua ideia ao conhecimento existente, mostrando o 'estado da arte' do seu tema e a lacuna de conhecimento que sua pesquisa pretende preencher.</p>
+                        <div class="hidden-content">
+                            <p>É através das citações que você constrói o caminho lógico da sua introdução, levando o leitor de um contexto geral para o problema específico. O uso correto de citações demonstra que sua pesquisa é parte de um diálogo científico maior e que você está pronto para contribuir com novas evidências para a comunidade.</p>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="area-section">
+                <h3>Desafio: Embasando seu Objetivo</h3>
+                <div class="cards-container">
+                    <div class="card">
+                        <i class="card-icon fas fa-book-open"></i>
+                        <h3>Ação do Grupo</h3>
+                        <p>Agora, com a sua nova compreensão sobre o que é uma introdução e a importância da base empírica, o grupo tem um novo desafio:</p>
+                        <div class="hidden-content">
+                            <ol style="padding-left: 20px; text-align: left;">
+                                <li>Retomem o objetivo que vocês reestruturaram na aula anterior.</li>
+                                <li>Busquem na literatura **ao menos 5 evidências empíricas** (artigos científicos, relatórios técnicos, etc.) que sustentem a relevância do seu objetivo.</li>
+                                <li>Para cada evidência, anotem o link, o(s) autor(es) e uma breve frase que resuma sua relevância.</li>
+                                <li>Preparem-se para a próxima etapa, onde vocês organizarão essas evidências em um argumento lógico.</li>
+                            </ol>
+                        </div>
+                        <button class="read-more-btn">Leia mais →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p class="powered-by">Powered by <a href="https://yaiah.com" target="_blank">Yaiah.com</a></p>
+        <p class="license">Web site projetoscien © 2025 by Conrado Galdino is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a></p>
+    </footer>
+
+    <script>
+        // Partículas de fundo
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        // Card "Leia Mais" functionality
+        function setupReadMore() {
+            const buttons = document.querySelectorAll('.read-more-btn');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.card');
+                    const hiddenContent = card.querySelector('.hidden-content');
+                    if (hiddenContent.classList.contains('active')) {
+                        hiddenContent.classList.remove('active');
+                        this.textContent = 'Leia mais →';
+                    } else {
+                        hiddenContent.classList.add('active');
+                        this.textContent = 'Ver menos ←';
+                    }
+                });
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setupReadMore();
+            
+            // Remove loading class
+            setTimeout(() => {
+                document.querySelector('.loading').style.opacity = '1';
+            }, 100);
+        });
+
+        // Scroll events
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Reveal inicial
+        revealOnScroll();
+    </script>
+</body>
+</html>

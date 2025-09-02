@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Introdução - Prof. Conrado Galdino</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8ac926;
+            --secondary: #4caf50;
+            --accent: #e6f7ff;
+            --dark: #000;
+            --light: #ffffff;
+            --shadow: 0 10px 30px rgba(42, 157, 143, 0.1);
+            --gradient: linear-gradient(135deg, #8ac926 0%, #4caf50 100%);
+            --bg-color: #1f4287;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.8; /* Aumentado para maior espaçamento */
+            background-color: var(--bg-color);
+            background-image: linear-gradient(135deg, rgba(31, 66, 135, 0.85) 0%, rgba(42, 157, 143, 0.85) 100%), 
+                              url('https://plus.unsplash.com/premium_photo-1723291280862-e315f4ba74a2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .page-content {
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+            color: var(--dark);
+            font-size: 1.15em; /* Aumentado o tamanho da fonte */
+        }
+
+        .page-text .interactive-text {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: var(--secondary);
+            transition: color 0.2s ease;
+        }
+
+        .page-text .interactive-text:hover {
+            color: var(--secondary);
+        }
+        
+        .feedback-balloon {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--dark);
+            color: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .feedback-balloon.active {
+            display: flex;
+        }
+
+        .feedback-balloon .close-btn {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5em;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            background: var(--gradient);
+            border: none;
+            color: var(--light);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-button:not(:disabled):hover {
+            transform: translateY(-2px);
+        }
+        
+        .page-counter {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .app-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Análise Crítica de Introdução</h1>
+            <p>Estudo de Caso: A Lógica da Introdução na Prática</p>
+        </header>
+
+        <div class="page-content">
+            <div class="page" id="page-1">
+                <div class="page-text">
+                    <p>
+                        A <span class="interactive-text" data-feedback="Aqui, os autores iniciam a introdução com uma contextualização ampla do problema, situando o tema no cenário geral da ciência. Isso capta a atenção do leitor e estabelece a relevância do assunto.">luz artificial noturna (ALAN) altera os ciclos naturais de luz [1,2] e está ligada à interrupção de uma infinidade de ritmos biológicos e funções fisiológicas dependentes da luz [3-7].</span> Os impactos relacionados à luz diferem drasticamente entre os táxons [8-10], mas os mecanismos que sustentam essas diferenças permanecem pouco compreendidos. Evidências recentes, em grande parte de vertebrados, sugerem que os impactos biológicos da ALAN podem ser impulsionados por efeitos no cérebro, seja por meio de aumentos no estresse oxidativo induzidos pela luz ou por respostas neuroplásticas ao ambiente luminoso. O estresse oxidativo pode surgir porque a ALAN suprime a síntese do indolamina melatonina, que é sintetizada no cérebro (e em outros tecidos) e tanto impulsiona os ritmos circadianos quanto atua como um poderoso antioxidante [7,11-13]. Isso pode levar à morte de neurônios (pintassilgos, *Taeniopygia guttata*) [14] e comprometimento cognitivo (camundongos, *Mus musculus*) [15]. Esses efeitos podem ocorrer em todos os tecidos [6] ou em regiões específicas [14], então os efeitos no cérebro podem ser holísticos ou específicos de uma região. As mudanças também podem ocorrer devido a respostas neuroplásticas quando o investimento de tecido se desloca em resposta a demandas funcionais dependentes do ambiente. Por exemplo, formigas do deserto (*Cataglyphis fortis*) aumentam o investimento em centros visuais quando se movem de ninhos subterrâneos para a forrageamento acima do solo baseado na visão [16]. Dados esses cenários, a neuroplasticidade pode atuar como parte de um ciclo de feedback: se a ALAN suprime a síntese de melatonina, o investimento nos tecidos neurais correspondentes pode diminuir, resultando em mudanças no volume neural [17,18].
+                    </p>
+                </div>
+            </div>
+
+            <div class="page" id="page-2" style="display:none;">
+                <div class="page-text">
+                    <p>
+                        Esses impactos no cérebro têm importantes implicações para a aptidão em habitats urbanos: maiores volumes cerebrais e a correspondente flexibilidade comportamental estão relacionados ao sucesso urbano em uma série de vertebrados [19-21]. <span class="interactive-text" data-feedback="Neste trecho, os autores apontam a lacuna de conhecimento que o estudo vai preencher. Eles mostram que, embora haja dados para vertebrados, a informação é escassa para invertebrados, especialmente aranhas.">No entanto, surpreendentemente, dados comparáveis para invertebrados — e aranhas em particular — são geralmente escassos.</span>
+                    </p>
+                    <p>
+                        <span class="interactive-text" data-feedback="Aqui, os autores justificam a relevância do objeto de estudo. Eles explicam por que as aranhas são importantes, ressaltando o seu papel ecológico e as características de seu sistema nervoso.">As aranhas são predadores terrestres ecologicamente significativos que desempenham papéis-chave nos ecossistemas urbanos [22,23].</span> Assim como os insetos, as aranhas têm sistemas nervosos centrais modulares, que consistem em regiões nervosas sinapticamente densas, ou neuropilos [24], anatomicamente e funcionalmente distintas, que incluem duas vias visuais emparelhadas (figura 1). O investimento anatômico no processamento visual pode variar com a necessidade ecológica [24,25]. Por exemplo, machos de aranhas-da-teia-de-saco (*Deinopis spinosa*) reduzem o investimento em estruturas de processamento visual quando amadurecem, porque o processamento olfativo se torna mais importante para encontrar parceiros [26]. Há também evidências crescentes de que a luz antropogênica é atraente para as aranhas e, por sua vez, pode influenciar a seleção do local de forrageamento [27,28]. Essa mudança no comportamento de forrageamento pode resultar em ganhos líquidos de forrageamento [28,29], mas também pode afetar negativamente os caminhos de desenvolvimento, resultando em reduções na aptidão [8]. <span class="interactive-text" data-feedback="Neste ponto, os autores reforçam a lacuna de conhecimento, mostrando que a relação entre o impacto da luz e as estruturas neurais das aranhas ainda não foi testada.">Se qualquer um dos impactos observados relacionados à luz nas aranhas está ligado à variação nas estruturas neurais permanece não testado.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="page" id="page-3" style="display:none;">
+                <div class="page-text">
+                    <p>
+                        <span class="interactive-text" data-feedback="Este é o objetivo claro e a proposta metodológica da pesquisa. Os autores declaram exatamente o que foi feito no estudo para testar a sua hipótese, usando a técnica de micro-CT.">Aqui, usamos imagens de micro-CT para testar os efeitos da exposição de curto prazo à ALAN durante o desenvolvimento juvenil tardio, nos volumes das estruturas do sistema nervoso central de aranhas-de-teia-de-jardim australianas sexualmente maduras (Hortophora biapicata).</span> Nesta espécie, a ALAN acelera o desenvolvimento até a maturidade, resultando em mudanças no tamanho do corpo e na aptidão reprodutiva, e aumenta a mortalidade juvenil [8], <span class="interactive-text" data-feedback="Esta é a hipótese principal do estudo, uma suposição explicativa para o fenômeno. Eles preveem que a exposição à ALAN levaria à redução do volume neural.">então previmos que a exposição à ALAN aumentaria o estresse fisiológico, levando à redução dos volumes do sistema nervoso.</span> Dada a potencialidade de mudanças neuroplásticas em estruturas cerebrais específicas em resposta ao ambiente, e para que o estresse oxidativo afete diferencialmente os tecidos, também previmos que a presença de ALAN teria um efeito maior em estruturas relacionadas à visão e à síntese de melatonina, como os neuropilos visuais oculares primários, em comparação com outras estruturas no sistema nervoso central [30].
+                    </p>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button id="prevBtn" class="nav-button">Página Anterior</button>
+                <span class="page-counter">Página 1 de 3</span>
+                <button id="nextBtn" class="nav-button">Próxima Página</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="feedback-balloon" id="feedbackBalloon">
+        <button class="close-btn" onclick="hideFeedback()">×</button>
+        <p id="feedbackText"></p>
+    </div>
+
+    <script>
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageCounter = document.querySelector('.page-counter');
+        const feedbackBalloon = document.getElementById('feedbackBalloon');
+        const feedbackText = document.getElementById('feedbackText');
+        
+        let currentPage = 0;
+
+        function showPage(pageIndex) {
+            pages.forEach((page, index) => {
+                page.style.display = (index === pageIndex) ? 'block' : 'none';
+            });
+            updateNavigation();
+        }
+
+        function updateNavigation() {
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === pages.length - 1;
+            pageCounter.textContent = `Página ${currentPage + 1} de ${pages.length}`;
+        }
+
+        function showFeedback(text) {
+            feedbackText.textContent = text;
+            feedbackBalloon.classList.add('active');
+        }
+
+        function hideFeedback() {
+            feedbackBalloon.classList.remove('active');
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 0) {
+                hideFeedback();
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < pages.length - 1) {
+                hideFeedback();
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('interactive-text')) {
+                showFeedback(e.target.dataset.feedback);
+            } else if (e.target !== feedbackBalloon && !feedbackBalloon.contains(e.target)) {
+                hideFeedback();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage(currentPage);
+        });
+    </script>
+</body>
+</html>
