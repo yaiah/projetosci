@@ -696,7 +696,21 @@ Conclua com:
                 });
             });
         }
-
+        // Função para copiar o prompt
+        function copyPrompt() {
+            const promptContent = document.getElementById('prompt-content').innerText;
+            navigator.clipboard.writeText(promptContent)
+                .then(() => {
+                    const button = document.querySelector('.copy-button');
+                    button.textContent = 'Copiado!';
+                    setTimeout(() => {
+                        button.textContent = 'Copiar Prompt';
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar o texto: ', err);
+                });
+        }
         // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
