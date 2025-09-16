@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Científico - Métodos</title>
-    <link rel="stylesheet" href="https://yaiah.github.io/projetosci/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Estilos Específicos para a página de Métodos */
+        /* Reset e configurações base */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Variáveis CSS */
         :root {
-            --color-primary: #3e73a6; /* Azul Escuro */
-            --color-secondary: #eaf3ff; /* Azul Claro */
-            --color-highlight: #c1e0ff; /* Azul Médio */
+            --color-primary: #3e73a6;
+            --color-secondary: #eaf3ff;
+            --color-highlight: #c1e0ff;
             --color-text-dark: #333;
             --color-text-light: #fff;
-            --color-dark-blue: #0d284a; /* Um azul mais escuro para o destaque */
+            --color-dark-blue: #0d284a;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
             color: var(--color-text-dark);
             background-color: #f7f9fc;
-            margin: 0; /* Garante que não haja margem extra no body */
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
         }
 
+        /* Header da página */
         .page-header.metodos {
             background-color: var(--color-primary);
             color: var(--color-text-light);
@@ -50,20 +56,25 @@
         .page-header.metodos .page-subtitle {
             font-size: 1.2rem;
             font-weight: 300;
+            margin-top: 10px;
         }
 
+        /* Container principal */
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            width: 100%;
         }
 
+        /* Seções de conteúdo */
         .content-section {
             background-color: var(--color-text-light);
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             padding: 40px;
             margin-bottom: 30px;
+            width: 100%;
         }
 
         .section-title {
@@ -75,9 +86,10 @@
             padding-bottom: 10px;
         }
 
+        /* Grid de cards com ícones */
         .icon-card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
@@ -88,10 +100,14 @@
             padding: 25px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .icon-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
@@ -107,11 +123,16 @@
             margin-bottom: 10px;
         }
 
-        /* Novo estilo para o destaque da estatística */
+        .icon-card p {
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Seção de destaque escura */
         .highlight-dark {
             background-color: var(--color-dark-blue);
             color: var(--color-text-light);
-            padding: 80px 20px;
+            padding: 60px 20px;
             margin-bottom: 30px;
             text-align: center;
             border-radius: 10px;
@@ -122,15 +143,22 @@
             margin-bottom: 15px;
         }
 
+        .highlight-dark h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Caixa de exercício */
         .exercise-box {
             background-color: #f0f8ff;
             border-left: 5px solid var(--color-primary);
             padding: 20px;
             border-radius: 5px;
-            margin-top: 20px;
+            margin: 20px 0;
             font-style: italic;
         }
 
+        /* Estilos para texto de exemplo */
         .example-text .incorrect {
             color: #d9534f;
             font-weight: 600;
@@ -140,27 +168,13 @@
             color: #5cb85c;
             font-weight: 600;
         }
-        
-        /* Estilo para o rodapé */
-        .footer {
-            background-color: var(--color-primary);
-            color: var(--color-text-light);
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 40px;
-            font-size: 0.9rem;
-        }
 
-        .footer p {
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* Estilos para as figuras */
+        /* Figuras e imagens */
         .content-section figure, .highlight-dark figure {
-            margin: 30px auto; /* Centraliza a figura */
+            margin: 30px auto;
             text-align: center;
-            max-width: 80%; /* Controla a largura da imagem */
+            max-width: 100%;
+            width: 100%;
         }
 
         .content-section figure img, .highlight-dark figure img {
@@ -168,91 +182,166 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: block;
+            margin: 0 auto;
         }
 
         .content-section figure figcaption, .highlight-dark figure figcaption {
             font-size: 0.9rem;
             color: #666;
-            margin-top: 10px;
+            margin-top: 15px;
+            padding: 0 10px;
         }
 
         .highlight-dark figure figcaption {
-            color: var(--color-text-light); /* Garante legibilidade no fundo escuro */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Adiciona sombra para melhor contraste */
+            color: var(--color-text-light);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
         }
 
-        /* MEDIA QUERIES PARA RESPONSIVIDADE - ESTE É O BLOCO MAIS IMPORTANTE AGORA */
-        @media (max-width: 768px) {
+        /* Rodapé */
+        .footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        /* Media Queries para dispositivos móveis */
+        @media screen and (max-width: 768px) {
+            /* Header */
             .page-header.metodos {
-                padding: 50px 15px;
+                padding: 40px 15px;
             }
 
             .page-header.metodos .page-icon {
                 font-size: 3rem;
+                margin-bottom: 15px;
             }
 
             .page-header.metodos .page-title {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+
+            .page-header.metodos .page-subtitle {
+                font-size: 1rem;
+                margin-top: 15px;
+            }
+
+            /* Container */
+            .container {
+                padding: 15px;
+                margin: 0;
+            }
+
+            /* Seções de conteúdo */
+            .content-section {
+                padding: 25px 20px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+                line-height: 1.3;
+            }
+
+            /* Grid de cards - uma coluna no mobile */
+            .icon-card-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .icon-card {
+                padding: 20px;
+                min-height: auto;
+            }
+
+            .icon-card .card-icon {
                 font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .icon-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+
+            .icon-card p {
+                font-size: 0.9rem;
+            }
+            
+            /* Destaque escuro */
+            .highlight-dark {
+                padding: 40px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .highlight-dark h2 {
+                font-size: 1.5rem;
+                line-height: 1.3;
+            }
+
+            .highlight-dark .fas {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+            
+            /* Figuras */
+            .content-section figure, .highlight-dark figure {
+                margin: 20px auto;
+            }
+
+            .content-section figure figcaption, .highlight-dark figure figcaption {
+                font-size: 0.85rem;
+                padding: 0 5px;
+                margin-top: 10px;
+            }
+
+            /* Exercise box */
+            .exercise-box {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            /* Rodapé */
+            .footer {
+                padding: 25px 15px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Media Query para dispositivos muito pequenos */
+        @media screen and (max-width: 480px) {
+            .page-header.metodos .page-title {
+                font-size: 1.5rem;
             }
 
             .page-header.metodos .page-subtitle {
                 font-size: 0.9rem;
             }
 
-            .container {
-                padding: 10px;
+            .section-title {
+                font-size: 1.2rem;
             }
 
             .content-section {
-                padding: 25px;
-                margin-bottom: 20px;
-            }
-
-            .section-title {
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-                padding-bottom: 8px;
+                padding: 20px 15px;
             }
 
             .icon-card-grid {
-                grid-template-columns: 1fr; /* Coloca os cards em uma única coluna para telas menores */
-                gap: 15px;
-            }
-            
-            .icon-card {
-                padding: 20px;
+                grid-template-columns: 1fr;
             }
 
-            .highlight-dark {
-                padding: 50px 15px;
-                margin-bottom: 25px;
-            }
-            
             .highlight-dark h2 {
-                font-size: 1.6rem;
-            }
-            
-            .highlight-dark .fas {
-                font-size: 2.5rem;
-            }
-
-            .content-section figure, .highlight-dark figure {
-                max-width: 95%; /* Aumenta a largura da imagem para preencher mais em telas pequenas */
-                margin: 20px auto;
-            }
-
-            .exercise-box {
-                padding: 15px;
-                font-size: 0.9rem;
-            }
-
-            .example-text {
-                font-size: 0.9rem;
-            }
-
-            .footer {
-                padding: 15px 10px;
-                font-size: 0.8rem;
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -337,7 +426,7 @@
                 <p><strong>Variáveis Operacionais:</strong> <span>Hora do dia e Tipos de alimentos consumidos.</span></p>
             </div>
             <p>Liste-os agora:</p>
-            </section>
+        </section>
         
         <section class="content-section">
             <h2 class="section-title">5. De Variável a Mensuração: Como Fazer a Medição?</h2>
@@ -394,11 +483,14 @@
             <p>Lembre-se de ser claro, impessoal e de garantir que sua "receita" seja replicável. Sua futura seção de resultados dependerá da solidez dos métodos que você descreve agora.</p>
         </section>
 
-    </div> <footer class="footer">
+    </div> 
+
+    <footer class="footer">
         <div class="container">
             <p>Powered by Yaiah.com</p>
             <p>Web site projetoscien © 2025 by Conrado Galdino is licensed under CC BY-NC-SA 4.0</p>
         </div>
     </footer>
+
 </body>
 </html>
