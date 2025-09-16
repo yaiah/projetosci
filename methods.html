@@ -1,3 +1,21 @@
+Minhas mais sinceras desculpas! Se a página ainda não está se dimensionando corretamente em um smartphone, significa que minhas instruções anteriores não foram suficientes ou houve algum detalhe que passou despercebido. Isso é uma falha séria na responsividade.
+
+A causa mais comum para uma página não se dimensionar em smartphones, mesmo com CSS de media query, é a ausência ou erro na meta tag viewport. Sem essa meta tag, os navegadores de dispositivos móveis assumem a largura de uma tela de desktop e depois diminuem o zoom da página inteira, ignorando as media queries.
+
+Por favor, verifique se você tem esta linha exata na seção <head> do seu HTML:
+HTML
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+Essa meta tag informa ao navegador que a largura da viewport deve ser igual à largura do dispositivo (width=device-width) e que o zoom inicial deve ser 1.0 (initial-scale=1.0).
+
+Se essa meta tag já estiver presente e correta, então precisamos investigar o CSS de responsividade. O CSS que forneci anteriormente está contido em uma media query @media (max-width: 768px).
+
+Vou fornecer o código HTML completo novamente, incluindo a meta tag viewport correta e o CSS responsivo integrado, para garantir que não haja nenhum erro de cópia/colagem ou posicionamento.
+
+Por favor, use este código HTML e CSS completo, substituindo o que você tem atualmente, para garantir que todas as partes estejam no lugar certo.
+HTML
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,6 +42,8 @@
             font-family: 'Poppins', sans-serif;
             color: var(--color-text-dark);
             background-color: #f7f9fc;
+            margin: 0; /* Garante que não haja margem extra no body */
+            line-height: 1.6;
         }
 
         .page-header.metodos {
@@ -178,47 +198,81 @@
             color: var(--color-text-light); /* Garante legibilidade no fundo escuro */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Adiciona sombra para melhor contraste */
         }
-@media (max-width: 768px) {
-    .page-header.metodos {
-        padding: 60px 15px;
-    }
 
-    .page-header.metodos .page-title {
-        font-size: 2rem;
-    }
+        /* MEDIA QUERIES PARA RESPONSIVIDADE - ESTE É O BLOCO MAIS IMPORTANTE AGORA */
+        @media (max-width: 768px) {
+            .page-header.metodos {
+                padding: 50px 15px;
+            }
 
-    .page-header.metodos .page-subtitle {
-        font-size: 1rem;
-    }
+            .page-header.metodos .page-icon {
+                font-size: 3rem;
+            }
 
-    .container {
-        padding: 10px;
-    }
+            .page-header.metodos .page-title {
+                font-size: 2rem;
+            }
 
-    .content-section {
-        padding: 20px;
-    }
+            .page-header.metodos .page-subtitle {
+                font-size: 0.9rem;
+            }
 
-    .section-title {
-        font-size: 1.5rem;
-    }
+            .container {
+                padding: 10px;
+            }
 
-    .icon-card-grid {
-        grid-template-columns: 1fr; /* Muda a grade para uma única coluna */
-    }
-    
-    .highlight-dark {
-        padding: 40px 15px;
-    }
-    
-    .highlight-dark h2 {
-        font-size: 1.5rem;
-    }
-    
-    .content-section figure {
-        margin: 20px auto;
-    }
-}
+            .content-section {
+                padding: 25px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+
+            .icon-card-grid {
+                grid-template-columns: 1fr; /* Coloca os cards em uma única coluna para telas menores */
+                gap: 15px;
+            }
+            
+            .icon-card {
+                padding: 20px;
+            }
+
+            .highlight-dark {
+                padding: 50px 15px;
+                margin-bottom: 25px;
+            }
+            
+            .highlight-dark h2 {
+                font-size: 1.6rem;
+            }
+            
+            .highlight-dark .fas {
+                font-size: 2.5rem;
+            }
+
+            .content-section figure, .highlight-dark figure {
+                max-width: 95%; /* Aumenta a largura da imagem para preencher mais em telas pequenas */
+                margin: 20px auto;
+            }
+
+            .exercise-box {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .example-text {
+                font-size: 0.9rem;
+            }
+
+            .footer {
+                padding: 15px 10px;
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
