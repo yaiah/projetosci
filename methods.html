@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Científico - Métodos</title>
+    <link rel="stylesheet" href="https://yaiah.github.io/projetosci/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Específicos para a página de Métodos */
+        :root {
+            --color-primary: #3e73a6; /* Azul Escuro */
+            --color-secondary: #eaf3ff; /* Azul Claro */
+            --color-highlight: #c1e0ff; /* Azul Médio */
+            --color-text-dark: #333;
+            --color-text-light: #fff;
+            --color-dark-blue: #0d284a; /* Um azul mais escuro para o destaque */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text-dark);
+            background-color: #f7f9fc;
+        }
+
+        .page-header.metodos {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .page-header.metodos .page-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--color-highlight);
+        }
+
+        .page-header.metodos .page-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .page-header.metodos .page-subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-section {
+            background-color: var(--color-text-light);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--color-highlight);
+            padding-bottom: 10px;
+        }
+
+        .icon-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .icon-card {
+            background-color: var(--color-secondary);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon-card .card-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .icon-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Novo estilo para o destaque da estatística */
+        .highlight-dark {
+            background-color: var(--color-dark-blue);
+            color: var(--color-text-light);
+            padding: 80px 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-radius: 10px;
+        }
+        
+        .highlight-dark .fas {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .exercise-box {
+            background-color: #f0f8ff;
+            border-left: 5px solid var(--color-primary);
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .example-text .incorrect {
+            color: #d9534f;
+            font-weight: 600;
+        }
+
+        .example-text .correct {
+            color: #5cb85c;
+            font-weight: 600;
+        }
+        
+        /* Estilo para o rodapé */
+        .footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Estilos para as figuras */
+        .content-section figure, .highlight-dark figure {
+            margin: 30px auto; /* Centraliza a figura */
+            text-align: center;
+            max-width: 80%; /* Controla a largura da imagem */
+        }
+
+        .content-section figure img, .highlight-dark figure img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-section figure figcaption, .highlight-dark figure figcaption {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .highlight-dark figure figcaption {
+            color: var(--color-text-light); /* Garante legibilidade no fundo escuro */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7); /* Adiciona sombra para melhor contraste */
+        }
+@media (max-width: 768px) {
+    .page-header.metodos {
+        padding: 60px 15px;
+    }
+
+    .page-header.metodos .page-title {
+        font-size: 2rem;
+    }
+
+    .page-header.metodos .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .content-section {
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .icon-card-grid {
+        grid-template-columns: 1fr; /* Muda a grade para uma única coluna */
+    }
+    
+    .highlight-dark {
+        padding: 40px 15px;
+    }
+    
+    .highlight-dark h2 {
+        font-size: 1.5rem;
+    }
+    
+    .content-section figure {
+        margin: 20px auto;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header class="page-header metodos">
+        <div class="container">
+            <div class="page-icon"><i class="fas fa-flask"></i></div>
+            <h1 class="page-title">MÉTODO</h1>
+            <p class="page-subtitle">O coração da ciência. Aprenda a transformar sua ideia em conhecimento objetivo.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="content-section">
+            <h2 class="section-title">1. O Papel do Método Científico na Ciência</h2>
+            <p>Bem-vindos à etapa de redigir os métodos! No Método Lógico para Redação Científica, Gilson Volpato enfatiza que o método não é apenas um protocolo, mas sim o **coração do pensamento científico**. Ele é o caminho que transforma a nossa curiosidade em conhecimento objetivo.</p>
+            <figure>
+                <img src="https://plus.unsplash.com/premium_photo-1661427493575-1510ae67a1d4?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Método científico, balanças, lentes de aumento e símbolos de lógica">
+                <figcaption>A precisão e a objetividade são pilares do método científico, garantindo a verificação e o conhecimento neutro.</figcaption>
+            </figure>
+            <p>O método é a forma pela qual o pesquisador torna sua observação sobre um fenômeno **impessoal, neutra e passível de verificação**. Ele remove as influências subjetivas do pesquisador e garante que os resultados da pesquisa não dependam de quem a realizou.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">2. A Ligação Direta entre Objetivos e Métodos</h2>
+            <p>Seus objetivos, que você já definiu, não são apenas declarações de propósito; eles são **direcionadores de ações**. A partir do seu objetivo geral, que contém a variável teórica, você criou objetivos específicos com **variáveis operacionais** que precisam ser mensuradas.</p>
+            <p>O Método Científico é a resposta exata para a pergunta: "Como eu vou mensurar essas variáveis?". Ele é a ponte lógica entre o que você quer saber (os objetivos) e como você irá descobrir (os métodos). Cada objetivo específico deve ter um ou mais procedimentos metodológicos correspondentes para ser alcançado.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">3. As Características Essenciais do Seu Método</h2>
+            <p>Para que seu método cumpra sua função lógica e científica, ele deve ser construído com base nas seguintes características:</p>
+            <div class="icon-card-grid">
+                <div class="icon-card">
+                    <div class="card-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <h3>Replicável</h3>
+                    <p>Seu método precisa ser tão claro e detalhado que outro pesquisador, ao lê-lo, possa repetir seu estudo exatamente da mesma forma para confirmar os resultados.</p>
+                </div>
+                <div class="icon-card">
+                    <div class="card-icon"><i class="fas fa-user-slash"></i></div>
+                    <h3>Impessoal</h3>
+                    <p>A descrição de sua metodologia deve ser objetiva e neutra, eliminando qualquer viés ou opinião pessoal. O método é a prova de que os resultados são um reflexo do fenômeno, e não de quem o estudou.</p>
+                </div>
+                <div class="icon-card">
+                    <div class="card-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Lógico e Sistemático</h3>
+                    <p>O método deve seguir uma sequência coerente e organizada, como uma receita. Cada passo deve ter uma razão lógica para existir, guiado por um raciocínio claro e apoiado por evidências.</p>
+                </div>
+                <div class="icon-card">
+                    <div class="card-icon"><i class="fas fa-vial"></i></div>
+                    <h3>Empírico</h3>
+                    <p>O método deve ser baseado em evidências concretas, observáveis e mensuráveis, e não em suposições ou crenças.</p>
+                </div>
+                <div class="icon-card">
+                    <div class="card-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3>Controlável</h3>
+                    <p>Quando aplicável, o método deve ter um plano para controlar variáveis externas, garantindo que os resultados sejam confiáveis e diretamente relacionados ao que está sendo investigado.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-dark">
+            <i class="fas fa-calculator"></i>
+            <h2>A Estatística na Etapa de Métodos</h2>
+            <figure>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gráficos de estatística e dados, ilustrando o planejamento estatístico na pesquisa.">
+                <figcaption>O planejamento estatístico é essencial antes da coleta de dados para garantir a validade e confiabilidade dos resultados.</figcaption>
+            </figure>
+            <p>O planejamento estatístico do seu projeto deve ser pensado agora, antes da coleta dos dados. É ele que garante que você possa obter uma amostra representativa e que seus resultados sejam confiáveis e sem viés.</p>
+        </div>
+
+        <section class="content-section">
+            <h2 class="section-title">4. Exercício Prático: Conectando Variáveis aos Métodos</h2>
+            <p>Vamos começar com um exercício. Pegue seu objetivo específico e identifique as variáveis operacionais que você definiu.</p>
+            <div class="exercise-box">
+                <p><strong>Exemplo:</strong></p>
+                <p><strong>Objetivo Geral:</strong> <span>Identificar o padrão de comportamento alimentar de jovens universitários.</span></p>
+                <p><strong>Objetivo Específico:</strong> <span>Relacionar hora do dia e tipos de alimentos consumidos.</span></p>
+                <p><strong>Variáveis Operacionais:</strong> <span>Hora do dia e Tipos de alimentos consumidos.</span></p>
+            </div>
+            <p>Liste-os agora:</p>
+            </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">5. De Variável a Mensuração: Como Fazer a Medição?</h2>
+            <p>Agora, para cada variável operacional que você listou, pense: **"Como eu vou mensurá-la?"**</p>
+            <div class="exercise-box">
+                <p><strong>Variáveis Operacionais:</strong> <span>Hora do dia e Tipos de alimentos consumidos.</span></p>
+                <p><strong>Mensuração:</strong> <span>Questionário autoaplicável sobre a frequência e o tipo de alimentos consumidos, registrando o horário de cada refeição.</span></p>
+            </div>
+            <p>Este é o primeiro passo para a redação dos métodos.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">6. O Método como uma Receita de Bolo</h2>
+            <figure>
+                <img src="https://images.unsplash.com/photo-1711570810963-2a1554410c2b?q=80&w=876&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Livro de receita aberto com ingredientes de bolo, simbolizando a precisão e sequência dos métodos científicos.">
+                <figcaption>Assim como uma receita de bolo, o método científico exige precisão e uma sequência clara para garantir o resultado desejado.</figcaption>
+            </figure>
+            <p>Uma metáfora muito útil é pensar o seu método como uma **receita de bolo**. Para que o resultado final (o bolo) saia exatamente como o esperado, você precisa de ingredientes precisos e de um passo a passo detalhado e sequencial. No seu projeto, os ingredientes são os materiais e a receita são os procedimentos.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">7. O Tempo Verbal no Projeto</h2>
+            <p>Lembre-se: em projetos de pesquisa, os métodos são redigidos no **futuro**. Você está descrevendo o que <i>irá</i> fazer.</p>
+            <p class="example-text"><span class="incorrect">Incorreto:</span> Nós avaliamos a amostra.</p>
+            <p class="example-text"><span class="correct">Correto:</span> Nós <strong>iremos</strong> avaliar a amostra.</p>
+        </section>
+        
+        <section class="content-section">
+            <h2 class="section-title">8. Nível de Detalhamento dos Instrumentos</h2>
+            <p>Não é necessário que você se prenda a detalhes minuciosos sobre os instrumentos utilizados. **A lógica é a seguinte: você precisa ser específico o suficiente para que seu trabalho seja replicável, mas não a ponto de se tornar um manual de instruções desnecessário.**</p>
+            <p>Por exemplo, não precisa dizer que utilizou um **microscópio óptico Zeiss modelo 12345**; basta dizer que utilizou um **microscópio óptico**. A exceção seria se a marca e o modelo tivessem uma influência direta nos resultados que só aquele equipamento poderia proporcionar.</p>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">9. Como Citar Métodos de Outros Autores</h2>
+            <p>Se você for utilizar um método já publicado por outro autor, não se limite a dizer: "Os dados foram coletados conforme Fulano (2010)."</p>
+            <p><strong>A lógica científica exige que você mostre que compreende o método.</strong> Faça um breve resumo do procedimento em suas próprias palavras e, ao final, insira a citação:</p>
+            <div class="exercise-box">
+                <p><strong>Exemplo:</strong> "A quantificação de proteínas totais será realizada utilizando o método de coloração de [nome do corante], que se baseia na mudança de cor em meio alcalino na presença de proteínas. Este método é o mais utilizado para quantificação de proteínas em amostras biológicas e é uma técnica já consolidada na área de bioquímica (Fulano, 2010)."</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">10. O Teste Final da Coerência Lógica</h2>
+            <p>Após redigir todos os seus métodos, faça um teste crucial: </p>
+            <p><strong>Para cada objetivo específico que você propôs, pergunte a si mesmo: "A metodologia que eu descrevi é capaz de produzir resultados que me permitirão alcançar este objetivo?"</strong></p>
+            <p>Se a resposta for "sim" para todos, sua seção de métodos está logicamente alinhada e você está no caminho certo. Se a resposta for "não" para algum, retorne e ajuste a metodologia para que ela corresponda ao objetivo.</p>
+        </section>
+
+        <section class="content-section final-step">
+            <h2 class="section-title">11. Hora de Redigir os Métodos</h2>
+            <p>Agora que você tem uma compreensão completa do que é um método científico e como ele se conecta à lógica do seu projeto, é hora de colocar a mão na massa!</p>
+            <p><strong>Com base nas variáveis operacionais que você definiu e nas orientações que recebeu, redija a seção de métodos do estudo que você está propondo.</strong></p>
+            <p>Lembre-se de ser claro, impessoal e de garantir que sua "receita" seja replicável. Sua futura seção de resultados dependerá da solidez dos métodos que você descreve agora.</p>
+        </section>
+
+    </div> <footer class="footer">
+        <div class="container">
+            <p>Powered by Yaiah.com</p>
+            <p>Web site projetoscien © 2025 by Conrado Galdino is licensed under CC BY-NC-SA 4.0</p>
+        </div>
+    </footer>
+</body>
+</html>
