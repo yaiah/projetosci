@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Científico - Prática: Projeto de Extensão</title>
+    <link rel="stylesheet" href="https://yaiah.github.io/projetosci/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos Específicos para a página de Prática de Extensão */
+        :root {
+            --color-primary-extensao: #6a0572; /* Um roxo vibrante para extensão */
+            --color-secondary-extensao: #e8d0ec; /* Um roxo claro */
+            --color-highlight-extensao: #b366bf; /* Um roxo médio */
+            --color-text-dark: #333;
+            --color-text-light: #fff;
+            --color-alert: #d9534f; /* Vermelho para avisos importantes */
+            --color-alert-bg: #fdf5f5; /* Fundo claro para avisos */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text-dark);
+            background-color: #f7f9fc;
+            margin: 0;
+            line-height: 1.7; /* Aumenta um pouco o espaçamento entre linhas para melhor leitura */
+            font-size: 16px; /* Tamanho base da fonte aumentado */
+        }
+
+        p, ul li { /* Garante que parágrafos e itens de lista também peguem o tamanho base */
+            font-size: 1em;
+        }
+
+        .page-header.extensao {
+            background-color: var(--color-primary-extensao);
+            color: var(--color-text-light);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .page-header.extensao .page-icon {
+            font-size: 4.5rem; /* Ícone um pouco maior */
+            margin-bottom: 20px;
+            color: var(--color-highlight-extensao);
+        }
+
+        .page-header.extensao .page-title {
+            font-size: 2.8rem; /* Título um pouco maior */
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .page-header.extensao .page-subtitle {
+            font-size: 1.3rem; /* Subtítulo um pouco maior */
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .content-section {
+            background-color: var(--color-text-light);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin-bottom: 30px; /* Espaço entre os containers */
+        }
+
+        .section-title {
+            font-size: 2rem; /* Título de seção um pouco maior */
+            font-weight: 600;
+            color: var(--color-primary-extensao);
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--color-highlight-extensao);
+            padding-bottom: 10px;
+        }
+
+        .step-card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .step-card {
+            background-color: var(--color-secondary-extensao);
+            border-left: 5px solid var(--color-primary-extensao);
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-card .card-icon {
+            font-size: 2.8rem; /* Ícones dos cards um pouco maiores */
+            color: var(--color-primary-extensao);
+            min-width: 55px;
+            text-align: center;
+        }
+
+        .step-card .card-content h3 {
+            font-size: 1.6rem; /* Títulos dos cards um pouco maiores */
+            font-weight: 600;
+            margin-top: 0;
+            color: var(--color-primary-extensao);
+        }
+
+        .step-card .card-content ul {
+            list-style-type: disc;
+            padding-left: 25px; /* Mais padding para a lista */
+            margin-bottom: 0;
+        }
+
+        .step-card .card-content ul li {
+            margin-bottom: 10px; /* Mais espaçamento entre itens de lista */
+        }
+
+        .highlight-box {
+            background-color: #ffecc6;
+            border-left: 5px solid #ffc107;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.2em; /* Texto do highlight um pouco maior */
+            font-weight: 500;
+            color: #5c4b00;
+        }
+
+        .highlight-box i {
+            font-size: 2.5rem; /* Ícone do highlight um pouco maior */
+            margin-bottom: 15px;
+            color: #ffc107;
+        }
+        
+        .footer {
+            background-color: var(--color-primary-extensao);
+            color: var(--color-text-light);
+            text-align: center;
+            padding: 25px 0; /* Mais padding no footer */
+            margin-top: 40px;
+            font-size: 1em; /* Tamanho da fonte do footer ajustado */
+        }
+
+        .footer p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Estilos específicos para a lista de exemplos de instâncias */
+        .instance-examples {
+            margin-top: 15px;
+            padding-left: 20px;
+            list-style-type: '👉 '; /* Ícone divertido para a lista */
+        }
+        .instance-examples li {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        /* Novo estilo para o container de prazo de entrega */
+        .deadline-section {
+            background-color: var(--color-alert-bg);
+            border-left: 5px solid var(--color-alert);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-top: 40px; /* Mais espaço acima para destaque */
+            margin-bottom: 30px;
+            text-align: center;
+            color: var(--color-alert);
+        }
+        .deadline-section .deadline-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--color-alert);
+        }
+        .deadline-section .deadline-date {
+            font-size: 2.5rem; /* Data grande e destacada */
+            font-weight: 800;
+            color: var(--color-alert);
+            margin-bottom: 10px;
+            display: block; /* Garante que a data fique em sua própria linha */
+        }
+        .deadline-section .deadline-note {
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+
+
+        /* MEDIA QUERIES PARA RESPONSIVIDADE - Ajustes finos */
+        @media (max-width: 768px) {
+            body {
+                font-size: 15px; /* Reduz um pouco a fonte base em mobile para não ficar grande demais */
+                line-height: 1.6;
+            }
+
+            p, ul li {
+                font-size: 1em; /* Mantém a proporção */
+            }
+
+            .page-header.extensao {
+                padding: 40px 15px;
+            }
+
+            .page-header.extensao .page-icon {
+                font-size: 3.5rem;
+            }
+
+            .page-header.extensao .page-title {
+                font-size: 2.2rem;
+            }
+
+            .page-header.extensao .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .content-section {
+                padding: 20px; /* Menos padding em mobile */
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 1.6rem; /* Título de seção ajustado */
+                margin-bottom: 15px;
+                padding-bottom: 8px;
+            }
+
+            .step-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 18px; /* Menos padding no card */
+            }
+            .step-card .card-icon {
+                margin-bottom: 10px;
+                min-width: unset;
+                font-size: 2.2rem; /* Ícone do card ajustado */
+            }
+            .step-card .card-content h3 {
+                font-size: 1.4rem; /* Título do card ajustado */
+            }
+            .step-card .card-content ul {
+                padding-left: 20px; /* Padding ajustado */
+                text-align: left;
+            }
+
+            .highlight-box {
+                padding: 25px;
+                font-size: 1.05em; /* Texto do highlight ajustado */
+            }
+
+            .highlight-box i {
+                font-size: 2rem; /* Ícone do highlight ajustado */
+            }
+
+            .footer {
+                padding: 15px 10px;
+                font-size: 0.85em; /* Fonte do footer ajustada */
+            }
+
+            .deadline-section .deadline-title {
+                font-size: 1.4rem;
+            }
+            .deadline-section .deadline-date {
+                font-size: 2rem; /* Data ajustada para mobile */
+            }
+            .deadline-section .deadline-note {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header extensao">
+        <div class="container">
+            <div class="page-icon"><i class="fas fa-handshake"></i></div>
+            <h1 class="page-title">PROJETO DE EXTENSÃO: PRÁTICA</h1>
+            <p class="page-subtitle">Transforme seu conhecimento em impacto social. Detecte oportunidades e elabore sua proposta.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="content-section">
+            <h2 class="section-title">Instruções Gerais para a Prática</h2>
+            <p>Esta prática tem como objetivo aplicar o conhecimento adquirido na disciplina para a elaboração de um projeto de extensão, buscando oportunidades reais dentro ou fora da PUC Minas. O trabalho será desenvolvido em grupos.</p>
+            <p>Os alunos já possuem o conhecimento necessário para a elaboração do projeto, e as aulas estão disponíveis para consulta no site <a href="https://yaiah.github.io/projetosci/" target="_blank" style="color: var(--color-primary-extensao); text-decoration: underline;">projetoscien</a>.</p>
+        </div>
+
+        <section class="content-section">
+            <h2 class="section-title">Prospecção de Oportunidades (PUC Minas ou Extra Muros)</h2>
+            <p>Os grupos deverão buscar uma instância dentro da PUC Minas, ou uma organização/comunidade fora da universidade, onde haja uma oportunidade para a aplicação de um projeto de extensão. Esta prospecção deve ser detalhada:</p>
+
+            <p><strong>Exemplos de instâncias internas da PUC Minas para prospecção:</strong></p>
+            <ul class="instance-examples">
+                <li>Cisal (Centro de Inovação em Saúde Animal e Laboratorial)</li>
+                <li>Museu de Ciências Naturais da PUC Minas</li>
+                <li>PPG Biodiversidade e Meio Ambiente</li>
+                <li>Outros departamentos acadêmicos, clínicas universitárias, etc.</li>
+            </ul>
+            <p>A prospecção também pode ser feita em organizações sociais, ONGs, empresas ou comunidades externas à universidade, desde que a iniciativa se enquadre nos princípios da extensão universitária.</p>
+
+            <div class="step-card-grid">
+                <div class="step-card">
+                    <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="card-content">
+                        <h3>Levantamento de Informações</h3>
+                        <p>Tomar conhecimento sobre:</p>
+                        <ul>
+                            <li>Ações já desenvolvidas pela instância/organização (projetos de extensão, programas sociais, atividades de impacto).</li>
+                            <li>Demandas latentes ou necessidades não atendidas que a instância/organização possua.</li>
+                            <li>Projetos inconclusos ou que a elaboração não foi terminada, e que possam ser resgatados.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="card-content">
+                        <h3>Avaliação da Melhor Oportunidade</h3>
+                        <p>Com base no levantamento, os alunos deverão avaliar qual seria a melhor e mais viável oportunidade para intervenção do grupo e elaboração de um projeto de extensão.</p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="card-icon"><i class="fas fa-tools"></i></div>
+                    <div class="card-content">
+                        <h3>Modalidades de Elaboração</h3>
+                        <p>Os grupos terão flexibilidade para:</p>
+                        <ul>
+                            <li>Redigir um projeto de extensão completamente do zero, com base na demanda identificada.</li>
+                            <li>Revisar e aprimorar projetos prontos que lhes forem disponibilizados (sob a orientação do professor da disciplina).</li>
+                            <li>Reescrever projetos inconclusos ou com falhas de elaboração, dando-lhes continuidade e solidez.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Pitch de Apresentação da Demanda</h2>
+            <p>Uma vez que a oportunidade e a modalidade de elaboração do projeto forem identificadas, os grupos deverão gravar um **pitch em vídeo de, no máximo, 3 minutos**. Neste pitch, o grupo deve:</p>
+            <ul>
+                <li>Relatar claramente a demanda ou problema prospectado.</li>
+                <li>Indicar como a ação do grupo, por meio do projeto de extensão proposto, contribuiria para resolver essa demanda ou atender a essa necessidade na instância/organização escolhida.</li>
+                <li>O vídeo deve ser conciso e persuasivo, como uma apresentação para um financiador ou parceiro.</li>
+            </ul>
+            <div class="highlight-box">
+                <i class="fas fa-video"></i>
+                <p><strong>Dica:</strong> Foquem na clareza do problema e na singularidade da solução proposta pelo seu grupo! Uma boa narrativa pode fazer toda a diferença.</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 class="section-title">Oportunidade para o TCC</h2>
+            <div class="highlight-box">
+                <i class="fas fa-graduation-cap"></i>
+                <p>Alunos que ainda não possuem um tema definido para o Trabalho de Conclusão de Curso (TCC) ou que buscam um projeto com aplicação prática, podem **liderar este grupo e aproveitar a elaboração do projeto de extensão para compor seu TCC**. Consulte o professor para mais detalhes sobre como integrar essa prática ao seu trabalho final.</p>
+            </div>
+            <p>Esta é uma excelente forma de dar um propósito ainda maior ao seu TCC, unindo a pesquisa acadêmica com o impacto social da extensão universitária, agregando valor tanto à sua formação quanto à comunidade.</p>
+        </section>
+
+        <div class="deadline-section">
+            <h2 class="deadline-title">Prazo de Entrega do Projeto de Extensão</h2>
+            <span class="deadline-date">28/11/2025</span>
+            <p class="deadline-note">Todos os projetos de extensão deverão ser entregues como tarefa no Canvas até esta data. <br> Certifiquem-se de submeter todos os materiais e o pitch de vídeo no formato e local indicados.</p>
+        </div>
+
+    </div> 
+    
+    <footer class="footer">
+        <div class="container">
+            <p>Powered by Yaiah.com</p>
+            <p>Web site projetoscien © 2025 by Conrado Galdino is licensed under CC BY-NC-SA 4.0</p>
+        </div>
+    </footer>
+</body>
+</html>
