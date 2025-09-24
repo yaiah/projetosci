@@ -226,9 +226,8 @@
     </footer>
 
     <script>
-        // *** IMPORTANTE: SUBSTITUA ESTA URL PELA SUA URL CSV DO GOOGLE SHEETS ***
-        // Para obter: Publicar planilha para a web (CSV, apenas a aba com os dados do cronograma)
-        const dataSourceUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS8NSr_xbJXZPnlMHNUNvvIMasGdEf8PqVN3WQydMKS6aJDZFjJFIj3s1Vb7WWuLmAtYAluUvkIJMYa/pub?gid=0&single=true&output=csv'; // URL de exemplo da sua planilha publicada
+        // URL direta para exportar o CSV da sua planilha
+        const dataSourceUrl = 'https://docs.google.com/spreadsheets/d/1DFPA4zXb4pvd4rpy6vWWSrTgOCEOvqsc1NeWDKWw7Qg/export?format=csv';
 
         async function fetchCsvData(url) {
             try {
@@ -244,26 +243,42 @@
             }
         }
 
+        // Função para parsear data DD/MM/YYYY para MM/DD/YYYY para compatibilidade com new Date()
+        function parseDateString(dateString) {
+            if (!dateString) return null;
+            const parts = dateString.split('/');
+            if (parts.length === 3) {
+                // Converte para MM/DD/YYYY para melhor compatibilidade com new Date()
+                return `${parts[1]}/${parts[0]}/${parts[2]}`;
+            }
+            return dateString; // Retorna original se não for DD/MM/YYYY
+        }
+
         function parseCsv(csvText) {
             const lines = csvText.trim().split('\n');
             if (lines.length < 2) {
-                return []; // Nenhuma linha de dados além do cabeçalho
+                return [];
             }
 
-            // Remove o "byte order mark" (BOM) se presente, que pode aparecer em alguns CSVs
             const headerLine = lines[0].startsWith('\ufeff') ? lines[0].substring(1) : lines[0];
             const headers = headerLine.split(',').map(h => h.trim());
 
             const data = [];
             for (let i = 1; i < lines.length; i++) {
                 const values = lines[i].split(',');
+                // Verifica se a linha tem o número esperado de colunas ou se é apenas uma linha vazia
+                if (values.length !== headers.length && values.join('').trim() === '') {
+                    continue; // Pula linhas vazias que podem ter sido geradas no CSV
+                }
                 if (values.length !== headers.length) {
-                    // console.warn(`Linha ${i + 1} com número inconsistente de colunas. Pulando.`);
+                    console.warn(`Linha ${i + 1} com número inconsistente de colunas. Esperado: ${headers.length}, Encontrado: ${values.length}. Conteúdo: "${lines[i]}".`);
                     continue; // Pular linhas com erro
                 }
+
                 const row = {};
                 headers.forEach((header, index) => {
-                    row[header] = values[index].trim();
+                    // Trata valores undefined/null como strings vazias para evitar problemas
+                    row[header] = values[index] ? values[index].trim() : '';
                 });
                 data.push(row);
             }
@@ -272,14 +287,13 @@
 
         function renderCronograma(data) {
             const cronogramaContent = document.getElementById('cronograma-content');
-            cronogramaContent.innerHTML = ''; // Limpa a mensagem de carregamento
+            cronogramaContent.innerHTML = '';
 
             if (data.length === 0) {
                 cronogramaContent.innerHTML = '<div class="loading-message">Nenhuma atividade encontrada no cronograma.</div>';
                 return;
             }
 
-            // Cabeçalho da tabela
             const headerHtml = `
                 <div class="cronograma-header">
                     <div class="col-id">ID</div>
@@ -292,25 +306,32 @@
             `;
             cronogramaContent.insertAdjacentHTML('beforeend', headerHtml);
 
-            // Linhas de dados
             data.forEach(item => {
-                const startDate = new Date(item['Data de Início']);
-                const endDate = new Date(item['Data de Fim']);
+                const parsedStartDateString = parseDateString(item['Data de Início']);
+                const parsedEndDateString = parseDateString(item['Data de Fim']);
 
-                const formattedStartDate = isNaN(startDate) ? 'N/A' : startDate.toLocaleDateString('pt-BR');
-                const formattedEndDate = isNaN(endDate) ? 'N/A' : endDate.toLocaleDateString('pt-BR');
+                const startDate = new Date(parsedStartDateString);
+                const endDate = new Date(parsedEndDateString);
+
+                const formattedStartDate = isNaN(startDate.getTime()) ? 'N/A' : startDate.toLocaleDateString('pt-BR');
+                const formattedEndDate = isNaN(endDate.getTime()) ? 'N/A' : endDate.toLocaleDateString('pt-BR');
                 
-                // Normaliza o status para usar em classes CSS (ex: "Em Andamento" -> "Em-Andamento")
-                const statusClass = item['Status'].replace(/\s+/g, '-');
+                // --- MUDANÇA AQUI ---
+                // Garante que item['Status'] é uma string antes de chamar replace()
+                const rawStatus = item['Status'] || 'Não Definido'; // Fallback para "Não Definido"
+                const statusClass = rawStatus.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, ''); 
+                const statusDisplay = rawStatus; 
+
+                const notasDisplay = item['Notas'] || '-';
 
                 const rowHtml = `
                     <div class="cronograma-row">
-                        <div class="col-id">${item['ID']}</div>
-                        <div class="col-atividade">${item['Atividade']}</div>
-                        <div class="col-responsavel">${item['Responsável']}</div>
+                        <div class="col-id">${item['ID'] || '-'}</div>
+                        <div class="col-atividade">${item['Atividade'] || '-'}</div>
+                        <div class="col-responsavel">${item['Responsável'] || '-'}</div>
                         <div class="col-datas">${formattedStartDate} - ${formattedEndDate}</div>
-                        <div class="col-status"><span class="status-badge ${statusClass}">${item['Status']}</span></div>
-                        <div class="col-notas">${item['Notas'] || '-'}</div>
+                        <div class="col-status"><span class="status-badge ${statusClass}">${statusDisplay}</span></div>
+                        <div class="col-notas">${notasDisplay}</div>
                     </div>
                 `;
                 cronogramaContent.insertAdjacentHTML('beforeend', rowHtml);
@@ -326,15 +347,14 @@
                 const cronogramaContent = document.getElementById('cronograma-content');
                 cronogramaContent.innerHTML = `
                     <div class="error-message">
-                        <i class="fas fa-exclamation-triangle"></i> Erro ao carregar o cronograma. Verifique a URL da planilha e se ela está publicada corretamente.
-                        <p>${error.message}</p>
+                        <i class="fas fa-exclamation-triangle"></i> Erro ao carregar o cronograma. Verifique a URL da planilha e o formato dos dados.
+                        <p>Detalhes do erro: ${error.message}</p>
                     </div>
                 `;
                 console.error("Falha ao inicializar o cronograma:", error);
             }
         }
 
-        // Inicia o cronograma quando a página é carregada
         document.addEventListener('DOMContentLoaded', initCronograma);
     </script>
 </body>
