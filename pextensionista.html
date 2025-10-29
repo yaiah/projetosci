@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruções do Projeto de Extensão Interdisciplinar: Zoonoses em Foco</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis de Cores Grená */
+        :root {
+            --color-primary-grenade: #800000; /* Grená Escuro Principal */
+            --color-secondary-light: #fefafa; /* Quase branco rosado para fundos */
+            --color-highlight-grenade: #b03a3a; /* Grená Médio para destaques */
+            --color-text-dark: #333;
+            --color-text-light: #fff;
+            --color-border-subtle: #eee;
+            --color-accent-blue: #007bff; /* Para links ou ícones de informação */
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--color-text-dark);
+            margin: 0;
+            line-height: 1.7;
+            font-size: 17px; /* Base da fonte para leitura */
+            background-color: var(--color-secondary-light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-primary-grenade);
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.5em; text-align: center; color: var(--color-primary-grenade); margin-top: 1.5em; margin-bottom: 0.5em;}
+        h2 { font-size: 1.8em; color: var(--color-highlight-grenade); border-bottom: 2px solid var(--color-highlight-grenade); padding-bottom: 0.5em; margin-top: 2em; }
+        h3 { font-size: 1.4em; color: var(--color-primary-grenade); margin-top: 1.5em; }
+
+        p { margin-bottom: 1em; }
+        ul, ol {
+            margin-bottom: 1em;
+            padding-left: 1.8em;
+        }
+        ul li, ol li { margin-bottom: 0.6em; }
+
+        a {
+            color: var(--color-accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--color-primary-grenade);
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 40px 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        /* Header (Título e Info do Professor) */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border-subtle);
+            margin-bottom: 30px;
+        }
+        header h1 {
+            color: var(--color-primary-grenade);
+            font-size: 2.8em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.1em;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        /* Navegação Lateral */
+        .sidebar-nav {
+            position: sticky;
+            top: 20px;
+            width: 250px;
+            float: left;
+            margin-right: 40px;
+            padding-top: 20px;
+        }
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            border: 1px solid var(--color-border-subtle);
+        }
+        .sidebar-nav li a {
+            display: block;
+            padding: 12px 18px;
+            color: var(--color-text-dark);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-border-subtle);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .sidebar-nav li:last-child a {
+            border-bottom: none;
+        }
+        .sidebar-nav li a:hover, .sidebar-nav li.active a {
+            background-color: var(--color-primary-grenade);
+            color: var(--color-text-light);
+            border-radius: 8px; /* Para as pontas */
+        }
+        .sidebar-nav li:first-child a { border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .sidebar-nav li:last-child a { border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; }
+
+        /* Conteúdo Principal */
+        .main-content {
+            margin-left: 290px; /* Espaço para a navegação lateral */
+            padding-top: 20px;
+        }
+        .main-content section {
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            /* border-bottom: 1px dashed var(--color-border-subtle); */
+        }
+        .main-content section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .info-box {
+            background-color: #f0f8ff; /* Light blue background */
+            border-left: 4px solid var(--color-accent-blue);
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-size: 0.95em;
+            color: #333;
+        }
+        .info-box i {
+            color: var(--color-accent-blue);
+            margin-right: 10px;
+        }
+
+        .highlight-list li strong {
+            color: var(--color-primary-grenade);
+        }
+
+        .group-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 1em;
+            text-align: left;
+        }
+        .group-table th, .group-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        .group-table th {
+            background-color: var(--color-primary-grenade);
+            color: var(--color-text-light);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+        .group-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .group-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 1px solid var(--color-border-subtle);
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 30px;
+            }
+            .sidebar-nav {
+                width: 200px;
+                margin-right: 30px;
+            }
+            .main-content {
+                margin-left: 240px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { font-size: 16px; }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.5em; }
+            h3 { font-size: 1.2em; }
+
+            .sidebar-nav {
+                position: static;
+                width: 100%;
+                float: none;
+                margin-right: 0;
+                margin-bottom: 30px;
+                background-color: transparent; /* Remove background para mobile */
+                border: none;
+                padding-top: 0;
+            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px; /* Espaçamento entre os itens */
+                background-color: var(--color-primary-grenade); /* Fundo da nav no mobile */
+                border: none;
+                border-radius: 0;
+                padding: 10px 5px;
+            }
+            .sidebar-nav li {
+                flex: 1 1 auto; /* Permite que os itens cresçam, mas respeitem o tamanho */
+                max-width: 48%; /* Duas colunas */
+                text-align: center;
+            }
+            .sidebar-nav li a {
+                border-bottom: none;
+                border-radius: 5px;
+                background-color: var(--color-highlight-grenade); /* Botões individuais */
+                color: var(--color-text-light);
+                font-size: 0.9em;
+                padding: 10px;
+            }
+            .sidebar-nav li a:hover, .sidebar-nav li.active a {
+                background-color: var(--color-text-light);
+                color: var(--color-primary-grenade);
+            }
+            .sidebar-nav li:first-child a, .sidebar-nav li:last-child a {
+                 border-radius: 5px; /* Arredondar todos os botões */
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+            .container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar-nav li {
+                max-width: 98%; /* Uma coluna */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Instruções do Projeto de Extensão Interdisciplinar</h1>
+            <p><strong>Tema Norteador:</strong> Zoonoses em Foco</p>
+            <p><strong>Disciplina:</strong> Normalização Bibliográfica e Introdução ao Projeto (com Educação Ambiental e Parasitologia)</p>
+            <p><strong>Professor(a):</strong> [Seu Nome Completo]</p>
+        </header>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#tema-e-abordagem"><i class="fas fa-microscope"></i> Tema e Abordagem</a></li>
+                <li><a href="#requisitos-postagens"><i class="fas fa-clipboard-check"></i> Requisitos das Postagens</a></li>
+                <li><a href="#divulgacao-engajamento"><i class="fas fa-share-alt"></i> Divulgação e Engajamento</a></li>
+                <li><a href="#grupos-e-temas"><i class="fas fa-users"></i> Grupos e Temas</a></li>
+                <li><a href="#produtos-esperados"><i class="fas fa-box-open"></i> Produtos Esperados</a></li>
+                <li><a href="#avaliacao"><i class="fas fa-chart-line"></i> Processo de Avaliação</a></li>
+                <li><a href="#referencias-abnt"><i class="fas fa-book"></i> Referências (ABNT)</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <section id="tema-e-abordagem">
+                <h2>1. Tema Norteador e Abordagem Geral</h2>
+                <p>O projeto de extensionista tem como **Tema Norteador as Zoonoses**. Nosso objetivo é prover conteúdo de qualidade e lastro científico, utilizando as **Redes Sociais (RS)** como principal ferramenta de comunicação para informar, educar e engajar a comunidade sobre a prevenção e o manejo dessas doenças.</p>
+                
+                <h3>Abordagem nas Redes Sociais:</h3>
+                <p>A estratégia de comunicação será diversificada e criativa, explorando diferentes formatos, a critério do grupo, para garantir o máximo de alcance e compreensão:</p>
+                <ul class="highlight-list">
+                    <li><i class="fas fa-image"></i> **Imagens:** Infográficos, ilustrações, fotos (com os devidos créditos e licenças).</li>
+                    <li><i class="fas fa-file-alt"></i> **Textos:** Posts informativos, legendas claras e concisas, artigos curtos.</li>
+                    <li><i class="fas fa-video"></i> **Vídeos:** Animações curtas, vídeos explicativos, entrevistas didáticas.</li>
+                    <li><i class="fas fa-microphone-alt"></i> **Voz:** Podcasts curtos, áudios explicativos.</li>
+                </ul>
+                <div class="info-box"><i class="fas fa-info-circle"></i> A criatividade do grupo será fundamental para adaptar a linguagem e o formato ao público das redes sociais, mantendo sempre o rigor científico.</div>
+            </section>
+
+            <section id="requisitos-postagens">
+                <h2>2. Requisitos para as Postagens</h2>
+                <p>Todo o conteúdo produzido para as postagens sobre a zoonose designada ao seu grupo deve abordar:</p>
+                <ul class="highlight-list">
+                    <li><i class="fas fa-notes-medical"></i> **O que é a doença:** Definição clara, agente etiológico (causador), principais hospedeiros/vetores e sua relevância.</li>
+                    <li><i class="fas fa-shield-alt"></i> **Profilaxia:** Medidas de prevenção, higiene pessoal e ambiental, cuidados com animais e outros métodos essenciais para evitar a transmissão.</li>
+                    <li><i class="fas fa-hand-holding-medical"></i> **Tratamento:** Informações básicas sobre o tratamento (em humanos e/ou animais, conforme o caso), sempre ressaltando a importância do diagnóstico e acompanhamento por profissionais de saúde/veterinária.</li>
+                    <li><i class="fas fa-leaf"></i> **Conservação:** Abordar a relação da doença com o meio ambiente, com a conservação de espécies e ecossistemas, e o impacto das ações humanas na cadeia de transmissão.</li>
+                    <li><i class="fas fa-question-circle"></i> **FAQ (Perguntas Frequentes):** Elaborar e responder às dúvidas mais comuns que o público-alvo possa ter sobre a zoonose.</li>
+                    <li><i class="fas fa-info"></i> **Informativo:** O conteúdo deve ser didático, objetivo e de fácil compreensão. Evite jargões excessivamente técnicos sem a devida explicação e priorize uma linguagem acessível.</li>
+                </ul>
+            </section>
+
+            <section id="divulgacao-engajamento">
+                <h2>3. Estratégia de Divulgação e Engajamento</h2>
+                <p>Para maximizar o alcance e o impacto do projeto, a divulgação do conteúdo será ativa e direcionada, buscando o apoio e a interação com diferentes públicos e "Setores Chave":</p>
+                <ul class="highlight-list">
+                    <li><i class="fas fa-users"></i> **Grupo Familiar dos Alunos:** Incentivem seus familiares e amigos a compartilhar as postagens, interagir (comentários são essenciais!) com o conteúdo e seguir as páginas do projeto.</li>
+                    <li><i class="fas fa-university"></i> **Setores Chave da PUC (potenciais parceiros para divulgação e/ou expertise):**
+                        <ul>
+                            <li>**PIBID:** Programa Institucional de Bolsas de Iniciação à Docência.</li>
+                            <li>**CISAL**</li>
+                            <li>**PET:** Programa de Educação Tutorial.</li>
+                            <li>**Canais do Curso:** Utilizem os canais de comunicação oficiais do curso para divulgar as postagens.</li>
+                            <li>**ICBS(?).</li>
+                            <li>**PREX(?).</li>
+                            <li>**Influencers de Sci (?):** Se possível, busquem parcerias com "influenciadores científicos" ou perfis com grande alcance nas redes que abordam temas de ciência e saúde para amplificar a mensagem.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="info-box"><i class="fas fa-lightbulb"></i> A colaboração e o networking são essenciais para que o conhecimento gerado alcance o maior número de pessoas.</div>
+            </section>
+
+            <section id="grupos-e-temas">
+                <h2>4. Organização dos Grupos e Temas para os "Projetos Filhos"</h2>
+                <p>Cada grupo será responsável por uma zoonose específica, desenvolvendo todo o conteúdo digital conforme os requisitos estabelecidos no item 2.</p>
+                <table class="group-table">
+                    <thead>
+                        <tr>
+                            <th>Grupo</th>
+                            <th>Zoonose Designada</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>**Grupo 1 (G1)**</td>
+                            <td>Toxoplasmose</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>**Grupo 2 (G2)**</td>
+                            <td>Esporotricose</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>**Grupo 3 (G3)**</td>
+                            <td>Leishmaniose</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>**Grupo 4 (G4)**</td>
+                            <td>Febre Maculosa</td>
+                            
+                        </tr>
+                        <tr>
+                            <td>**Grupo 5 (G5)**</td>
+                            <td>Raiva</td>
+                           
+                        </tr>
+                        <tr>
+                            <td>**Grupo 6 (G6)**</td>
+                            <td>Febre Amarela</td>
+                            <
+                        </tr>
+                    </tbody>
+                </table>
+              
+            </section>
+
+            <section id="produtos-esperados">
+                <h2>5. Produtos Esperados</h2>
+                <p>Ao final, cada grupo deverá entregar os seguintes produtos:</p>
+                <ul class="highlight-list">
+                    <li><i class="fas fa-share-square"></i> **Postagens nas Redes Sociais:**
+                        <ul>
+                            <li>Links diretos para as postagens publicadas.</li>
+                            
+                            <li>Um breve relatório de estratégia de conteúdo e engajamento.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-database"></i> **Material Digital para Banco Didático:**
+                        <ul>
+                            <li>Todos os arquivos digitais originais produzidos (imagens, textos, vídeos, áudios, etc.) deverão ser compilados e entregues.</li>
+                            <li>Este material servirá para compor um "Banco Didático" da instituição, podendo ser utilizado em futuras ações educativas.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="avaliacao">
+                <h2>6. Processo de Avaliação</h2>
+                <p>A avaliação do projeto será abrangente, considerando a qualidade do conteúdo, a eficácia da comunicação e o processo de trabalho do grupo:</p>
+                <ul class="highlight-list">
+                    <li><i class="fas fa-chart-bar"></i> **Avaliação do Público:**
+                        <ul>
+                            <li>**Enquete nas Redes Sociais (RS):** Realização de enquetes, quizzes ou outras interações para medir o nível de engajamento e a compreensão do público sobre o conteúdo das postagens.</li>
+                            <li>**Métricas de RS:** Análise de dados como alcance, impressões, curtidas, compartilhamentos, comentários, saves e tempo de visualização (para vídeos) das postagens.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-users-cog"></i> **Avaliação dos Alunos (Autoavaliação e Professor):**
+                        <ul>
+                            <li>**Autoavaliação do Grupo:** Cada grupo apresentará, em um debate em sala de aula, uma autoavaliação crítica sobre o planejamento, a execução do trabalho, a qualidade do conteúdo, o alcance dos objetivos e as dificuldades encontradas.</li>
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="referencias-abnt">
+                <h2>7. Referências (ABNT)</h2>
+                <p>O rigor científico e a integridade acadêmica são pilares deste projeto. Portanto:</p>
+                <ul class="highlight-list">
+                    <li><i class="fas fa-book-open"></i> Todo o conteúdo informativo produzido (textos, roteiros de vídeo, legendas, etc.) deverá ser embasado em **fontes confiáveis e academicamente reconhecidas.**</li>
+                    <li><i class="fas fa-list-ol"></i> Se o grupo produzir um documento compilando o projeto, um relatório ou um roteiro detalhado do material didático, ele deverá conter uma seção de **Referências Bibliográficas**.</li>
+                    
+                    <li><i class="fas fa-exclamation-triangle"></i> Lembrem-se dos princípios sobre citações e plágio. **Toda informação que não for de autoria própria deve ser devidamente referenciada (sejam criativos quanto a isso).**</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>Powered by yaiah.com</p>
+        <p>&copy; 2025 - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // JavaScript para rolagem suave da navegação lateral
+        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Adiciona e remove a classe 'active' para destacar o item clicado
+                document.querySelectorAll('.sidebar-nav li').forEach(li => li.classList.remove('active'));
+                this.parentElement.classList.add('active');
+            });
+        });
+
+        // Opcional: Destacar o item do menu lateral conforme a rolagem da página
+        const sections = document.querySelectorAll('main section');
+        const navLi = document.querySelectorAll('.sidebar-nav li');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Ajuste o '/3' conforme necessário
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(li => {
+                li.classList.remove('active');
+                if (li.querySelector('a').getAttribute('href').includes(current)) {
+                    li.classList.add('active');
+                }
+            });
+        });
+
+        // Define o primeiro item como ativo ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            if (navLi.length > 0) {
+                navLi[0].classList.add('active');
+            }
+        });
+
+    </script>
+</body>
+</html>
