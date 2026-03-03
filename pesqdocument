@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa documental · extensão universitária (etapas)</title>
+    <!-- Fontes e ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4fa;
+            color: #1c2f44;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -10px rgba(0,35,65,0.2);
+            overflow: hidden;
+            padding: 2.2rem 2rem 3rem 2rem;
+        }
+
+        .header-simples {
+            border-bottom: 3px solid #e2eaf0;
+            padding-bottom: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-simples h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #103450;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-simples h1 i {
+            color: #2f6f9c;
+        }
+
+        .regra-ouro-box {
+            background: #182f40;
+            color: white;
+            padding: 1.3rem 2rem;
+            border-radius: 80px;
+            font-size: 1.25rem;
+            font-weight: 400;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.2rem 0 1.8rem 0;
+            box-shadow: 0 6px 0 #0f2533;
+        }
+
+        .regra-ouro-box i {
+            color: #fdbf5e;
+            font-size: 2rem;
+        }
+
+        /* introdução tarefa */
+        .tarefa-intro {
+            background: #e2edf9;
+            border-radius: 2rem;
+            padding: 1.5rem 2rem;
+            margin: 1.8rem 0 2.8rem 0;
+            font-size: 1.1rem;
+            border-left: 8px solid #1b5a7a;
+        }
+
+        .etapas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .etapa-bloco {
+            background: #ffffff;
+            border: 2px solid #d9e5f0;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 8px 0 #cbdae9;
+        }
+
+        .etapa-titulo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #103450;
+            margin-bottom: 1rem;
+        }
+
+        .etapa-numero {
+            background: #1b5a7a;
+            color: white;
+            width: 50px;
+            height: 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+        }
+
+        .sub-item {
+            margin-left: 2rem;
+            padding-left: 1.2rem;
+            border-left: 4px solid #aac7df;
+            margin-top: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .exemplo-baratas {
+            background: #fcf2e3;
+            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            margin: 1.2rem 0;
+            border-left: 8px solid #bb7711;
+        }
+
+        .exemplo-baratas strong {
+            color: #5d3a0e;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icone-barata {
+            color: #8b5e2c;
+            font-size: 1.8rem;
+        }
+
+        .tabela-catalogo {
+            width: 100%;
+            border-collapse: collapse;
+            background: #f5faff;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .tabela-catalogo th {
+            background: #2c6282;
+            color: white;
+            padding: 0.7rem 0.8rem;
+            font-weight: 600;
+        }
+
+        .tabela-catalogo td {
+            background: white;
+            padding: 0.7rem 0.8rem;
+            border-bottom: 1px solid #d0e0ee;
+        }
+
+        .matriz-modelo {
+            background: #e5f0fa;
+            border-radius: 1.5rem;
+            padding: 1.2rem;
+            font-family: monospace;
+        }
+
+        .destaque-criterio {
+            background: #def0fc;
+            border: 2px dashed #1b5a7a;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem;
+            display: inline-block;
+            margin: 0.7rem 0;
+            font-weight: 600;
+        }
+
+        .transposicao-card {
+            background: #e0ecf7;
+            border-radius: 2rem;
+            padding: 2rem;
+            margin: 3rem 0 1.5rem 0;
+        }
+
+        .transposicao-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #0b3b55;
+        }
+
+        .cards-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card-tp {
+            background: white;
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.5rem;
+            flex: 1 1 200px;
+            box-shadow: 0 6px 0 #b7cfde;
+        }
+
+        .card-tp i {
+            font-size: 2.2rem;
+            color: #1b5a7a;
+        }
+
+        footer {
+            background: #143546;
+            color: white;
+            border-radius: 2.5rem;
+            padding: 2rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header-simples">
+        <h1><i class="fas fa-magnifying-glass"></i> Pesquisa documental na extensão</h1>
+        <div class="regra-ouro-box">
+            <i class="fas fa-crown"></i> Regra de ouro: não entre com soluções prontas · diagnóstico primeiro
+        </div>
+    </div>
+
+    <!-- Tarefa (texto do arquivo) -->
+    <div class="tarefa-intro">
+        <i class="fas fa-tasks" style="margin-right: 0.8rem; color: #103450;"></i>
+        <strong>Tarefa:</strong> Com base no potencial extensionista da sua IC (ou área de interesse), percorra as etapas da pesquisa documental. Use o exemplo da <strong>“antena da barata”</strong> para entender como transpor seu conhecimento para a comunidade.
+    </div>
+
+    <!-- ETAPAS PRINCIPAIS (numeradas conforme arquivo) -->
+    <div class="etapas-container">
+
+        <!-- ETAPA 1 -->
+        <div class="etapa-bloco">
+            <div class="etapa-titulo">
+                <span class="etapa-numero">1</span> Definir foco/objetivos
+            </div>
+            <p><strong>1.1 Delimitar problema, perguntas e recorte</strong> (território, período, políticas, grupos). Relacione seu objeto com a comunidade externa.</p>
+            <!-- Exemplo barata -->
+            <div class="exemplo-baratas">
+                <strong><i class="fas fa-bug icone-barata"></i> Exemplo: estudo dos órgãos sensoriais da antena da barata</strong>
+                <ul style="margin: 0.8rem 0 0 1.5rem;">
+                    <li><strong>Tema ampliado:</strong> baratas como praga urbana, saúde pública, falta de saneamento.</li>
+                    <li><strong>Problema comunitário:</strong> infestações em bairros periféricos, resistência a inseticidas.</li>
+                    <li><strong>Recorte:</strong> bairro X (período: últimos 3 anos), políticas municipais de controle de pragas, grupos envolvidos: associação de moradores, unidade de saúde, vigilância ambiental.</li>
+                </ul>
+                <span style="background: #c9a87c; color: #1f2f1f; padding: 0.2rem 1rem; border-radius: 30px;">✓ Transposição: do específico (antenas) para o comunitário (controle de pragas)</span>
+            </div>
+            <div class="sub-item">
+                <i class="fa-regular fa-lightbulb"></i> Qualquer tema pode ser ampliado: bioquímica → contaminação de alimentos; engenharia de materiais → resíduos sólidos; música → memória cultural.
+            </div>
+        </div>
+
+        <!-- ETAPA 2 -->
+        <div class="etapa-bloco">
+            <div class="etapa-titulo">
+                <span class="etapa-numero">2</span> Definição de documentos
+            </div>
+            <p><strong>2. Tipos de documentos:</strong> leis, planos, relatórios, bases de dados, notícias, etc.</p>
+            <div class="exemplo-baratas" style="background:#e3f2e9; border-left-color: #1f7a5a;">
+                <i class="fas fa-newspaper"></i> <strong>No caso das baratas:</strong> notícias de infestação, relatórios da vigilância epidemiológica, planos municipais de controle de vetores, atas de conselhos de saúde.
+            </div>
+            <p><strong>2.1 Onde estão?</strong> sites oficiais (prefeitura, ministério), arquivos públicos, repositórios universitários, bibliotecas, associações locais.</p>
+            <p><strong>2.3 Critérios de inclusão:</strong> relevância temática, período (ex.: últimos 5-10 anos), procedência institucional, escala (local, municipal).</p>
+
+            <p><strong>2.4 Organize o material</strong></p>
+            <ul style="margin-left: 2rem;">
+                <li><strong>2.4.1 Catalogar em planilha</strong> com campos: título, ano, instituição, tipo, escala, palavras‑chave, síntese.</li>
+            </ul>
+
+            <!-- tabela exemplo -->
+            <table class="tabela-catalogo">
+                <thead><tr><th>Título</th><th>Ano</th><th>Instituição</th><th>Tipo</th><th>Palavras-chave</th></tr></thead>
+                <tbody>
+                    <tr><td>Plano Municipal de Controle de Pragas</td><td>2021</td><td>Secretaria de Saúde</td><td>Plano</td><td>baratas, saneamento, ações</td></tr>
+                    <tr><td>Relatório de notificações - zona sul</td><td>2023</td><td>Vigilância Ambiental</td><td>Relatório</td><td>infestação, bairros</td></tr>
+                    <tr><td>Matéria "Moradores reclamam de pragas"</td><td>2024</td><td>Jornal da Cidade</td><td>Notícia</td><td>saúde, abandono</td></tr>
+                </tbody>
+            </table>
+
+            <p><strong>2.4.2 Leitura analítica e tratamento dos dados</strong> · <strong>2.4.3 Leitura exploratória</strong> (localizar termos‑chave: “barata”, “infestação”, “controle”) e comparar documentos.</p>
+            <p><strong>2.4.4 Elabore quadros ou matrizes analíticas</strong> (documento × tema × posição do autor × indicadores).</p>
+
+            <div class="matriz-modelo">
+                <i class="fas fa-table"></i> <strong>Matriz exemplo (baratas):</strong>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 8px;">
+                    <div style="background:#c1d9f0; padding:4px;"><strong>Documento</strong></div><div style="background:#c1d9f0;"><strong>Diagnóstico</strong></div><div style="background:#c1d9f0;"><strong>Soluções apontadas</strong></div>
+                    <div>Plano Municipal</div><div>alta infestação em áreas pobres</div><div>campanhas educativas</div>
+                    <div>Relatório 2023</div><div>foco em acúmulo de lixo</div><div>ações pontuais de dedetização</div>
+                    <div>Notícia 2024</div><div>moradores relatam inação</div><div>—</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ETAPA 3 -->
+        <div class="etapa-bloco">
+            <div class="etapa-titulo">
+                <span class="etapa-numero">3</span> Análise e síntese
+            </div>
+            <p><strong>3.1 Identificar:</strong> convergências, lacunas, conflitos, tendências históricas.</p>
+            <p><strong>3.2 Produzir texto/relatório</strong> integrando a leitura ao problema de diagnóstico, explicitando limites das fontes.</p>
+
+            <div class="exemplo-baratas" style="background:#f7f0da;">
+                <strong><i class="fas fa-pen"></i> Exemplo de síntese (tema baratas):</strong>
+                <p>“Os documentos oficiais reconhecem a infestação, mas propõem soluções genéricas. Há uma lacuna quanto à participação comunitária, embora as notícias mostrem que moradores são os primeiros a agir. As fontes oficiais ignoram o saber local sobre criadouros. <strong>Limite:</strong> notícias podem conter viés; relatórios técnicos são desatualizados.”</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOCO DE TRANSPOSIÇÃO (diálogo "antena da barata") -->
+    <div class="transposicao-card">
+        <h3><i class="fas fa-exchange-alt"></i> Transposição para sua realidade</h3>
+        <p>“Professor, meu estudo é sobre órgãos sensoriais da antena da barata. O que isso tem a ver com a comunidade?” <br>Amplie seu olhar: você entende de baratas (biologia, hábitos, resistência). Isso pode ajudar a resolver problemas reais de infestação.</p>
+        <div class="cards-flex">
+            <div class="card-tp">
+                <i class="fas fa-microchip"></i>
+                <h4>1. Seu tema específico</h4>
+                <p>Ex.: fisiologia vegetal → espécies nativas → recuperação de áreas degradadas.</p>
+            </div>
+            <div class="card-tp">
+                <i class="fas fa-file-lines"></i>
+                <h4>2. Documentos relacionados</h4>
+                <p>Planos de arborização, relatórios de desmatamento, notícias sobre enchentes.</p>
+            </div>
+            <div class="card-tp">
+                <i class="fas fa-people"></i>
+                <h4>3. Atores a mapear</h4>
+                <p>Moradores, secretaria de meio ambiente, ONGs, escolas locais.</p>
+            </div>
+        </div>
+        <div class="destaque-criterio" style="margin-top: 1.5rem;">Use as etapas 1,2,3 com seu próprio recorte</div>
+    </div>
+
+    <!-- checklist resumo -->
+    <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin: 2.5rem 0;">
+        <span style="background: #103958; color: white; padding: 0.5rem 1.2rem; border-radius: 30px;"><i class="fa-regular fa-circle-check"></i> 1. Foco</span>
+        <span style="background: #1d5273; color: white; padding: 0.5rem 1.2rem; border-radius: 30px;"><i class="fa-regular fa-circle-check"></i> 2. Tipos documentais</span>
+        <span style="background: #286b91; color: white; padding: 0.5rem 1.2rem; border-radius: 30px;"><i class="fa-regular fa-circle-check"></i> 2.1 Onde</span>
+        <span style="background: #3282ab; color: white; padding: 0.5rem 1.2rem; border-radius: 30px;"><i class="fa-regular fa-circle-check"></i> 2.3 Critérios</span>
+        <span style="background: #3f9bc9; color: white; padding: 0.5rem 1.2rem; border-radius: 30px;"><i class="fa-regular fa-circle-check"></i> 2.4 Catalogar</span>
+        <span style="background: #154f6e; color: white; padding: 0.5rem 1.2rem; border-radius: 30px;"><i class="fa-regular fa-circle-check"></i> 3. Síntese</span>
+    </div>
+
+    <!-- rodapé -->
+    <footer>
+        <i class="fas fa-quote-left" style="font-size: 2rem; opacity: 0.6;"></i>
+        <p style="font-size: 1.4rem; font-weight: 300; margin: 0.5rem 0;">Pesquisa documental: base para um diagnóstico consistente.</p>
+        <p style="font-size: 1rem; opacity: 0.9;">Etapas conforme arquivo "aula tecnicas de diagnóstico3.txt" · exemplo da barata como guia</p>
+    </footer>
+</div>
+<!-- não há scripts complexos, apenas apresentação -->
+</body>
+</html>
