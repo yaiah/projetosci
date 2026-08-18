@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesquisa Documental em Projetos de Extensão</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Barra Lateral com Agenda -->
+    <aside class="sidebar" id="sidebar" aria-label="Roteiro da aula">
+      <div class="brand">
+        <span class="brand-mark">PD</span>
+        <div>
+          <strong>Pesquisa Documental</strong>
+          <small>Projetos de Extensão</small>
+        </div>
+      </div>
+
+      <nav class="agenda" id="agenda" aria-label="Navegação dos slides"></nav>
+
+      <div class="side-footer">
+        <button class="ghost-btn" id="fullscreenSideBtn" type="button">⛶ Modo Apresentação (F)</button>
+        <button class="ghost-btn" id="overviewBtn" type="button">Visão Geral (O)</button>
+        <button class="ghost-btn" id="notesBtn" type="button">Notas do Professor (N)</button>
+      </div>
+    </aside>
+
+    <!-- Palco Principal -->
+    <main class="stage">
+      <header class="topbar">
+        <div class="slide-meta">
+          <span id="slideKicker">Aula Expositiva</span>
+          <h1 id="slideTitle">Pesquisa documental em projetos de extensão</h1>
+        </div>
+
+        <div class="controls" aria-label="Controles da apresentação">
+          <button class="ghost-btn" id="fullscreenBtn" type="button" title="Modo Apresentação (Tecla F)">⛶ Tela Cheia</button>
+          <button class="icon-btn" id="prevBtn" type="button" aria-label="Slide anterior">‹</button>
+          <span class="counter" id="counter">1 / --</span>
+          <button class="icon-btn" id="nextBtn" type="button" aria-label="Próximo slide">›</button>
+        </div>
+      </header>
+
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+      <section class="slides" id="slides" aria-live="polite">
+        
+        <!-- Slide 1: Capa -->
+        <article class="slide cover active" data-title="Abertura" data-kicker="Extensão Universitária" data-notes="Apresente o tema ressaltando que documentos revelam a história formal e territorial antes de qualquer ação.">
+          <div class="cover-wrapper">
+            <div class="cover-content">
+              <span class="eyebrow">Diagnóstico Territorial & Extensão</span>
+              <h2>Pesquisa Documental</h2>
+              <p class="lead">Investigar documentos para compreender o território, fundamentar problemas reais e planejar intervenções com rigor e responsabilidade social.</p>
+            </div>
+            <div class="cover-illustration" aria-hidden="true">
+              <svg viewBox="0 0 200 200" class="vector-art">
+                <rect x="40" y="30" width="120" height="150" rx="16" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+                <rect x="55" y="45" width="90" height="12" rx="4" fill="#38bdf8"/>
+                <rect x="55" y="68" width="60" height="8" rx="4" fill="rgba(255,255,255,0.6)"/>
+                <rect x="55" y="84" width="75" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+                <circle cx="130" cy="130" r="32" fill="#0d9488" opacity="0.9"/>
+                <path d="M120 130 L128 138 L144 122" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2: Objetivos - Parte 1 -->
+        <article class="slide bg-photo bg-slide-2" data-title="Objetivos: Compreensão" data-kicker="Diretrizes 1/2" data-notes="Foque na base conceitual: o aluno precisa reconhecer a legitimidade e a natureza dos documentos territoriais.">
+          <span class="eyebrow light">Objetivos de Aprendizagem</span>
+          <h2>Compreensão Crítica</h2>
+          <div class="card single-focus dark-card">
+            <div class="card-icon">01</div>
+            <h3>O que vamos compreender?</h3>
+            <ul class="large-list">
+              <li>O que constitui um <strong>documento formal e histórico</strong> no território.</li>
+              <li>A diferença essencial entre <strong>pesquisa documental e bibliográfica</strong>.</li>
+              <li>Onde localizar <strong>bases de dados, registros e arquivos públicos</strong> confiáveis.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 3: Objetivos - Parte 2 -->
+        <article class="slide" data-title="Objetivos: Aplicação" data-kicker="Diretrizes 2/2" data-notes="Destaque a transposição prática para a escrita do projeto de extensão e o diagnóstico prévio.">
+          <span class="eyebrow">Objetivos de Aprendizagem</span>
+          <h2>Aplicação Prática no Projeto</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">02</div>
+            <h3>O que vamos aplicar?</h3>
+            <ul class="large-list">
+              <li>Formulação de <strong>perguntas investigativas</strong> voltadas a dados reais.</li>
+              <li>Avaliação crítica de <strong>autoria, intencionalidade e lacunas</strong> dos relatórios.</li>
+              <li>Estruturação e preenchimento da <strong>Matriz de Análise Documental</strong>.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 4: NOVO - Slide Visual de Impacto (Somente BG da Barata) -->
+        <article class="slide bg-photo-clean bg-cockroach-clean" data-title="Provocação Visual" data-kicker="Ponto de Partida" data-notes="Faça uma pausa e pergunte: 'Como um estudo biológico sobre insetos pode se transformar em um projeto de extensão relevante para a sociedade?'"></article>
+
+        <!-- Slide 5: Definir Foco & Objetivos (Caso da Antena da Barata) -->
+        <article class="slide bg-photo bg-cockroach" data-title="Definir Foco & Objetivos" data-kicker="Transposição Científica" data-notes="Mostre como qualquer objeto acadêmico hiperespecífico (ex: fisiologia de insetos) se conecta a um problema comunitário real de saúde e saneamento.">
+          <span class="eyebrow light">1. Delimitar Problema & Recorte</span>
+          <h2>Do Laboratório para a Comunidade</h2>
+          <div class="card single-focus dark-card">
+            <div class="card-icon">🪳</div>
+            <h3>Exemplo: Estudo dos órgãos sensoriais da antena da barata</h3>
+            <ul class="large-list">
+              <li><strong>Tema Ampliado:</strong> Baratas como pragas urbanas, saúde pública e déficit de saneamento básico.</li>
+              <li><strong>Problema Comunitário:</strong> Infestações em bairros periféricos e resistência a inseticidas comuns.</li>
+              <li><strong>Recorte Operacional:</strong> Bairro X (últimos 3 anos), planos municipais de controle de zoonoses, associação de moradores e UBS.</li>
+            </ul>
+            <div class="transposition-badge">
+              ✓ Transposição: do ultra-específico (antena) para o comunitário (saúde & controle de pragas)
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 6: Transposição para sua Realidade -->
+        <article class="slide bg-photo bg-microscope" data-title="Transposição de Realidade" data-kicker="Aplicação Universal" data-notes="Incentive os estudantes a pensarem nos seus próprios cursos: bioquímica, engenharia, música, direito, etc.">
+          <span class="eyebrow light">Transposição para sua Realidade</span>
+          <h2>"O que minha pesquisa tem a ver com a comunidade?"</h2>
+          <blockquote class="big dark-quote" style="margin-bottom: 20px;">
+            "Amplie seu olhar: você domina a ciência do fenômeno. Esse conhecimento serve para desvelar e solucionar problemas territoriais concretos."
+          </blockquote>
+          <div class="cards three">
+            <div class="card dark-card">
+              <div class="card-icon">🔬</div>
+              <h3>1. Seu Tema Específico</h3>
+              <p>Ex.: Fisiologia vegetal → Espécies nativas → Recuperação de encostas degradadas.</p>
+            </div>
+            <div class="card dark-card">
+              <div class="card-icon">📄</div>
+              <h3>2. Documentos a Buscar</h3>
+              <p>Planos de arborização, laudos da Defesa Civil, mapas de risco e relatórios de enchentes.</p>
+            </div>
+            <div class="card dark-card">
+              <div class="card-icon">👥</div>
+              <h3>3. Atores a Mapear</h3>
+              <p>Moradores de encostas, Secretaria de Meio Ambiente, ONGs ambientais e escolas locais.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 7: Caso Concreto 1 -->
+        <article class="slide bg-photo bg-slide-4 stepped" data-title="Caso 1: Juventude e Cultura" data-kicker="Caso Concreto 01" data-notes="Apresente a situação-problema e revele cada pergunta conforme a turma reflete sobre as fontes.">
+          <span class="eyebrow light">Estudo de Caso Territorial</span>
+          <h2>Caso 1: Juventude & Acesso Cultural</h2>
+          <blockquote class="big dark-quote">
+            "Um grupo propõe um projeto para enfrentar a baixa participação de jovens em atividades culturais no entorno do campus. O que investigar nos documentos antes de agir?"
+          </blockquote>
+          <div class="question-grid dark-grid">
+            <span class="step-item">Qual é a faixa etária e renda predominante no bairro? (IBGE / Censo)</span>
+            <span class="step-item">Existem equipamentos e centros culturais ativos cadastrados? (Sec. Cultura)</span>
+            <span class="step-item">Há orçamento municipal descentralizado para a região? (Portal Transparência)</span>
+            <span class="step-item">Quais queixas e demandas constam nas atas de reuniões comunitárias?</span>
+          </div>
+        </article>
+
+        <!-- Slide 8: Caso Concreto 2 -->
+        <article class="slide bg-photo bg-slide-5 stepped" data-title="Caso 2: Resíduos e Saneamento" data-kicker="Caso Concreto 02" data-notes="Passo 1: Proposta. Passo 2: Pergunta-guia e frase de impacto. Passo 3: Fontes documentais estratégicas.">
+          <span class="eyebrow light">Estudo de Caso Territorial</span>
+          <h2>Caso 2: Cooperativa de Resíduos Sólidos</h2>
+          
+          <blockquote class="big dark-quote">
+            "Uma equipe de extensão planeja estruturar uma cooperativa de reciclagem em área periférica para gerar renda."
+          </blockquote>
+
+          <div class="step-item">
+            <p class="case-question" style="color: #ffffff;">Quais documentos comprovam a viabilidade real antes de intervir no território?</p>
+            <p class="takeaway dark-takeaway">A pesquisa documental substitui suposições por evidências territoriais consolidadas.</p>
+          </div>
+
+          <div class="cards three step-item" style="margin-top: 16px;">
+            <div class="card dark-card">
+              <h3>Plano Municipal de Resíduos</h3>
+              <p>Mapeamento oficial de rotas de coleta e pontos de descarte irregular no bairro.</p>
+            </div>
+            <div class="card dark-card">
+              <h3>Relatórios do SNIS / Concessionária</h3>
+              <p>Volume gerado por habitante e déficit de atendimento no setor censitário.</p>
+            </div>
+            <div class="card dark-card">
+              <h3>Atas de Coletivos & Associações</h3>
+              <p>Mapeamento de catadores autônomos locais e parcerias comunitárias anteriores.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 9: O que é pesquisa documental -->
+        <article class="slide" data-title="Conceito Central" data-kicker="Conceituação" data-notes="Enfatize que a pesquisa reside nas perguntas analíticas direcionadas às fontes.">
+          <span class="eyebrow">Definição</span>
+          <h2>O que é Pesquisa Documental?</h2>
+          <blockquote class="big">
+            É a investigação de um problema real por meio de fontes documentais selecionadas com planejamento e analisadas com rigor crítico.
+          </blockquote>
+          <div class="process process-large">
+            <span>1. Localizar</span>
+            <span>2. Selecionar</span>
+            <span>3. Organizar</span>
+            <span>4. Avaliar</span>
+            <span>5. Interpretar</span>
+            <span>6. Fundamentar a Ação</span>
+          </div>
+        </article>
+
+        <!-- Slide 10: O que NÃO é (1/2) -->
+        <article class="slide bg-photo bg-slide-7-8" data-title="O que NÃO é (1/2)" data-kicker="Alertas Metodológicos" data-notes="Evite os equívocos mais comuns do uso ingênuo da internet.">
+          <span class="eyebrow light">Atenção Metodológica</span>
+          <h2>Pesquisa documental NÃO é... (1/2)</h2>
+          <div class="not-list large-cards dark-not-list">
+            <span>Copiar e colar trechos de sites institucionais sem reflexão</span>
+            <span>Acumular links ou fazer apenas uma busca rápida no Google</span>
+            <span>Aceitar dados de relatórios oficiais sem questionar a metodologia</span>
+          </div>
+        </article>
+
+        <!-- Slide 11: O que NÃO é (2/2) -->
+        <article class="slide bg-photo bg-slide-7-8" data-title="O que NÃO é (2/2)" data-kicker="Alertas Metodológicos" data-notes="Reforce que o documento nunca deve anular o contato humano com o território.">
+          <span class="eyebrow light">Atenção Metodológica</span>
+          <h2>Pesquisa documental NÃO é... (2/2)</h2>
+          <div class="not-list large-cards dark-not-list">
+            <span>Ler documentos passivamente sem formular perguntas analíticas</span>
+            <span>Substituir a escuta qualificada e o diálogo direto com a comunidade</span>
+            <span>Juntar dezenas de arquivos em PDF que não respondem ao problema</span>
+          </div>
+        </article>
+
+        <!-- Slide 12: Documental vs Bibliográfica -->
+        <article class="slide" data-title="Documental × Bibliográfica" data-kicker="Diferenciação" data-notes="A bibliográfica fornece o alicerce teórico; a documental ancora o projeto na realidade factual do território.">
+          <span class="eyebrow">Quadro Comparativo</span>
+          <h2>Pesquisa Documental × Bibliográfica</h2>
+          <div class="table-wrap large-table">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 50%;">Pesquisa Documental</th>
+                  <th style="width: 50%;">Pesquisa Bibliográfica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Fontes brutas e institucionais:</strong> Leis, planos municipais, atas, mapas, censos, relatórios técnicos de gestão.</td>
+                  <td><strong>Produção acadêmica revisada:</strong> Livros conceituais, artigos científicos, dissertações e teses.</td>
+                </tr>
+                <tr>
+                  <td><strong>Finalidade:</strong> Compreender a situação factual de um território ou coletivo específico.</td>
+                  <td><strong>Finalidade:</strong> Construir o estado da arte e a fundamentação teórica da intervenção.</td>
+                </tr>
+                <tr>
+                  <td><em>Exemplo:</em> Plano Diretor Municipal e balanço anual do Posto de Saúde.</td>
+                  <td><em>Exemplo:</em> Artigo sobre determinantes sociais da saúde publicado em revista científica.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Slide 13: Bases Estatísticas (Parte 1) -->
+        <article class="slide" data-title="Bases Estatísticas" data-kicker="Fontes de Pesquisa 1/2" data-notes="Apresente as plataformas nacionais de dados demográficos e epidemiológicos.">
+          <span class="eyebrow">Mapeamento de Fontes</span>
+          <h2>IBGE & Bases Estatísticas Nacionais</h2>
+          <div class="card single-focus">
+            <div class="card-icon">IBGE</div>
+            <h3>Dados Demográficos e Indicadores Sociais</h3>
+            <ul class="large-list">
+              <li><strong>SIDRA (IBGE):</strong> Pirâmide etária, renda domiciliar, saneamento e setores censitários.</li>
+              <li><strong>DataSUS / IPEA Data:</strong> Indicadores de saúde pública, mortalidade e vulnerabilidade social.</li>
+              <li><strong>Censo Escolar (INEP):</strong> Matrículas, evasão escolar e infraestrutura educacional local.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 14: Portais Públicos e Transparência (Parte 2) -->
+        <article class="slide" data-title="Portais Públicos" data-kicker="Fontes de Pesquisa 2/2" data-notes="Demonstre a importância dos dados municipais e diários oficiais para orçamentos e diretrizes.">
+          <span class="eyebrow">Mapeamento de Fontes</span>
+          <h2>Esfera Municipal & Portais Públicos</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">GOV</div>
+            <h3>Documentação e Gestão Pública Local</h3>
+            <ul class="large-list">
+              <li><strong>Portais da Transparência:</strong> Execução orçamentária e contratos públicos do bairro.</li>
+              <li><strong>Planos Setoriais:</strong> Plano Diretor, Plano Municipal de Educação, Saúde e Habitação.</li>
+              <li><strong>Diários Oficiais:</strong> Portarias, editais de fomento e regulamentações territoriais.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 15: Arquivos e Fontes Locais -->
+        <article class="slide bg-photo bg-slide-12" data-title="Arquivos e Sociedade Civil" data-kicker="Fontes Locais 1/2" data-notes="Apresente as fontes que registram a trajetória viva e as reivindicações do território.">
+          <span class="eyebrow light">Memória & Comunidade</span>
+          <h2>Arquivos e Sociedade Civil</h2>
+          <div class="cards two large-cards">
+            <div class="card dark-card">
+              <h3>Sociedade Civil & ONGs</h3>
+              <p>Relatórios de projetos sociais, manifestos comunitários, cartas abertas e estatutos associativos.</p>
+            </div>
+            <div class="card dark-card">
+              <h3>Acervos Históricos</h3>
+              <p>Jornais antigos locais, mapas históricos, plantas urbanas e registros fotográficos da ocupação.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 16: Registros Institucionais e Confiabilidade (Parte 2) -->
+        <article class="slide" data-title="Registros Institucionais" data-kicker="Fontes Locais 2/2" data-notes="Ressalte que a confiabilidade depende da checagem cruzada entre as fontes.">
+          <span class="eyebrow">Memória & Comunidade</span>
+          <h2>Registros Institucionais Locais</h2>
+          <div class="card single-focus">
+            <h3>Documentos do Cotidiano Institucional</h3>
+            <ul class="large-list">
+              <li>Atas de reuniões do Conselho Comunitário e Conselhos Gestores.</li>
+              <li>Livros de registro, ocorrências e relatórios de atividades da UBS/Escola.</li>
+              <li>Relatórios de projetos de extensão e intervenções universitárias anteriores.</li>
+            </ul>
+          </div>
+          <p class="takeaway">A confiabilidade nasce do cruzamento: verifique quem produziu, sob qual conjuntura e com qual finalidade.</p>
+        </article>
+
+        <!-- Slide 17: Fontes Primárias -->
+        <article class="slide" data-title="Fontes Primárias" data-kicker="Classificação 1/2" data-notes="Mostre exemplos de fontes brutas sem tratamento prévio de terceiros.">
+          <span class="eyebrow">Taxonomia de Fontes</span>
+          <h2>Fontes Primárias (Diretas)</h2>
+          <div class="card single-focus">
+            <div class="card-icon">1ª</div>
+            <h3>Produzidas no momento exato do acontecimento</h3>
+            <ul class="large-list">
+              <li><strong>Atas originais</strong> de assembleias e reuniões de conselhos.</li>
+              <li><strong>Texto sancionado de leis</strong>, decretos e planos diretores.</li>
+              <li><strong>Microdados brutos</strong> e formulários de atendimento socioassistencial.</li>
+              <li><strong>Registros fotográficos de campo</strong> e cartas de moradores.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 18: Fontes Secundárias -->
+        <article class="slide" data-title="Fontes Secundárias" data-kicker="Classificação 2/2" data-notes="Mostre fontes analíticas que já interpretaram dados primários.">
+          <span class="eyebrow">Taxonomia de Fontes</span>
+          <h2>Fontes Secundárias (Analíticas)</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">2ª</div>
+            <h3>Elaboradas para analisar ou interpretar fontes primárias</h3>
+            <ul class="large-list">
+              <li><strong>Diagnósticos setoriais</strong> elaborados por institutos de pesquisa e consultorias.</li>
+              <li><strong>Relatórios temáticos</strong> do IPEA, Fundação João Pinheiro e secretarias.</li>
+              <li><strong>Artigos e teses</strong> que compilam e analisam históricos documentais.</li>
+              <li><strong>Noticiários analíticos</strong> e retrospectivas de imprensa sobre a região.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 19: Para que serve no projeto -->
+        <article class="slide" data-title="Para que Serve?" data-kicker="Tomada de Decisão" data-notes="Conecte os dados à tomada de decisão estratégica no planejamento da extensão.">
+          <span class="eyebrow">Impacto no Projeto</span>
+          <h2>Para que serve a pesquisa documental?</h2>
+          <div class="pill-grid giant-pills">
+            <span>Delimitar o território exato</span>
+            <span>Caracterizar o público real</span>
+            <span>Mapear serviços já existentes</span>
+            <span>Evitar ações redundantes</span>
+            <span>Identificar barreiras legais</span>
+            <span>Fundamentar a Justificativa</span>
+            <span>Criar indicadores de avaliação</span>
+            <span>Planejar a entrada em campo</span>
+          </div>
+        </article>
+
+        <!-- Slide 20: Momentos de Uso -->
+        <article class="slide" data-title="Quando Utilizar?" data-kicker="Ciclo Metodológico" data-notes="A pesquisa documental percorre todas as etapas: do diagnóstico inicial à avaliação de impacto.">
+          <span class="eyebrow">Ciclo do Projeto</span>
+          <h2>Quando usar a Pesquisa Documental?</h2>
+          <div class="timeline vertical large-timeline">
+            <div>
+              <span>1. Pré-campo</span>
+              <p>Compreender o histórico territorial e formular perguntas pertinentes para os moradores.</p>
+            </div>
+            <div>
+              <span>2. Diagnóstico</span>
+              <p>Cruzar dados oficiais com a percepção da comunidade, revelando lacunas e contradições.</p>
+            </div>
+            <div>
+              <span>3. Planejamento</span>
+              <p>Alinhar as metas da intervenção às políticas públicas e diretrizes legais vigentes.</p>
+            </div>
+            <div>
+              <span>4. Avaliação</span>
+              <p>Comparar a situação documental inicial com as mudanças consolidadas ao final da ação.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 21: As Sete Etapas -->
+        <article class="slide" data-title="Roteiro em 7 Etapas" data-kicker="Roteiro Operacional" data-notes="Apresente as 7 etapas como uma jornada lógica e estruturada.">
+          <span class="eyebrow">Passo a Passo</span>
+          <h2>As Sete Etapas da Pesquisa Documental</h2>
+          <ol class="steps balanced-steps">
+            <li><span class="step-num">1</span><div class="step-content"><strong>Pergunta de Partida:</strong> Clareza sobre o problema a investigar.</div></li>
+            <li><span class="step-num">2</span><div class="step-content"><strong>Recorte do Objeto:</strong> Definição de território, período e público.</div></li>
+            <li><span class="step-num">3</span><div class="step-content"><strong>Mapeamento de Fontes:</strong> Busca em bases oficiais, órgãos e arquivos locais.</div></li>
+            <li><span class="step-num">4</span><div class="step-content"><strong>Seleção por Critérios:</strong> Filtragem por pertinência, atualidade e legitimidade.</div></li>
+            <li><span class="step-num">5</span><div class="step-content"><strong>Crítica Documental:</strong> Análise de autoria, intenção, viés e omissões.</div></li>
+            <li><span class="step-num">6</span><div class="step-content"><strong>Sistematização:</strong> Preenchimento da Matriz de Análise Documental.</div></li>
+            <li><span class="step-num">7</span><div class="step-content"><strong>Interpretação e Escrita:</strong> Conversão dos dados em fundamentação extensionista.</div></li>
+          </ol>
+        </article>
+
+        <!-- Slide 22: Crítica Documental - Critérios (Parte 1) -->
+        <article class="slide" data-title="Critérios de Crítica" data-kicker="Crítica Documental 1/2" data-notes="Avaliação técnica dos requisitos de confiabilidade do arquivo.">
+          <span class="eyebrow">Interrogação do Documento</span>
+          <h2>Critérios de Validação da Fonte</h2>
+          <div class="card single-focus">
+            <div class="card-icon">✓</div>
+            <h3>Parâmetros de Confiabilidade</h3>
+            <ul class="large-list">
+              <li><strong>Autoria e Chancela:</strong> Órgão ou indivíduo responsável claramente identificado.</li>
+              <li><strong>Atualidade:</strong> Grau de aderência dos dados à conjuntura territorial contemporânea.</li>
+              <li><strong>Rigor Metodológico:</strong> Clareza sobre como os dados foram coletados e calculados.</li>
+              <li><strong>Validade Legal / Formal:</strong> Documento oficial vigente com fé pública.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 23: Crítica Documental - Perguntas Reflexivas (Parte 2) -->
+        <article class="slide" data-title="Perguntas ao Documento" data-kicker="Crítica Documental 2/2" data-notes="Incentive a postura investigativa: o que o documento oficial 'não' mostra?">
+          <span class="eyebrow">Interrogação do Documento</span>
+          <h2>Perguntas Críticas ao Documento</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">?</div>
+            <h3>O que questionar antes de aceitar o dado?</h3>
+            <ul class="large-list">
+              <li>Por que, quando e para quem este documento foi produzido?</li>
+              <li>Quais <strong>interesses institucionais ou políticos</strong> estão representados no texto?</li>
+              <li>Quais grupos sociais, setores censitários ou demandas <strong>foram omitidos</strong>?</li>
+              <li>O dado documentado coincide com os relatos ouvidos nas ruas da comunidade?</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 24: Matriz de Análise Documental -->
+        <article class="slide" data-title="Matriz Documental" data-kicker="Instrumento Prático" data-notes="Demonstre o preenchimento da matriz para estruturação dos relatórios.">
+          <span class="eyebrow">Sistematização de Dados</span>
+          <h2>A Matriz de Análise Documental</h2>
+          <div class="table-wrap matrix large-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Documento</th>
+                  <th>Autor / Órgão</th>
+                  <th>Ano</th>
+                  <th>Tipo</th>
+                  <th>Dado Principal</th>
+                  <th>Limitações / Omissões</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Plano Mun. Saneamento</td>
+                  <td>Sec. Obras / Pref.</td>
+                  <td>2021</td>
+                  <td>Oficial</td>
+                  <td>42% sem rede pluvial</td>
+                  <td>Não cobre ocupações recentes</td>
+                </tr>
+                <tr>
+                  <td>Ata de Reunião nº 14</td>
+                  <td>Assoc. Moradores</td>
+                  <td>2023</td>
+                  <td>Comunitária</td>
+                  <td>Alagamentos frequentes</td>
+                  <td>Sem medição técnica do volume</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="takeaway giant-takeaway">A matriz impede a perda de referências e organiza a escrita do projeto de extensão.</p>
+        </article>
+
+        <!-- Slide 25: Redação do Projeto - Metodologia (Parte 1) -->
+        <article class="slide" data-title="Redação: Metodologia" data-kicker="Escrita do Projeto 1/2" data-notes="Como descrever a pesquisa documental na seção metodológica.">
+          <span class="eyebrow">Redação Extensionista</span>
+          <h2>A Pesquisa na Metodologia</h2>
+          <div class="card single-focus">
+            <h3>O que declarar na seção metodológica?</h3>
+            <ul class="large-list">
+              <li>Relação das bases de dados, arquivos e órgãos públicos consultados.</li>
+              <li>Palavras-chave e operadores de busca utilizados no levantamento.</li>
+              <li>Critérios de inclusão, exclusão e recorte temporal estabelecidos.</li>
+              <li>Procedimento adotado para a análise crítica e cruzamento das fontes.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 26: Redação do Projeto - Diagnóstico/Resultados (Parte 2) -->
+        <article class="slide" data-title="Redação: Resultados" data-kicker="Escrita do Projeto 2/2" data-notes="Como apresentar os achados documentais fundamentando a ação.">
+          <span class="eyebrow">Redação Extensionista</span>
+          <h2>A Pesquisa no Diagnóstico e Justificativa</h2>
+          <div class="card single-focus accent">
+            <h3>Como apresentar os achados no texto?</h3>
+            <ul class="large-list">
+              <li>Apresentação dos dados territoriais que comprovam a urgência do problema.</li>
+              <li>Indicação das lacunas de atendimento dos serviços públicos atuais.</li>
+              <li>Justificativa embasada para a escolha do público e da microárea de ação.</li>
+            </ul>
+          </div>
+          <blockquote class="model large-model">
+            “O diagnóstico baseou-se em pesquisa documental no Portal da Transparência e no Plano Municipal de Habitação (2022), complementada por dados do Censo IBGE (2022), permitindo identificar o déficit sanitário no setor norte...”
+          </blockquote>
+        </article>
+
+        <!-- Slide 27: JOGO INTERATIVO (Detetive de Fontes) -->
+        <article class="slide game-slide" data-title="Jogo: Detetive de Fontes" data-kicker="Fixação Interativa" data-notes="Proponha o caso para a turma votar. Clique no botão escolhido para revelar a explicação e somar pontos.">
+          <div class="game-container">
+            <div class="game-header">
+              <span class="eyebrow light">Dinâmica de Fixação</span>
+              <div class="game-score">Pontos: <strong id="gameScore">0</strong> / <span id="gameTotal">5</span></div>
+            </div>
+            
+            <h2 id="gameQuestionTitle">Detetive de Fontes: O que é este documento?</h2>
+            
+            <div class="game-case-box">
+              <div class="game-badge" id="gameRoundBadge">Rodada 1 de 5</div>
+              <p class="game-case-text" id="gameCaseText">"Uma postagem na rede social do Prefeito anunciando a inauguração de uma praça no bairro."</p>
+            </div>
+
+            <div class="game-options">
+              <button class="game-btn" data-choice="primaria">Fonte Primária</button>
+              <button class="game-btn" data-choice="secundaria">Fonte Secundária</button>
+              <button class="game-btn danger" data-choice="cilada">Cilada / Cuidado!</button>
+            </div>
+
+            <div class="game-feedback" id="gameFeedback">
+              <div class="feedback-verdict" id="feedbackVerdict"></div>
+              <p class="feedback-explanation" id="feedbackText"></p>
+              <button class="primary-btn" id="nextGameRoundBtn">Próximo Caso →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 28: Síntese Final - Parte 1 -->
+        <article class="slide" data-title="Síntese (1/2)" data-kicker="Fechamento 1/2" data-notes="Recapitulação dos princípios de rigor e método.">
+          <span class="eyebrow">Fechamento Conceitual</span>
+          <h2>Ideias Centrais da Pesquisa Documental (1/2)</h2>
+          <div class="cards two large-cards">
+            <div class="card">
+              <div class="card-icon">1</div>
+              <h3>Rigor Prévio</h3>
+              <p>Conhecer profundamente o território antes de intervir evita ações ingênuas, ineficazes ou redundantes.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">2</div>
+              <h3>Crítica da Fonte</h3>
+              <p>Documentos expressam intencionalidades; cabe ao extensionista desvelar contradições e omissões institucionais.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 29: Síntese Final - Parte 2 -->
+        <article class="slide" data-title="Síntese (2/2)" data-kicker="Fechamento 2/2" data-notes="Encerramento com a máxima da extensão universitária ética e rigorosa.">
+          <span class="eyebrow">Fechamento Conceitual</span>
+          <h2>Ideias Centrais da Pesquisa Documental (2/2)</h2>
+          <div class="card single-focus">
+            <div class="card-icon">3</div>
+            <h3>Diálogo Indispensável com o Campo</h3>
+            <p style="font-size: 1.35rem; line-height: 1.6;">
+              O documento revela o que foi formalizado pelo Estado e pelas instituições; a comunidade revela como a realidade é concretamente vivida. Ambos são complementares e inseparáveis na extensão universitária.
+            </p>
+          </div>
+          <blockquote class="big" style="margin-top: 24px;">
+            A extensão de excelência une o rigor da evidência documental à escuta sensível do território.
+          </blockquote>
+        </article>
+<!-- Slide 30: Encaminhamento / Próximos Passos -->
+<article class="slide" data-title="Próxima Aula: Objetivo & Fontes" data-kicker="Encaminhamento Prático" data-notes="Oriente os alunos a delimitarem o objetivo geral da ação extensionista que desenvolverão ao longo da disciplina. Na próxima aula, iniciaremos a busca documental ativa com base nesse objetivo.">
+  <span class="eyebrow">Preparação para a Próxima Aula</span>
+  <h2>Missão: Objetivo da Ação Extensionista</h2>
+  <div class="card single-focus accent">
+    <div class="card-icon">🎯</div>
+    <h3>O que cada equipe/estudante deve definir:</h3>
+    <ul class="large-list">
+      <li><strong>Elaborar o Objetivo da Ação:</strong> Delimitar qual problema territorial concreto o projeto de extensão pretende enfrentar ao longo do semestre.</li>
+      <li><strong>Recorte Preliminar:</strong> Definir o território de atuação (bairro, região ou comunidade) e o público-alvo prioritário.</li>
+      <li><strong>Preparação para a Próxima Aula:</strong> Trazer as ideias estruturadas para realizarmos em sala o <strong>levantamento prático nas bases documentais</strong> (IBGE, SIDRA, Diários Oficiais, Planos Municipais e acervos locais).</li>
+    </ul>
+  </div>
+  <p class="takeaway" style="margin-top: 18px;">
+    Na próxima aula: transformaremos o objetivo do projeto em perguntas documentais e preencheremos a Matriz de Análise Documental na prática.
+  </p>
+</article>
+      </section>
+
+      <!-- Zona de Ativação por Hover + Painel Flutuante Invisível -->
+      <div class="floating-hover-zone">
+        <div class="floating-controls" id="floatingControls">
+          <button class="float-btn" id="floatPrevBtn" title="Slide anterior (←)">‹</button>
+          <span class="float-counter" id="floatCounter">1 / 29</span>
+          <button class="float-btn" id="floatNextBtn" title="Próximo slide (→ / Espaço)">›</button>
+          <button class="float-btn" id="floatNotesBtn" title="Notas (N)">Notas</button>
+          <button class="float-btn exit" id="floatExitBtn" title="Sair da Tela Cheia (Esc)">✕ Sair</button>
+        </div>
+      </div>
+
+      <!-- Painel de Notas -->
+      <aside class="notes-panel" id="notesPanel" aria-label="Notas do professor">
+        <div class="notes-head">
+          <strong>Notas do Professor</strong>
+          <button id="closeNotes" type="button" aria-label="Fechar notas">×</button>
+        </div>
+        <p id="notesText"></p>
+      </aside>
+
+      <!-- Visão Geral / Grid de Slides -->
+      <div class="overview" id="overview" aria-label="Visão geral dos slides">
+        <div class="overview-head">
+          <strong>Visão Geral da Apresentação</strong>
+          <button id="closeOverview" type="button" aria-label="Fechar visão geral">×</button>
+        </div>
+        <div class="overview-grid" id="overviewGrid"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
