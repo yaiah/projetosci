@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Identificação de Demandas em Projetos de Extensão</title>
+  <style>
+    :root {
+      --bg: #03201f;
+      --panel: #ffffff;
+      --ink: #042423;
+      --ink-body: #133331;
+      --muted: #3a5c59;
+      --line: #cfe0de;
+      --primary: #0f766e;
+      --primary-light: #14b8a6;
+      --primary-dark: #042f2e;
+      --secondary: #1e3a8a;
+      --coral: #ea580c;
+      --amber: #d97706;
+      --soft: #f0fdfa;
+      --shadow: 0 25px 50px -12px rgba(4, 47, 46, 0.28);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink-body);
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.16), transparent 40rem),
+        radial-gradient(circle at bottom right, rgba(30, 58, 138, 0.14), transparent 35rem),
+        #f2f9f8;
+      overflow: hidden;
+    }
+
+    button, input, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .app {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      height: 100vh;
+      width: 100vw;
+      transition: grid-template-columns 0.3s ease;
+    }
+
+    /* ==========================================================================
+       BACKGROUNDS COM FOTOS DO PEXELS
+       ========================================================================== */
+    .slide.bg-photo {
+      background-color: #042f2e !important;
+      background-size: cover !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      color: #ffffff !important;
+    }
+
+    .slide.bg-photo h2 { color: #ffffff !important; }
+
+    .slide.bg-cover {
+      background-image: 
+        linear-gradient(135deg, rgba(4, 47, 46, 0.94), rgba(15, 118, 110, 0.88)),
+        url('https://images.pexels.com/photos/2827374/pexels-photo-2827374.jpeg') !important;
+    }
+
+    .slide.bg-slide-farmer {
+      background-image: 
+        linear-gradient(135deg, rgba(3, 32, 31, 0.94), rgba(4, 47, 46, 0.88)),
+        url('https://images.pexels.com/photos/2255935/pexels-photo-2255935.jpeg') !important;
+    }
+
+    .slide.bg-slide-listening {
+      background-image: 
+        linear-gradient(135deg, rgba(4, 47, 46, 0.94), rgba(30, 58, 138, 0.88)),
+        url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg') !important;
+    }
+
+    .slide.bg-slide-tree {
+      background-image: 
+        linear-gradient(135deg, rgba(3, 32, 31, 0.94), rgba(17, 94, 89, 0.9)),
+        url('https://images.pexels.com/photos/142497/pexels-photo-142497.jpeg') !important;
+    }
+
+    .slide.bg-slide-closing {
+      background-image: 
+        linear-gradient(135deg, rgba(4, 47, 46, 0.94), rgba(15, 118, 110, 0.88)),
+        url('https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg') !important;
+    }
+
+    .card.dark-card {
+      background: rgba(4, 47, 46, 0.88) !important;
+      backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+      color: #ffffff !important;
+    }
+    .card.dark-card h3 { color: #facc15 !important; }
+    .card.dark-card p, .card.dark-card li { color: #ffffff !important; font-weight: 500; }
+    .card.dark-card strong { color: #99f6e4 !important; }
+
+    .dark-quote {
+      background: rgba(4, 47, 46, 0.9) !important;
+      backdrop-filter: blur(10px);
+      border-left-color: #facc15 !important;
+      color: #ffffff !important;
+      border-top: 1px solid rgba(255,255,255,0.18);
+      border-right: 1px solid rgba(255,255,255,0.18);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .question-grid.dark-grid span {
+      background: rgba(4, 47, 46, 0.92) !important;
+      backdrop-filter: blur(8px);
+      color: #ffffff !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.25) !important;
+    }
+
+    .dark-takeaway {
+      background: rgba(4, 47, 46, 0.85) !important;
+      backdrop-filter: blur(8px);
+      border-left: 5px solid #2dd4bf !important;
+      color: #ffffff !important;
+      border-top: 1px solid rgba(45, 212, 191, 0.3);
+      border-right: 1px solid rgba(45, 212, 191, 0.3);
+      border-bottom: 1px solid rgba(45, 212, 191, 0.3);
+    }
+
+    .eyebrow.light {
+      background: rgba(255, 255, 255, 0.22) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    /* ==========================================================================
+       MODO APRESENTAÇÃO / ECRÃ INTEIRO
+       ========================================================================== */
+    .app.fullscreen-mode {
+      display: block !important;
+      width: 100vw !important;
+      height: 100vh !important;
+    }
+
+    .app.fullscreen-mode .sidebar,
+    .app.fullscreen-mode .topbar {
+      display: none !important;
+    }
+
+    .app.fullscreen-mode .stage {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100vw !important;
+      height: 100vh !important;
+    }
+
+    .app.fullscreen-mode .progress {
+      height: 5px;
+      flex-shrink: 0;
+    }
+
+    .app.fullscreen-mode .slides {
+      position: relative !important;
+      flex: 1 1 auto !important;
+      width: 100% !important;
+      height: 100% !important;
+      padding: 24px 40px !important;
+      box-sizing: border-box !important;
+    }
+
+    .app.fullscreen-mode .slide {
+      position: absolute !important;
+      top: 20px !important;
+      left: 32px !important;
+      right: 32px !important;
+      bottom: 20px !important;
+      width: auto !important;
+      height: auto !important;
+      border-radius: 24px !important;
+      box-shadow: 0 30px 65px rgba(0, 0, 0, 0.35) !important;
+      padding: clamp(36px, 4.5vw, 64px) !important;
+      box-sizing: border-box !important;
+    }
+
+    .app.fullscreen-mode .slide h2 {
+      font-size: clamp(2.6rem, 3.8vw, 3.8rem);
+      margin-bottom: 24px;
+    }
+
+    .app.fullscreen-mode .cover h2 {
+      font-size: clamp(3.6rem, 6vw, 5.8rem);
+    }
+
+    .app.fullscreen-mode .cover .lead {
+      font-size: clamp(1.5rem, 2.2vw, 2rem);
+      line-height: 1.5;
+      color: #f0fdfa;
+    }
+
+    .app.fullscreen-mode .slide h3 {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+      color: var(--ink);
+    }
+
+    .app.fullscreen-mode .lead {
+      font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .app.fullscreen-mode .eyebrow {
+      font-size: 1rem;
+      padding: 8px 18px;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+    }
+
+    .app.fullscreen-mode .slide p,
+    .app.fullscreen-mode .card p {
+      font-size: 1.3rem;
+      line-height: 1.6;
+    }
+
+    .app.fullscreen-mode .card li,
+    .app.fullscreen-mode .slide li {
+      font-size: 1.28rem;
+      line-height: 1.55;
+      margin: 10px 0;
+    }
+
+    .app.fullscreen-mode blockquote.big {
+      font-size: clamp(1.5rem, 2.3vw, 2.2rem);
+      line-height: 1.4;
+      padding: 24px 30px;
+    }
+
+    .app.fullscreen-mode .question-grid span {
+      font-size: 1.25rem;
+      padding: 20px 24px;
+      line-height: 1.45;
+    }
+
+    .app.fullscreen-mode .not-list span {
+      font-size: 1.28rem;
+      padding: 20px 24px 20px 56px;
+      line-height: 1.45;
+    }
+
+    .app.fullscreen-mode .giant-pills span {
+      font-size: 1.35rem;
+      padding: 16px 26px;
+    }
+
+    .app.fullscreen-mode .large-table th {
+      font-size: 1.25rem;
+      padding: 18px 22px;
+    }
+
+    .app.fullscreen-mode .large-table td {
+      font-size: 1.2rem;
+      line-height: 1.55;
+      padding: 18px 22px;
+    }
+
+    .app.fullscreen-mode .giant-takeaway {
+      font-size: 1.35rem;
+      padding: 20px 26px;
+    }
+
+    /* ==========================================================================
+       BARRA LATERAL / SIDEBAR
+       ========================================================================== */
+    .sidebar {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.28);
+    }
+
+    .brand strong { display: block; font-size: 1rem; color: var(--ink); }
+    .brand small { color: var(--muted); font-size: 0.82rem; font-weight: 600; }
+
+    .agenda {
+      overflow-y: auto;
+      padding-right: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .agenda button {
+      border: 1px solid transparent;
+      background: transparent;
+      color: #355350;
+      text-align: left;
+      border-radius: 10px;
+      padding: 9px 12px;
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .agenda button span:first-child {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--soft);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+
+    .agenda button:hover { background: rgba(15, 118, 110, 0.08); color: var(--ink); }
+    .agenda button.active {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+    .agenda button.active span:first-child { background: rgba(255,255,255,0.25); color: #fff; }
+
+    .side-footer { margin-top: auto; display: grid; gap: 8px; }
+
+    .ghost-btn, .icon-btn {
+      border: 0;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .ghost-btn {
+      padding: 11px 14px;
+      background: var(--soft);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .ghost-btn:hover { background: #d7ece8; }
+
+    /* ==========================================================================
+       PALCO / STAGE
+       ========================================================================== */
+    .stage {
+      position: relative;
+      min-width: 0;
+      display: grid;
+      grid-template-rows: auto 4px minmax(0, 1fr);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 32px 12px;
+    }
+
+    #slideKicker {
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 0.75rem;
+    }
+
+    #slideTitle {
+      margin: 2px 0 0;
+      font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+      font-weight: 800;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .controls { display: flex; align-items: center; gap: 10px; }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+    }
+    .icon-btn:hover { background: var(--primary-light); }
+    .counter { color: var(--ink); font-weight: 800; font-size: 0.9rem; min-width: 65px; text-align: center; }
+
+    .progress { background: var(--line); }
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--coral));
+      transition: width 0.3s ease;
+    }
+
+    /* ==========================================================================
+       ESTRUTURA DOS SLIDES
+       ========================================================================== */
+    .slides { position: relative; min-height: 0; padding: 24px 32px 32px; }
+
+    .slide {
+      position: absolute;
+      inset: 24px 32px 32px;
+      overflow-y: auto;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(28px, 4vw, 50px);
+      opacity: 0;
+      transform: translateY(12px) scale(0.99);
+      pointer-events: none;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .slide h2 {
+      margin: 0 0 18px;
+      font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .slide h3 { margin: 0 0 10px; font-size: 1.15rem; color: var(--ink); font-weight: 700; }
+    .slide p { line-height: 1.6; color: var(--ink-body); }
+    .lead { font-size: clamp(1.05rem, 1.4vw, 1.3rem); color: var(--ink-body); font-weight: 500; max-width: 900px; margin-bottom: 20px; }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: #ccfbf1;
+      color: var(--primary);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.78rem;
+      border: 1px solid #99f6e4;
+    }
+
+    /* Capa */
+    .cover {
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #042f2e, #115e59);
+      color: #fff;
+      border: 0;
+    }
+    .cover .eyebrow { background: rgba(255,255,255,0.2); color: #ffffff; border-color: transparent; }
+    .cover h2 { font-size: clamp(3rem, 5.5vw, 5rem); color: #ffffff; margin-bottom: 20px; }
+    .cover .lead { color: #f0fdfa; font-size: 1.4rem; font-weight: 400; max-width: 850px; }
+    .cover-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      width: 100%;
+      max-width: 1100px;
+    }
+    .cover-illustration { width: 180px; height: 180px; flex-shrink: 0; }
+    .vector-art { width: 100%; height: 100%; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3)); }
+
+    /* Citações e Destaques */
+    blockquote {
+      margin: 20px 0;
+      padding: 18px 22px;
+      border-left: 6px solid var(--coral);
+      background: #fff7ed;
+      border-radius: 0 14px 14px 0;
+      color: #7c2d12;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    blockquote.big {
+      font-size: clamp(1.2rem, 1.9vw, 1.65rem);
+      line-height: 1.4;
+      padding: 22px 26px;
+    }
+
+    /* Cartões */
+    .cards { display: grid; gap: 18px; margin-top: 20px; }
+    .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card {
+      background: #ffffff;
+      border: 1.5px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+    }
+    .card.accent { background: #f0fdfa; border-color: #5eead4; }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--primary);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+    }
+    .card ul { margin: 0; padding-left: 1.2rem; }
+    .card li { margin: 8px 0; line-height: 1.45; }
+
+    .card.single-focus {
+      padding: 28px 32px;
+      border-radius: 20px;
+      border: 2px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-top: 18px;
+    }
+    .card.single-focus.accent { background: #f0fdf4; border-color: #86efac; }
+
+    .large-list {
+      list-style: none;
+      padding-left: 0 !important;
+      margin: 16px 0 0 !important;
+    }
+    .large-list li {
+      position: relative;
+      padding-left: 32px;
+      margin: 14px 0 !important;
+      font-size: 1.15rem;
+      line-height: 1.5;
+    }
+    .large-list li::before {
+      content: "•";
+      position: absolute;
+      left: 8px;
+      top: -2px;
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    /* Grelhas e Listas de Alerta */
+    .question-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .question-grid span {
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: var(--soft);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.96rem;
+      border: 1px solid var(--line);
+    }
+
+    .takeaway {
+      margin-top: 22px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: #ecfdf5;
+      border-left: 5px solid var(--primary);
+      color: #064e3b;
+      font-weight: 700;
+    }
+
+    .pill-grid { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
+    .pill-grid span {
+      border-radius: 999px;
+      padding: 12px 20px;
+      background: #ccfbf1;
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 1.05rem;
+      border: 1.5px solid #5eead4;
+      text-align: center;
+    }
+
+    .not-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .not-list.large-cards { grid-template-columns: 1fr; gap: 16px; }
+    .not-list span {
+      position: relative;
+      padding: 18px 22px 18px 52px;
+      border-radius: 14px;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      color: #881337;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .not-list span::before {
+      content: "✕";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #e11d48;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    /* Tabelas */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      margin-top: 18px;
+      background: #fff;
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; }
+    th, td { padding: 16px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); font-size: 0.95rem; }
+    th { background: #e6f6f4; color: var(--ink); font-weight: 800; border-bottom: 2px solid var(--line); }
+    td { color: var(--ink-body); line-height: 1.5; }
+    tr:last-child td { border-bottom: 0; }
+
+    /* ==========================================================================
+       REVELAÇÃO PROGRESSIVA (STEPPED BUILDS)
+       ========================================================================== */
+    .step-item {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+    .step-item.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ==========================================================================
+       ESTILOS DO JOGO INTERATIVO
+       ========================================================================== */
+    .game-slide {
+      background: linear-gradient(135deg, #03201f, #0f3d39) !important;
+      color: #ffffff !important;
+    }
+    .game-slide h2 { color: #ffffff !important; margin-bottom: 16px; font-weight: 800; }
+
+    .game-container {
+      max-width: 950px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .game-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .game-score {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 20px;
+      border-radius: 999px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #facc15;
+      border: 1.5px solid #facc15;
+    }
+
+    .game-case-box {
+      background: rgba(4, 47, 46, 0.94);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      padding: 26px 32px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    .game-badge {
+      display: inline-block;
+      background: var(--coral);
+      color: #ffffff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .game-case-text {
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.45;
+      color: #ffffff !important;
+      margin: 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .game-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .game-btn {
+      background: #0f3d39;
+      color: #ffffff;
+      border: 2px solid #2dd4bf;
+      border-radius: 16px;
+      padding: 18px 20px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+    .game-btn:hover:not(:disabled) {
+      background: var(--primary);
+      transform: translateY(-2px);
+    }
+    .game-btn.danger {
+      background: #4a1515;
+      border-color: #ef4444;
+    }
+    .game-btn.danger:hover:not(:disabled) {
+      background: #7f1d1d;
+    }
+    .game-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .game-feedback {
+      display: none;
+      background: #021a19;
+      border: 2.5px solid var(--primary-light);
+      border-radius: 18px;
+      padding: 24px 28px;
+      margin-top: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      animation: fadeIn 0.3s ease;
+    }
+    .game-feedback.active { display: block; }
+    .game-feedback.correct { border-color: #22c55e; background: #052e16; }
+    .game-feedback.wrong { border-color: #ef4444; background: #450a0a; }
+
+    .feedback-verdict {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .game-feedback.correct .feedback-verdict { color: #4ade80 !important; }
+    .game-feedback.wrong .feedback-verdict { color: #fca5a5 !important; }
+
+    .feedback-explanation {
+      font-size: 1.25rem;
+      line-height: 1.55;
+      color: #ffffff !important;
+      font-weight: 600;
+      margin: 0 0 16px;
+    }
+
+    .primary-btn {
+      background: var(--coral);
+      color: #ffffff;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .primary-btn:hover { background: #c2410c; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       CONTROLOS FLUTUANTES (HOVER)
+       ========================================================================== */
+    .floating-hover-zone {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: auto;
+    }
+
+    .floating-controls {
+      background: rgba(4, 47, 46, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .floating-hover-zone:hover .floating-controls {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .float-btn {
+      border: 0;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .float-btn:hover { background: rgba(255, 255, 255, 0.35); }
+    .float-btn.exit { background: var(--coral); }
+    .float-btn.exit:hover { background: #c2410c; }
+    .float-counter { color: #ffffff; font-size: 0.95rem; font-weight: 800; min-width: 60px; text-align: center; }
+
+    /* ==========================================================================
+       PAINEL DE NOTAS & VISÃO GERAL
+       ========================================================================== */
+    .notes-panel {
+      position: absolute;
+      right: 32px;
+      bottom: 32px;
+      width: min(420px, calc(100% - 64px));
+      max-height: 40%;
+      overflow-y: auto;
+      background: #021a19;
+      color: #fff;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 18px 22px;
+      transform: translateY(16px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.2s ease;
+      z-index: 110;
+    }
+    .notes-panel.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .notes-head, .overview-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .notes-head button, .overview-head button {
+      border: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      color: inherit;
+    }
+    #notesText { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #f0fdfa; }
+
+    .overview {
+      position: absolute;
+      inset: 0;
+      z-index: 120;
+      background: rgba(240, 253, 250, 0.98);
+      backdrop-filter: blur(10px);
+      padding: 32px;
+      display: none;
+      overflow-y: auto;
+    }
+    .overview.open { display: block; }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .overview-grid button {
+      min-height: 110px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 14px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .overview-grid button.active { outline: 3px solid var(--primary); }
+    .overview-grid span { display: block; color: var(--primary); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 6px; }
+    .overview-grid strong { font-size: 0.92rem; color: var(--ink); line-height: 1.25; }
+
+    /* ==========================================================================
+       RESPONSIVIDADE
+       ========================================================================== */
+    @media (max-width: 900px) {
+      body { overflow: auto; }
+      .app { grid-template-columns: 1fr; height: auto; }
+      .sidebar { display: none; }
+      .stage { min-height: 100vh; }
+      .slides { padding: 16px; }
+      .slide { inset: 16px; padding: 20px; }
+      .cards.two, .cards.three, .question-grid, .not-list, .game-options { grid-template-columns: 1fr; }
+      .cover-wrapper { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Barra Lateral com Agenda -->
+    <aside class="sidebar" id="sidebar" aria-label="Roteiro da aula">
+      <div class="brand">
+        <span class="brand-mark">ID</span>
+        <div>
+          <strong>Identificação de Demandas</strong>
+          <small>Projetos de Extensão</small>
+        </div>
+      </div>
+
+      <nav class="agenda" id="agenda" aria-label="Navegação dos slides"></nav>
+
+      <div class="side-footer">
+        <button class="ghost-btn" id="fullscreenSideBtn" type="button">⛶ Modo Apresentação (F)</button>
+        <button class="ghost-btn" id="overviewBtn" type="button">Visão Geral (O)</button>
+        <button class="ghost-btn" id="notesBtn" type="button">Notas do Professor (N)</button>
+      </div>
+    </aside>
+
+    <!-- Palco Principal -->
+    <main class="stage">
+      <header class="topbar">
+        <div class="slide-meta">
+          <span id="slideKicker">Aula Expositiva</span>
+          <h1 id="slideTitle">Identificação de Demandas</h1>
+        </div>
+
+        <div class="controls" aria-label="Controles da apresentação">
+          <button class="ghost-btn" id="fullscreenBtn" type="button" title="Modo Apresentação (Tecla F)">⛶ Tela Cheia</button>
+          <button class="icon-btn" id="prevBtn" type="button" aria-label="Slide anterior">‹</button>
+          <span class="counter" id="counter">1 / --</span>
+          <button class="icon-btn" id="nextBtn" type="button" aria-label="Próximo slide">›</button>
+        </div>
+      </header>
+
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+      <section class="slides" id="slides" aria-live="polite">
+        
+        <!-- Slide 1: Capa (Background Território/Periferia) -->
+        <article class="slide cover active bg-photo bg-cover" data-title="Abertura" data-kicker="Diagnóstico Territorial" data-notes="Apresente a aula enfatizando que extensão universitária parte de necessidades concretas da comunidade, nunca de suposições pré-fabricadas.">
+          <div class="cover-wrapper">
+            <div class="cover-content">
+              <span class="eyebrow light">Diagnóstico de Necessidades & Escuta Ativa</span>
+              <h2>Identificação de Demandas</h2>
+              <p class="lead">Como investigar necessidades reais, diferenciar demandas autênticas de suposições acadêmicas e fundamentar propostas de extensão socialmente relevantes.</p>
+            </div>
+            <div class="cover-illustration" aria-hidden="true">
+              <svg viewBox="0 0 200 200" class="vector-art">
+                <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2" stroke-dasharray="6 6"/>
+                <circle cx="100" cy="100" r="45" fill="rgba(20, 184, 166, 0.25)" stroke="#14b8a6" stroke-width="2"/>
+                <path d="M100 65 L100 100 L125 125" stroke="#facc15" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="100" cy="100" r="8" fill="#ffffff"/>
+                <circle cx="160" cy="80" r="14" fill="#ea580c"/>
+                <circle cx="45" cy="120" r="14" fill="#0284c7"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2: Objetivos de Aprendizagem (1/2) -->
+        <article class="slide" data-title="Objetivos: Compreensão" data-kicker="Diretrizes 1/2" data-notes="Enfatize a habilidade analítica de não confundir sintoma com causa raiz.">
+          <span class="eyebrow">Diretrizes da Aula</span>
+          <h2>Compreensão Crítica</h2>
+          <div class="card single-focus">
+            <div class="card-icon">01</div>
+            <h3>O que vamos compreender?</h3>
+            <ul class="large-list">
+              <li>O que define uma <strong>demanda social autêntica</strong> no território.</li>
+              <li>A diferença crucial entre <strong>demanda real, demanda induzida e suposição</strong>.</li>
+              <li>Como articular <strong>evidências documentais e escuta territorial</strong> para validar necessidades.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 3: Objetivos de Aprendizagem (2/2) -->
+        <article class="slide" data-title="Objetivos: Aplicação" data-kicker="Diretrizes 2/2" data-notes="Conecte ao trabalho semestral das equipes.">
+          <span class="eyebrow">Diretrizes da Aula</span>
+          <h2>Aplicação Prática no Projeto</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">02</div>
+            <h3>O que vamos aplicar?</h3>
+            <ul class="large-list">
+              <li>Mapear as necessidades prioritárias utilizando a <strong>Árvore de Problemas</strong>.</li>
+              <li>Aplicar ferramentas de <strong>escuta ativa e observação territorial</strong>.</li>
+              <li>Formular o <strong>Problema Central e a Justificativa</strong> da ação extensionista.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 4: O que é Demanda Social -->
+        <article class="slide" data-title="Conceito de Demanda" data-kicker="Fundamentação" data-notes="Frise que a demanda nasce da carência ou vulnerabilidade vivenciada pelos sujeitos locais.">
+          <span class="eyebrow">Definição</span>
+          <h2>O que é Demanda Social?</h2>
+          <blockquote class="big">
+            É a expressão concreta de uma carência, vulnerabilidade ou aspiração coletiva de um grupo ou território que demanda transformação mediada pela ação pública e comunitária.
+          </blockquote>
+          <div class="cards three" style="margin-top: 24px;">
+            <div class="card">
+              <h3>Problema Factual</h3>
+              <p>Uma situação indesejada que afeta a qualidade de vida, direitos ou sustentabilidade da comunidade.</p>
+            </div>
+            <div class="card">
+              <h3>Reconhecimento Coletivo</h3>
+              <p>O problema é percebido e sentido pelos moradores, e não inventado por analistas externos.</p>
+            </div>
+            <div class="card accent">
+              <h3>Potencial de Transformação</h3>
+              <p>Gera mobilização social e apresenta caminhos viáveis de cocriação com a universidade.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 5: Demanda Real × Suposição Acadêmica -->
+        <article class="slide" data-title="Demanda Real × Suposta" data-kicker="Diferenciação" data-notes="Mostre o perigo de a universidade impor 'soluções procurando problemas'.">
+          <span class="eyebrow">Atenção Metodológica</span>
+          <h2>Demanda Real × Demanda Suposta</h2>
+          <div class="table-wrap large-table">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 50%;">Demanda Real (Comunitária)</th>
+                  <th style="width: 50%;">Demanda Suposta (Criada)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Origem:</strong> Surge da vivência diária, relatos, queixas e carências da comunidade.</td>
+                  <td><strong>Origem:</strong> Surge do desejo ou interesse de pesquisa exclusivo da equipe acadêmica.</td>
+                </tr>
+                <tr>
+                  <td><strong>Prioridade:</strong> É urgente para a sobrevivência, dignidade ou desenvolvimento local.</td>
+                  <td><strong>Prioridade:</strong> Parece interessante teoricamente, mas tem baixa relevância prática local.</td>
+                </tr>
+                <tr>
+                  <td><em>Exemplo:</em> Falta de água tratada e descarte irregular de lixo no bairro.</td>
+                  <td><em>Exemplo:</em> Uma oficina de robótica avançada para um bairro sem energia estável.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Slide 6: O Caso da "Solução Pronta" (Background Feirante/Agricultor) -->
+        <article class="slide bg-photo bg-slide-farmer stepped" data-title="Caso: O Aplicativo Móvel" data-kicker="Caso Concreto 01" data-notes="Pergunte aos estudantes: qual foi o erro de diagnóstico deste projeto?">
+          <span class="eyebrow light">Estudo de Caso Territorial</span>
+          <h2>Caso: O Aplicativo para Feirantes</h2>
+          <blockquote class="big dark-quote">
+            "Um grupo de estudantes desenvolveu um aplicativo moderno para conectar agricultores familiares aos consumidores. Três meses após o lançamento, ninguém usava o app. O que faltou identificar?"
+          </blockquote>
+          <div class="question-grid dark-grid">
+            <span class="step-item">Os agricultores tinham acesso a internet estável no campo?</span>
+            <span class="step-item">Qual era o nível de letramento digital do grupo atendido?</span>
+            <span class="step-item">O gargalo real era venda ou a falta de transporte para escoar os produtos?</span>
+            <span class="step-item">Eles foram consultados antes do início da programação do aplicativo?</span>
+          </div>
+        </article>
+
+        <!-- Slide 7: O que a Identificação NÃO é (1/2) -->
+        <article class="slide" data-title="O que NÃO é (1/2)" data-kicker="Alertas Metodológicos" data-notes="Evite os vícios de projetos voluntaristas ou assistencialistas.">
+          <span class="eyebrow">Atenção Metodológica</span>
+          <h2>Identificação de Demandas NÃO é... (1/2)</h2>
+          <div class="not-list large-cards">
+            <span>Decidir em sala de aula o que a comunidade 'precisa' aprender</span>
+            <span>Confundir a vontade individual do estudante com uma necessidade do território</span>
+            <span>Aplicar questionários fechados sem diálogo e sem devolutiva para os moradores</span>
+          </div>
+        </article>
+
+        <!-- Slide 8: O que a Identificação NÃO é (2/2) -->
+        <article class="slide" data-title="O que NÃO é (2/2)" data-kicker="Alertas Metodológicos" data-notes="Atenção à confusão entre causa e efeito.">
+          <span class="eyebrow">Atenção Metodológica</span>
+          <h2>Identificação de Demandas NÃO é... (2/2)</h2>
+          <div class="not-list large-cards">
+            <span>Focar apenas nos sintomas imediatos e ignorar as causas estruturais</span>
+            <span>Prometer resolver problemas que fogem totalmente do escopo extensionista</span>
+            <span>Assumir que uma comunidade inteira possui necessidades homogêneas</span>
+          </div>
+        </article>
+
+        <!-- Slide 9: Métodos de Coleta e Escuta (Background Roda de Conversa) -->
+        <article class="slide bg-photo bg-slide-listening" data-title="Fontes Diretas de Escuta" data-kicker="Instrumentos 1/2" data-notes="Destaque as ferramentas de imersão direta no território.">
+          <span class="eyebrow light">Fontes Primárias & Vivência</span>
+          <h2>Fontes Diretas: No Território</h2>
+          <div class="cards three">
+            <div class="card single-focus dark-card">
+              <div class="card-icon">👂</div>
+              <h3>Escuta Ativa & Entrevistas</h3>
+              <p>Rodas de conversa, entrevistas abertas com moradores e escuta atenta das lideranças formais e informais.</p>
+            </div>
+            <div class="card single-focus dark-card">
+              <div class="card-icon">🚶</div>
+              <h3>Caminhada Guiada</h3>
+              <p>Percorrer o bairro acompanhado por moradores para observar barreiras físicas, pontos de descarte e potencialidades.</p>
+            </div>
+            <div class="card single-focus accent dark-card">
+              <div class="card-icon">👥</div>
+              <h3>Oficinas Participativas</h3>
+              <p>Espaços de diálogo comunitário onde a própria população elenca suas prioridades e desafios urgentes.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 10: Métodos de Coleta e Escuta (2/2) -->
+        <article class="slide" data-title="Fontes Indiretas de Dados" data-kicker="Instrumentos 2/2" data-notes="Mostre a conexão direta com a pesquisa documental.">
+          <span class="eyebrow">Fontes Secundárias & Registros</span>
+          <h2>Fontes Indiretas: Registros Existentes</h2>
+          <div class="cards two large-cards">
+            <div class="card single-focus">
+              <div class="card-icon">📊</div>
+              <h3>Indicadores Oficiais do Território</h3>
+              <p>Dados do Censo IBGE, DataSUS, Censo Escolar e relatórios de vulnerabilidade social das secretarias.</p>
+              <ul class="large-list" style="margin-top: 12px;">
+                <li>Taxas de evasão escolar no bairro</li>
+                <li>Incidência de arboviroses ou falta de saneamento</li>
+              </ul>
+            </div>
+            <div class="card single-focus accent">
+              <div class="card-icon">📑</div>
+              <h3>Registros Comunitários e Ouvidorias</h3>
+              <p>Reclamações em conselhos gestores, atas de associações, notícias locais e planos municipais.</p>
+              <ul class="large-list" style="margin-top: 12px;">
+                <li>Reivindicações históricas do conselho de saúde</li>
+                <li>Demandas reprimidas do orçamento participativo</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 11: A Árvore de Problemas (Background Tronco e Raízes) -->
+        <article class="slide bg-photo bg-slide-tree" data-title="A Árvore de Problemas" data-kicker="Metodologia Visual" data-notes="Explique a metáfora: raízes (causas), tronco (problema central) e copa (efeitos/consequências).">
+          <span class="eyebrow light">Estruturação Causal</span>
+          <h2>A Árvore de Problemas</h2>
+          <div class="cards three" style="margin-top: 20px;">
+            <div class="card single-focus dark-card">
+              <div class="card-icon">🍃</div>
+              <h3>Efeitos (A Copa)</h3>
+              <p>As consequências visíveis geradas pelo problema: doenças, evasão, baixa renda, exclusão social.</p>
+            </div>
+            <div class="card single-focus accent dark-card">
+              <div class="card-icon">🪵</div>
+              <h3>Problema Central (Tronco)</h3>
+              <p>A situação negativa prioritária identificada e delimitada no território de atuação.</p>
+            </div>
+            <div class="card single-focus dark-card">
+              <div class="card-icon">🌱</div>
+              <h3>Causas (As Raízes)</h3>
+              <p>Os fatores geradores que sustentam o problema: falta de infraestrutura, ausência de informação, omissão do poder público.</p>
+            </div>
+          </div>
+          <p class="takeaway giant-takeaway dark-takeaway">O projeto de extensão atua sobre as CAUSAS para amenizar ou eliminar os EFEITOS indesejados.</p>
+        </article>
+
+        <!-- Slide 12: Exemplo de Aplicação da Árvore -->
+        <article class="slide" data-title="Exemplo: Árvore Aplicada" data-kicker="Aplicação Prática" data-notes="Demonstre a aplicação prática da ferramenta no tema da dengue e descarte de resíduos.">
+          <span class="eyebrow">Exemplo Concreto</span>
+          <h2>Árvore Aplicada: Foco em Saúde e Resíduos</h2>
+          <div class="table-wrap large-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nível da Árvore</th>
+                  <th>Elemento Identificado</th>
+                  <th>Como a Extensão Atua</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Efeitos (Sintomas)</strong></td>
+                  <td>Alta incidência de dengue e sobrecarga do posto de saúde do bairro.</td>
+                  <td>Meta de impacto a longo prazo.</td>
+                </tr>
+                <tr>
+                  <td><strong>Problema Central</strong></td>
+                  <td>Proliferação de focos de mosquito em lotes vagos da comunidade.</td>
+                  <td>Foco da intervenção territorial.</td>
+                </tr>
+                <tr>
+                  <td><strong>Causas (Raízes)</strong></td>
+                  <td>Descarte irregular de entulho e falta de coleta seletiva regular.</td>
+                  <td><strong>Ação direta:</strong> Educação socioambiental, mutirões e articulação com a prefeitura.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Slide 13: Critérios para Priorizar Demandas -->
+        <article class="slide" data-title="Critérios de Priorização" data-kicker="Tomada de Decisão" data-notes="A universidade não consegue abraçar todas as demandas de uma vez; é indispensável eleger prioridades com a comunidade.">
+          <span class="eyebrow">Matriz de Decisão</span>
+          <h2>Como Priorizar as Demandas?</h2>
+          <div class="pill-grid giant-pills">
+            <span>Gravidade e Urgência do problema</span>
+            <span>Grau de interesse da comunidade</span>
+            <span>Viabilidade técnica da equipe</span>
+            <span>Recursos e tempo disponíveis</span>
+            <span>Aderência à formação cidadã</span>
+            <span>Potencial de continuidade pós-projeto</span>
+          </div>
+          <blockquote class="big" style="margin-top: 24px;">
+            A melhor demanda para a extensão é aquela onde a dor da comunidade se encontra com a capacidade transformadora e formativa da universidade.
+          </blockquote>
+        </article>
+
+        <!-- Slide 14: Como Redigir a Demanda no Projeto -->
+        <article class="slide" data-title="Redação da Demanda" data-kicker="Escrita Acadêmica" data-notes="Oriente a escrita formal na seção de Justificativa e Diagnóstico Territorial.">
+          <span class="eyebrow">Escrita do Projeto</span>
+          <h2>A Demanda no Texto do Projeto</h2>
+          <div class="card single-focus">
+            <h3>Estrutura do Diagnóstico no Relatório:</h3>
+            <ul class="large-list">
+              <li><strong>Contextualização Territorial:</strong> Caracterização do bairro e população afetada.</li>
+              <li><strong>Evidências Factual:</strong> Dados estatísticos e documentos oficiais que comprovam o problema.</li>
+              <li><strong>Voz da Comunidade:</strong> Síntese das falas, reuniões e escutas realizadas em campo.</li>
+              <li><strong>Justificativa da Ação:</strong> Por que a universidade deve atuar conjuntamente nesta demanda.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 15: JOGO INTERATIVO - Demanda Real ou Suposição? -->
+        <article class="slide game-slide" data-title="Jogo: Real ou Suposição?" data-kicker="Fixação Interativa" data-notes="Proponha o caso e peça que a turma julgue se é Demanda Real, Suposição ou Efeito Superficial.">
+          <div class="game-container">
+            <div class="game-header">
+              <span class="eyebrow light">Desafio do Diagnóstico</span>
+              <div class="game-score">Pontos: <strong id="gameScore">0</strong> / <span id="gameTotal">5</span></div>
+            </div>
+            
+            <h2 id="gameQuestionTitle">Demanda Real, Suposição ou Falso Problema?</h2>
+            
+            <div class="game-case-box">
+              <div class="game-badge" id="gameRoundBadge">Rodada 1 de 5</div>
+              <p class="game-case-text" id="gameCaseText">"Estudantes propõem criar uma horta suspensa porque acham que a comunidade consome poucas hortaliças orgânicas."</p>
+            </div>
+
+            <div class="game-options">
+              <button class="game-btn danger" data-choice="suposicao">Suposição Acadêmica</button>
+              <button class="game-btn" data-choice="real">Demanda Real Validada</button>
+              <button class="game-btn" data-choice="efeito">Apenas um Sintoma</button>
+            </div>
+
+            <div class="game-feedback" id="gameFeedback">
+              <div class="feedback-verdict" id="feedbackVerdict"></div>
+              <p class="feedback-explanation" id="feedbackText"></p>
+              <button class="primary-btn" id="nextGameRoundBtn">Próximo Caso →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 16: Síntese e Fechamento (Background Mãos Unidas/Comunidade) -->
+        <article class="slide cover bg-photo bg-slide-closing" data-title="Síntese da Aula" data-kicker="Fechamento Conceitual" data-notes="Encerre conectando a identificação honesta de demandas ao compromisso ético da universidade pública e comunitária.">
+          <div class="cover-wrapper" style="flex-direction: column; text-align: center; gap: 20px;">
+            <span class="eyebrow light">Compromisso Ético & Metodológico</span>
+            <h2 style="font-size: clamp(2.4rem, 4vw, 3.8rem);">Três Certezas da Extensão</h2>
+            <div class="cards three" style="text-align: left; margin-top: 14px;">
+              <div class="card dark-card">
+                <div class="card-icon">1</div>
+                <h3>Escutar Primeiro</h3>
+                <p>Nenhuma intervenção tem legitimidade se for planejada a portas fechadas no campus.</p>
+              </div>
+              <div class="card dark-card">
+                <div class="card-icon">2</div>
+                <h3>Atacar as Raízes</h3>
+                <p>Não confunda sintomas imediatos com as causas estruturais que geram a vulnerabilidade.</p>
+              </div>
+              <div class="card dark-card">
+                <div class="card-icon">3</div>
+                <h3>Criação Conjunta</h3>
+                <p>A melhor proposta nasce do cruzamento respeitoso entre saber acadêmico e vivência comunitária.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 17: Encaminhamento / Próxima Aula -->
+        <article class="slide" data-title="Próxima Aula: Diagnóstico" data-kicker="Missão Prática" data-notes="Oriente as equipes sobre a aplicação da Árvore de Problemas no tema escolhido para a disciplina.">
+          <span class="eyebrow">Preparação para a Próxima Aula</span>
+          <h2>Missão: Construção da Árvore de Problemas</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">🎯</div>
+            <h3>O que cada equipe deve estruturar:</h3>
+            <ul class="large-list">
+              <li><strong>Problema Central Provisório:</strong> Definir em uma frase clara a necessidade prioritária do território.</li>
+              <li><strong>Três Causas e Três Efeitos:</strong> Mapear os fatores geradores (raízes) e as consequências visíveis (copa).</li>
+              <li><strong>Validação das Evidências:</strong> Apontar quais dados documentais ou relatos comunitários comprovam que a demanda é real e urgente.</li>
+            </ul>
+          </div>
+          <p class="takeaway" style="margin-top: 18px;">
+            Na próxima aula: refinaremos coletivamente a Árvore de Problemas e converteremos as causas em objetivos e metas operacionais do projeto.
+          </p>
+        </article>
+
+      </section>
+
+      <!-- Zona de Ativação por Hover + Painel Flutuante Invisível -->
+      <div class="floating-hover-zone">
+        <div class="floating-controls" id="floatingControls">
+          <button class="float-btn" id="floatPrevBtn" title="Slide anterior (←)">‹</button>
+          <span class="float-counter" id="floatCounter">1 / 17</span>
+          <button class="float-btn" id="floatNextBtn" title="Próximo slide (→ / Espaço)">›</button>
+          <button class="float-btn" id="floatNotesBtn" title="Notas (N)">Notas</button>
+          <button class="float-btn exit" id="floatExitBtn" title="Sair da Tela Cheia (Esc)">✕ Sair</button>
+        </div>
+      </div>
+
+      <!-- Painel de Notas -->
+      <aside class="notes-panel" id="notesPanel" aria-label="Notas do professor">
+        <div class="notes-head">
+          <strong>Notas do Professor</strong>
+          <button id="closeNotes" type="button" aria-label="Fechar notas">×</button>
+        </div>
+        <p id="notesText"></p>
+      </aside>
+
+      <!-- Visão Geral / Grid de Slides -->
+      <div class="overview" id="overview" aria-label="Visão geral dos slides">
+        <div class="overview-head">
+          <strong>Visão Geral da Apresentação</strong>
+          <button id="closeOverview" type="button" aria-label="Fechar visão geral">×</button>
+        </div>
+        <div class="overview-grid" id="overviewGrid"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const app = document.getElementById('app');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const agenda = document.getElementById('agenda');
+    const overview = document.getElementById('overview');
+    const overviewGrid = document.getElementById('overviewGrid');
+    const notesPanel = document.getElementById('notesPanel');
+    const notesText = document.getElementById('notesText');
+    const slideTitle = document.getElementById('slideTitle');
+    const slideKicker = document.getElementById('slideKicker');
+    const counter = document.getElementById('counter');
+    const progressBar = document.getElementById('progressBar');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const notesBtn = document.getElementById('notesBtn');
+    const closeNotes = document.getElementById('closeNotes');
+    const overviewBtn = document.getElementById('overviewBtn');
+    const closeOverview = document.getElementById('closeOverview');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const fullscreenSideBtn = document.getElementById('fullscreenSideBtn');
+
+    // Controles flutuantes de tela cheia
+    const floatPrevBtn = document.getElementById('floatPrevBtn');
+    const floatNextBtn = document.getElementById('floatNextBtn');
+    const floatCounter = document.getElementById('floatCounter');
+    const floatNotesBtn = document.getElementById('floatNotesBtn');
+    const floatExitBtn = document.getElementById('floatExitBtn');
+
+    let current = 0;
+
+    /* ==========================================================================
+       LÓGICA DO JOGO: DEMANDA REAL OU SUPOSIÇÃO?
+       ========================================================================== */
+    const gameQuestions = [
+      {
+        text: '"Estudantes propõem criar uma horta suspensa porque acham que a comunidade consome poucas hortaliças orgânicas."',
+        correct: 'suposicao',
+        verdictCorrect: '🎯 Exato! É uma Suposição Acadêmica.',
+        verdictWrong: '❌ Cuidado! Trata-se de uma Suposição Acadêmica.',
+        explanation: 'Partiu do achismo da equipe. É preciso investigar antes se a população realmente consome poucas hortaliças e se há interesse local em manter o plantio.'
+      },
+      {
+        text: '"O Posto de Saúde e o Censo mostram 42% de internações infantis por diarreia devido à falta de saneamento no bairro."',
+        correct: 'real',
+        verdictCorrect: '🎯 Perfeito! É uma Demanda Real Validada.',
+        verdictWrong: '❌ Incorreto! É uma Demanda Real evidente.',
+        explanation: 'Há sofrimento concreto vivenciado pela população, respaldado tanto por registros epidemiológicos quanto pela queixa das famílias.'
+      },
+      {
+        text: '"Queixas frequentes de lixo acumulado em esquinas e bueiros entupidos nas chuvas registradas na Associação de Moradores."',
+        correct: 'real',
+        verdictCorrect: '🎯 Muito bem! Demanda Real Autêntica.',
+        verdictWrong: '❌ Errado! Trata-se de Demanda Real legítima.',
+        explanation: 'É um problema urgente expresso e sentido diretamente pela comunidade, demandando ações de diagnóstico, educação e fiscalização.'
+      },
+      {
+        text: '"A equipe quer ensinar programação em Python para adolescentes de uma comunidade que não possui computadores."',
+        correct: 'suposicao',
+        verdictCorrect: '🎯 Correto! Suposição Desconectada da Realidade.',
+        verdictWrong: '❌ Atenção! Trata-se de Suposição / Solução Forçada.',
+        explanation: 'A equipe está apaixonada pela "sua solução tecnológica", ignorando as barreiras reais de infraestrutura e a carência prioritária local.'
+      },
+      {
+        text: '"Moradores relatam cansaço e falta de tempo para comparecer às reuniões comunitárias."',
+        correct: 'efeito',
+        verdictCorrect: '🎯 Brilhante! É apenas um Sintoma / Efeito.',
+        verdictWrong: '❌ Não! É um Sintoma de problemas maiores.',
+        explanation: 'A causa raiz pode ser excesso de jornada de trabalho, transporte precário ou reuniões em horários inacessíveis para quem cuida da família.'
+      }
+    ];
+
+    let gameRound = 0;
+    let gameScore = 0;
+
+    const gameCaseText = document.getElementById('gameCaseText');
+    const gameRoundBadge = document.getElementById('gameRoundBadge');
+    const gameScoreEl = document.getElementById('gameScore');
+    const gameTotalEl = document.getElementById('gameTotal');
+    const gameFeedback = document.getElementById('gameFeedback');
+    const feedbackVerdict = document.getElementById('feedbackVerdict');
+    const feedbackText = document.getElementById('feedbackText');
+    const nextGameRoundBtn = document.getElementById('nextGameRoundBtn');
+    const gameButtons = document.querySelectorAll('.game-btn');
+
+    function initGame() {
+      if (!gameCaseText) return;
+      gameRound = 0;
+      gameScore = 0;
+      gameTotalEl.textContent = gameQuestions.length;
+      renderGameRound();
+    }
+
+    function renderGameRound() {
+      const q = gameQuestions[gameRound];
+      gameRoundBadge.textContent = `Rodada ${gameRound + 1} de ${gameQuestions.length}`;
+      gameCaseText.textContent = q.text;
+      gameScoreEl.textContent = gameScore;
+      gameFeedback.className = 'game-feedback';
+      gameButtons.forEach(btn => {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      });
+    }
+
+    function checkGameAnswer(choice) {
+      const q = gameQuestions[gameRound];
+      const isCorrect = (choice === q.correct);
+
+      gameButtons.forEach(btn => btn.disabled = true);
+
+      if (isCorrect) {
+        gameScore += 1;
+        gameScoreEl.textContent = gameScore;
+        gameFeedback.className = 'game-feedback active correct';
+        feedbackVerdict.textContent = q.verdictCorrect;
+      } else {
+        gameFeedback.className = 'game-feedback active wrong';
+        feedbackVerdict.textContent = q.verdictWrong;
+      }
+
+      feedbackText.textContent = q.explanation;
+      
+      if (gameRound === gameQuestions.length - 1) {
+        nextGameRoundBtn.textContent = 'Finalizar Desafio 🏆';
+      } else {
+        nextGameRoundBtn.textContent = 'Próximo Caso →';
+      }
+    }
+
+    gameButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const choice = btn.dataset.choice;
+        checkGameAnswer(choice);
+      });
+    });
+
+    if (nextGameRoundBtn) {
+      nextGameRoundBtn.addEventListener('click', () => {
+        if (gameRound < gameQuestions.length - 1) {
+          gameRound += 1;
+          renderGameRound();
+        } else {
+          gameFeedback.className = 'game-feedback active correct';
+          feedbackVerdict.textContent = `🎉 Desafio Concluído! Placar: ${gameScore}/${gameQuestions.length}`;
+          feedbackText.textContent = 'A turma compreendeu a diferença entre impor suposições acadêmicas e escutar as carências concretas do território.';
+          nextGameRoundBtn.style.display = 'none';
+        }
+      });
+    }
+
+    /* ==========================================================================
+       NAVEGAÇÃO E INTERFACE
+       ========================================================================== */
+    function buildNavigation() {
+      agenda.innerHTML = '';
+      overviewGrid.innerHTML = '';
+
+      slides.forEach((slide, index) => {
+        const title = slide.dataset.title || `Slide ${index + 1}`;
+
+        const agendaBtn = document.createElement('button');
+        agendaBtn.type = 'button';
+        agendaBtn.innerHTML = `<span>${index + 1}</span><span>${title}</span>`;
+        agendaBtn.addEventListener('click', () => goTo(index));
+        agenda.appendChild(agendaBtn);
+
+        const ovBtn = document.createElement('button');
+        ovBtn.type = 'button';
+        ovBtn.innerHTML = `<span>${slide.dataset.kicker || 'Slide'}</span><strong>${index + 1}. ${title}</strong>`;
+        ovBtn.addEventListener('click', () => {
+          goTo(index);
+          toggleOverview(false);
+        });
+        overviewGrid.appendChild(ovBtn);
+      });
+    }
+
+    function updateUI() {
+      slides.forEach((slide, index) => slide.classList.toggle('active', index === current));
+      Array.from(agenda.children).forEach((btn, index) => btn.classList.toggle('active', index === current));
+      Array.from(overviewGrid.children).forEach((btn, index) => btn.classList.toggle('active', index === current));
+
+      const slide = slides[current];
+      const title = slide.dataset.title || `Slide ${current + 1}`;
+      slideTitle.textContent = title;
+      slideKicker.textContent = slide.dataset.kicker || 'Aula Expositiva';
+      
+      const countStr = `${current + 1} / ${slides.length}`;
+      counter.textContent = countStr;
+      floatCounter.textContent = countStr;
+      
+      progressBar.style.width = `${((current + 1) / slides.length) * 100}%`;
+      notesText.textContent = slide.dataset.notes || 'Sem notas para este slide.';
+      document.title = `${title} · Identificação de Demandas`;
+      history.replaceState(null, '', `#${current + 1}`);
+
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+      prevBtn.style.opacity = prevBtn.disabled ? '0.4' : '1';
+      nextBtn.style.opacity = nextBtn.disabled ? '0.4' : '1';
+    }
+
+    function goTo(index, resetSteps = true) {
+      current = Math.max(0, Math.min(index, slides.length - 1));
+      const activeSlide = slides[current];
+
+      if (resetSteps) {
+        activeSlide.querySelectorAll('.step-item').forEach(el => el.classList.remove('revealed'));
+      }
+      updateUI();
+    }
+
+    function next() {
+      const activeSlide = slides[current];
+      const unrevealedItems = activeSlide.querySelectorAll('.step-item:not(.revealed)');
+
+      if (unrevealedItems.length > 0) {
+        unrevealedItems[0].classList.add('revealed');
+        return;
+      }
+
+      if (current < slides.length - 1) {
+        goTo(current + 1);
+      }
+    }
+
+    function prev() {
+      const activeSlide = slides[current];
+      const revealedItems = activeSlide.querySelectorAll('.step-item.revealed');
+
+      if (revealedItems.length > 0) {
+        revealedItems[revealedItems.length - 1].classList.remove('revealed');
+        return;
+      }
+
+      if (current > 0) {
+        goTo(current - 1, false);
+        slides[current].querySelectorAll('.step-item').forEach(el => el.classList.add('revealed'));
+      }
+    }
+
+    function toggleNotes(force) {
+      const shouldOpen = typeof force === 'boolean' ? force : !notesPanel.classList.contains('open');
+      notesPanel.classList.toggle('open', shouldOpen);
+    }
+
+    function toggleOverview(force) {
+      const shouldOpen = typeof force === 'boolean' ? force : !overview.classList.contains('open');
+      overview.classList.toggle('open', shouldOpen);
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen?.().catch(() => {});
+        app.classList.add('fullscreen-mode');
+      } else {
+        document.exitFullscreen?.().catch(() => {});
+        app.classList.remove('fullscreen-mode');
+      }
+    }
+
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement) {
+        app.classList.remove('fullscreen-mode');
+      } else {
+        app.classList.add('fullscreen-mode');
+      }
+      updateUI();
+    });
+
+    buildNavigation();
+
+    const initialHash = Number.parseInt(location.hash.replace('#', ''), 10);
+    if (!Number.isNaN(initialHash) && initialHash >= 1 && initialHash <= slides.length) {
+      current = initialHash - 1;
+    }
+    updateUI();
+    initGame();
+
+    // Eventos de clique
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+    notesBtn.addEventListener('click', () => toggleNotes());
+    closeNotes.addEventListener('click', () => toggleNotes(false));
+    overviewBtn.addEventListener('click', () => toggleOverview());
+    closeOverview.addEventListener('click', () => toggleOverview(false));
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
+    fullscreenSideBtn.addEventListener('click', toggleFullscreen);
+
+    // Controlos Flutuantes
+    floatPrevBtn.addEventListener('click', prev);
+    floatNextBtn.addEventListener('click', next);
+    floatNotesBtn.addEventListener('click', () => toggleNotes());
+    floatExitBtn.addEventListener('click', toggleFullscreen);
+
+    // Clique no slide avança passos internos
+    slides.forEach(slide => {
+      slide.addEventListener('click', (e) => {
+        if (e.target.closest('button, a, table, .game-options, .game-feedback')) return;
+        const unrevealedItems = slide.querySelectorAll('.step-item:not(.revealed)');
+        if (unrevealedItems.length > 0) {
+          unrevealedItems[0].classList.add('revealed');
+        }
+      });
+    });
+
+    // Teclado
+    document.addEventListener('keydown', (e) => {
+      if (['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) return;
+
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) {
+        e.preventDefault();
+        next();
+      } else if (['ArrowLeft', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        prev();
+      } else if (e.key === 'Home') {
+        goTo(0);
+      } else if (e.key === 'End') {
+        goTo(slides.length - 1);
+      } else if (e.key.toLowerCase() === 'n') {
+        toggleNotes();
+      } else if (e.key.toLowerCase() === 'o') {
+        toggleOverview();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullscreen();
+      } else if (e.key === 'Escape') {
+        toggleNotes(false);
+        toggleOverview(false);
+      }
+    });
+  </script>
+</body>
+</html>

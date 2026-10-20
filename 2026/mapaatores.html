@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Mapeamento de Atores Sociais em Projetos de Extensão</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <!-- Barra Lateral com Agenda -->
+    <aside class="sidebar" id="sidebar" aria-label="Roteiro da aula">
+      <div class="brand">
+        <span class="brand-mark">MA</span>
+        <div>
+          <strong>Mapeamento de Atores</strong>
+          <small>Projetos de Extensão</small>
+        </div>
+      </div>
+
+      <nav class="agenda" id="agenda" aria-label="Navegação dos slides"></nav>
+
+      <div class="side-footer">
+        <button class="ghost-btn" id="fullscreenSideBtn" type="button">⛶ Modo Apresentação (F)</button>
+        <button class="ghost-btn" id="overviewBtn" type="button">Visão Geral (O)</button>
+        <button class="ghost-btn" id="notesBtn" type="button">Notas do Professor (N)</button>
+      </div>
+    </aside>
+
+    <!-- Palco Principal -->
+    <main class="stage">
+      <header class="topbar">
+        <div class="slide-meta">
+          <span id="slideKicker">Aula Expositiva</span>
+          <h1 id="slideTitle">Mapeamento de Atores Sociais</h1>
+        </div>
+
+        <div class="controls" aria-label="Controles da apresentação">
+          <button class="ghost-btn" id="fullscreenBtn" type="button" title="Modo Apresentação (Tecla F)">⛶ Tela Cheia</button>
+          <button class="icon-btn" id="prevBtn" type="button" aria-label="Slide anterior">‹</button>
+          <span class="counter" id="counter">1 / --</span>
+          <button class="icon-btn" id="nextBtn" type="button" aria-label="Próximo slide">›</button>
+        </div>
+      </header>
+
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+      <section class="slides" id="slides" aria-live="polite">
+        
+        <!-- Slide 1: Capa (Com Background Pexels - Apresentação/Plateia) -->
+        <article class="slide cover active bg-photo bg-cover" data-title="Abertura" data-kicker="Extensão & Território" data-notes="Apresente o mapeamento de atores como ferramenta essencial para garantir que o projeto não seja feito 'para' a comunidade, mas 'com' a comunidade.">
+          <div class="cover-wrapper">
+            <div class="cover-content">
+              <span class="eyebrow light">Diagnóstico Territorial & Redes Sociais</span>
+              <h2>Mapeamento de Atores Sociais</h2>
+              <p class="lead">Identificar sujeitos, instituições, grupos de interesse e relações de poder para construir intervenções legítimas, dialógicas e transformadoras.</p>
+            </div>
+            <div class="cover-illustration" aria-hidden="true">
+              <svg viewBox="0 0 200 200" class="vector-art">
+                <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-dasharray="6 6"/>
+                <circle cx="100" cy="50" r="18" fill="#d97706" />
+                <circle cx="50" cy="130" r="18" fill="#059669" />
+                <circle cx="150" cy="130" r="18" fill="#e11d48" />
+                <circle cx="100" cy="100" r="24" fill="#ffffff" />
+                <path d="M100 50 L100 100 M50 130 L100 100 M150 130 L100 100" stroke="rgba(255,255,255,0.6)" stroke-width="3" />
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 2: Objetivos - Compreensão -->
+        <article class="slide" data-title="Objetivos: Compreensão" data-kicker="Diretrizes 1/2" data-notes="Destaque que mapear não é apenas listar nomes de instituições conhecidas.">
+          <span class="eyebrow">Objetivos de Aprendizagem</span>
+          <h2>Compreensão Crítica</h2>
+          <div class="card single-focus">
+            <div class="card-icon">01</div>
+            <h3>O que vamos compreender?</h3>
+            <ul class="large-list">
+              <li>O que define um <strong>ator social</strong> no contexto da extensão universitária.</li>
+              <li>A diferença entre <strong>atores diretos, indiretos e invisibilizados</strong> no território.</li>
+              <li>Como as <strong>relações de poder, interesse e influência</strong> afetam a viabilidade do projeto.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 3: Objetivos - Aplicação -->
+        <article class="slide" data-title="Objetivos: Aplicação" data-kicker="Diretrizes 2/2" data-notes="Conecte os objetivos à construção da matriz de atores do projeto semestral.">
+          <span class="eyebrow">Objetivos de Aprendizagem</span>
+          <h2>Aplicação Prática no Projeto</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">02</div>
+            <h3>O que vamos aplicar?</h3>
+            <ul class="large-list">
+              <li>Mapear os sujeitos estratégicos a partir do <strong>problema e recorte territorial</strong>.</li>
+              <li>Classificar os atores na <strong>Matriz de Poder × Interesse</strong>.</li>
+              <li>Desenhar estratégias dialógicas de <strong>engajamento, escuta e parceria comunitária</strong>.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 4: O que é um Ator Social (Com Background Pexels - Pessoas/Comunidade) -->
+        <article class="slide bg-photo bg-slide-4" data-title="Conceito de Ator Social" data-kicker="Fundamentação" data-notes="Frise que ator social pode ser individual ou coletivo.">
+          <span class="eyebrow light">Conceituação</span>
+          <h2>O que é um Ator Social?</h2>
+          <blockquote class="big dark-quote">
+            É qualquer indivíduo, grupo organizado, coletivo ou instituição que afeta, é afetado ou possui interesse direto ou indireto na situação-problema do território.
+          </blockquote>
+          <div class="cards three" style="margin-top: 24px;">
+            <div class="card dark-card">
+              <h3>Sujeitos Comunitários</h3>
+              <p>Moradores, lideranças informais, feirantes, jovens, catadores, pescadores, coletivos de mulheres.</p>
+            </div>
+            <div class="card dark-card">
+              <h3>Poder Público</h3>
+              <p>Postos de saúde (UBS), escolas públicas, CRAS, secretarias municipais, câmaras locais.</p>
+            </div>
+            <div class="card dark-card">
+              <h3>Sociedade Civil & Mercado</h3>
+              <p>ONGs, associações de bairro, igrejas, comerciantes locais, empresas e cooperativas.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 5: Caso 1 - Feira Agroecológica (Com Background Pexels - Legumes/Feira) -->
+        <article class="slide bg-photo bg-slide-5 stepped" data-title="Caso 1: Feira Comunitária" data-kicker="Caso Concreto 01" data-notes="Pergunte aos estudantes: quem mais precisa ser escutado além dos feirantes?">
+          <span class="eyebrow light">Estudo de Caso Territorial</span>
+          <h2>Caso 1: Criação de Feira Agroecológica Local</h2>
+          <blockquote class="big dark-quote">
+            "Um grupo de estudantes propõe criar uma feira de alimentos orgânicos na praça central do bairro. Quem deve ser mapeado antes da primeira barraca?"
+          </blockquote>
+          <div class="question-grid dark-grid">
+            <span class="step-item">Produtores rurais familiares do entorno (capacidade e logística)</span>
+            <span class="step-item">Comerciantes tradicionais da praça (risco de conflito econômico)</span>
+            <span class="step-item">Secretaria Municipal de Meio Ambiente e Vigilância Sanitária (alvarás)</span>
+            <span class="step-item">Associação de moradores e frequentadores da praça (ruído e resíduos)</span>
+          </div>
+        </article>
+
+        <!-- Slide 6: O que o Mapeamento NÃO é (1/2) -->
+        <article class="slide" data-title="O que NÃO é (1/2)" data-kicker="Alertas Metodológicos" data-notes="Evite os vícios de projetos assistencialistas ou elaborados em gabinetes.">
+          <span class="eyebrow">Atenção Metodológica</span>
+          <h2>Mapeamento de Atores NÃO é... (1/2)</h2>
+          <div class="not-list large-cards">
+            <span>Uma lista telefônica de contatos institucionais do bairro</span>
+            <span>Apenas listar quem concorda ou apoia imediatamente o projeto</span>
+            <span>Conversar apenas com a liderança formal e ignorar a base comunitária</span>
+          </div>
+        </article>
+
+        <!-- Slide 7: O que o Mapeamento NÃO é (2/2) -->
+        <article class="slide" data-title="O que NÃO é (2/2)" data-kicker="Alertas Metodológicos" data-notes="Mapear envolve desvelar tensões históricas existentes no bairro.">
+          <span class="eyebrow">Atenção Metodológica</span>
+          <h2>Mapeamento de Atores NÃO é... (2/2)</h2>
+          <div class="not-list large-cards">
+            <span>Supor que todos os moradores têm os mesmos interesses e opiniões</span>
+            <span>Impor uma solução externa sem validar as reais demandas dos sujeitos</span>
+            <span>Desconsiderar disputas de poder históricas existentes no território</span>
+          </div>
+        </article>
+
+        <!-- Slide 8: Tipologia dos Atores (Com Background Pexels - Roda de Conversa) -->
+        <article class="slide bg-photo bg-slide-8" data-title="Tipologia: Diretos × Indiretos" data-kicker="Classificação 1/2" data-notes="Mostre a diferença do nível de envolvimento cotidiano.">
+          <span class="eyebrow light">Classificação de Sujeitos</span>
+          <h2>Atores Diretos × Indiretos</h2>
+          <div class="cards two large-cards">
+            <div class="card single-focus dark-card">
+              <div class="card-icon">🎯</div>
+              <h3>Atores Diretos</h3>
+              <p>Aqueles que vivenciam diretamente o problema e participarão ativamente das ações de extensão propostas.</p>
+              <ul class="large-list" style="margin-top: 12px;">
+                <li>Alunos e professores da escola comunitária</li>
+                <li>Catadores da cooperativa do bairro</li>
+              </ul>
+            </div>
+            <div class="card single-focus accent dark-card">
+              <div class="card-icon">🌐</div>
+              <h3>Atores Indiretos</h3>
+              <p>Aqueles que não estão no dia a dia da ação, mas são impactados pelas transformações provocadas.</p>
+              <ul class="large-list" style="margin-top: 12px;">
+                <li>Comerciantes vizinhos à cooperativa</li>
+                <li>Famílias dos estudantes beneficiados</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 9: Atores Chave e Invisibilizados -->
+        <article class="slide" data-title="Atores Chave e Invisibilizados" data-kicker="Classificação 2/2" data-notes="Chame atenção especial para grupos historicamente silenciados em diagnósticos rápidos.">
+          <span class="eyebrow">Classificação de Sujeitos</span>
+          <h2>Atores-Chave × Atores Invisibilizados</h2>
+          <div class="cards two large-cards">
+            <div class="card single-focus">
+              <div class="card-icon">🔑</div>
+              <h3>Atores-Chave</h3>
+              <p>Detêm autoridade, recursos financeiros, poder legal de veto ou grande capacidade de mobilização popular.</p>
+              <ul class="large-list" style="margin-top: 12px;">
+                <li>Líder comunitário histórico respeitado</li>
+                <li>Coordenação do posto de saúde local</li>
+              </ul>
+            </div>
+            <div class="card single-focus accent">
+              <div class="card-icon">👁️</div>
+              <h3>Atores Invisibilizados</h3>
+              <p>Grupos vulnerabilizados que não costumam ser chamados para reuniões formais de decisão.</p>
+              <ul class="large-list" style="margin-top: 12px;">
+                <li>Crianças, adolescentes e população em situação de rua</li>
+                <li>Mulheres cuidadoras e imigrantes informais</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 10: Três Dimensões (Com Background Pexels - Poder & Decisão) -->
+        <article class="slide bg-photo bg-slide-10" data-title="Três Dimensões de Análise" data-kicker="Critérios Analíticos" data-notes="Para cada ator mapeado, analisamos essas 3 dimensões fundamentais.">
+          <span class="eyebrow light">Parâmetros de Investigação</span>
+          <h2>Três Dimensões para Analisar cada Ator</h2>
+          <div class="cards three">
+            <div class="card single-focus dark-card">
+              <div class="card-icon">1</div>
+              <h3>Interesse</h3>
+              <p>O que o ator ganha ou perde com a intervenção? Ele é favorável, indiferente ou resistente à mudança proposta?</p>
+            </div>
+            <div class="card single-focus dark-card">
+              <div class="card-icon">2</div>
+              <h3>Poder / Influência</h3>
+              <p>Qual capacidade ele possui de viabilizar, transformar ou bloquear as ações do projeto de extensão?</p>
+            </div>
+            <div class="card single-focus accent dark-card">
+              <div class="card-icon">3</div>
+              <h3>Posição / Aliança</h3>
+              <p>Qual o grau de aproximação ou conflito histórico deste ator com outros grupos do território?</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 11: A Matriz de Poder × Interesse -->
+        <article class="slide" data-title="Matriz Poder × Interesse" data-kicker="Instrumento Metodológico" data-notes="Explique os 4 quadrantes clássicos e como cada um demanda uma estratégia diferente.">
+          <span class="eyebrow">Ferramenta Estratégica</span>
+          <h2>A Matriz Poder × Interesse</h2>
+          <div class="table-wrap large-table">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 30%;">Nível de Poder</th>
+                  <th style="width: 35%;">Baixo Interesse</th>
+                  <th style="width: 35%;">Alto Interesse</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Alto Poder</strong></td>
+                  <td><strong>Satisfazer:</strong> Informar com respeito, consultar pontualmente e evitar oposição. (Ex: Secretarias, órgãos fiscalizadores).</td>
+                  <td><strong>Parceria Estratégica:</strong> Decidir em conjunto, coprojetar e manter envolvimento ativo permanente. (Ex: Associação ativa, UBS).</td>
+                </tr>
+                <tr>
+                  <td><strong>Baixo Poder</strong></td>
+                  <td><strong>Monitorar:</strong> Esforço mínimo, acompanhar movimentações sem sobrecarga. (Ex: Coletivos distantes do recorte).</td>
+                  <td><strong>Empoderar & Apoiar:</strong> Mobilizar, criar canais de escuta e amplificar sua voz. (Ex: Moradores vulneráveis, jovens do bairro).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="takeaway giant-takeaway">Projetos de extensão ética buscam fortalecer e empoderar o quadrante de 'Alto Interesse e Baixo Poder'.</p>
+        </article>
+
+        <!-- Slide 12: Passo a Passo do Mapeamento -->
+        <article class="slide" data-title="Passo a Passo em 5 Etapas" data-kicker="Roteiro Operacional" data-notes="Mostre a sequência desde o brainstorming inicial até o plano de ação.">
+          <span class="eyebrow">Roteiro Operacional</span>
+          <h2>Cinco Passos para Realizar o Mapeamento</h2>
+          <ol class="steps balanced-steps">
+            <li><span class="step-num">1</span><div class="step-content"><strong>Brainstorming Territorial:</strong> Listar amplamente todos os envolvidos no problema.</div></li>
+            <li><span class="step-num">2</span><div class="step-content"><strong>Caracterização dos Atores:</strong> Identificar natureza (público, privado, comunitário) e representatividade.</div></li>
+            <li><span class="step-num">3</span><div class="step-content"><strong>Análise de Poder e Interesse:</strong> Avaliar peso institucional e expectativas reais de cada um.</div></li>
+            <li><span class="step-num">4</span><div class="step-content"><strong>Mapeamento das Relações:</strong> Identificar redes de cooperação, alianças ou conflitos latentes.</div></li>
+            <li><span class="step-num">5</span><div class="step-content"><strong>Plano de Engajamento:</strong> Definir como e quando escutar cada grupo durante a extensão.</div></li>
+          </ol>
+        </article>
+
+        <!-- Slide 13: A Matriz de Atores no Relatório -->
+        <article class="slide" data-title="Matriz de Atores no Projeto" data-kicker="Instrumento Prático" data-notes="Demonstre como preencher a planilha que integrará o diagnóstico do projeto.">
+          <span class="eyebrow">Sistematização de Dados</span>
+          <h2>A Matriz de Registro dos Atores</h2>
+          <div class="table-wrap matrix large-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ator Social</th>
+                  <th>Tipo</th>
+                  <th>Interesse Central</th>
+                  <th>Poder / Influência</th>
+                  <th>Posicionamento</th>
+                  <th>Estratégia de Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Coletivo de Mulheres</td>
+                  <td>Comunitário</td>
+                  <td>Geração de renda e creches</td>
+                  <td>Baixo formal / Alto moral</td>
+                  <td>Favorável</td>
+                  <td>Oficinas de escuta e cocriação</td>
+                </tr>
+                <tr>
+                  <td>Sec. Municipal de Obras</td>
+                  <td>Público</td>
+                  <td>Custos e prazos contratuais</td>
+                  <td>Alto poder decisório</td>
+                  <td>Indiferente</td>
+                  <td>Apresentar dados da pesquisa documental</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="takeaway giant-takeaway">A matriz transforma impressões superficiais em estratégias concretas de articulação local.</p>
+        </article>
+
+        <!-- Slide 14: Cuidados Éticos na Escuta -->
+        <article class="slide" data-title="Cuidados Éticos na Escuta" data-kicker="Compromisso Ético" data-notes="A universidade não deve prometer o que não pode cumprir e nem usar a comunidade como objeto de pesquisa extrativista.">
+          <span class="eyebrow">Ética Extensionista</span>
+          <h2>Cuidados Éticos no Diálogo com Atores</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">⚖️</div>
+            <h3>Princípios de uma Extensão Dialógica</h3>
+            <ul class="large-list">
+              <li><strong>Não criar falsas expectativas:</strong> Seja transparente sobre os limites e o escopo do projeto acadêmico.</li>
+              <li><strong>Respeitar os tempos da comunidade:</strong> Adequar horários de reunião à rotina de trabalho dos moradores.</li>
+              <li><strong>Combater o 'extrativismo acadêmico':</strong> Não coletar opiniões apenas para um artigo/relatório sem oferecer retorno e protagonismo local.</li>
+              <li><strong>Reconhecer saberes populares:</strong> O saber tradicional da liderança tem o mesmo valor que o rigor científico.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Slide 15: JOGO INTERATIVO - Desafio dos Atores -->
+        <article class="slide game-slide" data-title="Jogo: Desafio dos Atores" data-kicker="Fixação Interativa" data-notes="Proponha o caso e peça que a turma defina a classificação estratégica correta antes de clicar.">
+          <div class="game-container">
+            <div class="game-header">
+              <span class="eyebrow light">Desafio Prático</span>
+              <div class="game-score">Pontos: <strong id="gameScore">0</strong> / <span id="gameTotal">5</span></div>
+            </div>
+            
+            <h2 id="gameQuestionTitle">Qual a estratégia correta para este ator?</h2>
+            
+            <div class="game-case-box">
+              <div class="game-badge" id="gameRoundBadge">Rodada 1 de 5</div>
+              <p class="game-case-text" id="gameCaseText">"O proprietário do terreno baldio abandonado onde o projeto propõe criar uma horta comunitária."</p>
+            </div>
+
+            <div class="game-options">
+              <button class="game-btn" data-choice="parceria">Parceria Estratégica</button>
+              <button class="game-btn danger" data-choice="satisfazer">Alto Poder / Negociação</button>
+              <button class="game-btn" data-choice="ignorar">Apenas Monitorar</button>
+            </div>
+
+            <div class="game-feedback" id="gameFeedback">
+              <div class="feedback-verdict" id="feedbackVerdict"></div>
+              <p class="feedback-explanation" id="feedbackText"></p>
+              <button class="primary-btn" id="nextGameRoundBtn">Próximo Caso →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 16: Síntese e Fechamento (Com Background Pexels - Cooperação/Comunidade) -->
+        <article class="slide bg-photo bg-slide-16" data-title="Síntese da Aula" data-kicker="Fechamento Conceitual" data-notes="Encerre conectando o mapeamento de atores ao coração da extensão: ninguém transforma a realidade sozinho.">
+          <span class="eyebrow light">Conclusão</span>
+          <h2>Ideias Centrais do Mapeamento</h2>
+          <div class="cards three">
+            <div class="card single-focus dark-card">
+              <div class="card-icon">1</div>
+              <h3>Comunidade Ativa</h3>
+              <p>A comunidade não é público-alvo passivo; é protagonista e coautora de qualquer projeto sustentável.</p>
+            </div>
+            <div class="card single-focus dark-card">
+              <div class="card-icon">2</div>
+              <h3>Poder e Conflito</h3>
+              <p>Mapear interesses e divergências previne boicotes e potencializa alianças estratégicas reais.</p>
+            </div>
+            <div class="card single-focus accent dark-card">
+              <div class="card-icon">3</div>
+              <h3>Ação Integrada</h3>
+              <p>Cruzar dados documentais com a voz dos atores consolida diagnósticos territorialmente perfeitos.</p>
+            </div>
+          </div>
+          <blockquote class="big dark-quote" style="margin-top: 24px;">
+            Não faça nada sobre nós, sem nós. A extensão universitária só existe no encontro dialógico entre saberes.
+          </blockquote>
+        </article>
+
+        <!-- Slide 17: Encaminhamento / Próxima Aula -->
+        <article class="slide" data-title="Próxima Aula: Matriz de Atores" data-kicker="Encaminhamento Prático" data-notes="Oriente as equipes a preencherem as primeiras linhas da Matriz de Atores para o seu projeto semestral.">
+          <span class="eyebrow">Preparação para a Próxima Aula</span>
+          <h2>Missão: Preenchimento da Matriz Territorial</h2>
+          <div class="card single-focus accent">
+            <div class="card-icon">🎯</div>
+            <h3>O que cada equipe deve trazer estruturado:</h3>
+            <ul class="large-list">
+              <li><strong>Relação Preliminar:</strong> Pelo menos <strong>cinco atores</strong> relevantes (pelo menos 1 público, 1 comunitário e 1 de base).</li>
+              <li><strong>Classificação:</strong> Indicação do nível de <strong>Poder</strong> (Alto/Baixo) e <strong>Interesse</strong> (Alto/Baixo).</li>
+              <li><strong>Primeira Estratégia:</strong> Proposta de abordagem de escuta ativa para a próxima etapa em campo.</li>
+            </ul>
+          </div>
+          <p class="takeaway" style="margin-top: 18px;">
+            Na próxima aula: refinaremos o mapa de relações cruzando os atores com as fontes documentais levantadas anteriormente.
+          </p>
+        </article>
+
+      </section>
+
+      <!-- Zona de Ativação por Hover + Painel Flutuante Invisível -->
+      <div class="floating-hover-zone">
+        <div class="floating-controls" id="floatingControls">
+          <button class="float-btn" id="floatPrevBtn" title="Slide anterior (←)">‹</button>
+          <span class="float-counter" id="floatCounter">1 / 17</span>
+          <button class="float-btn" id="floatNextBtn" title="Próximo slide (→ / Espaço)">›</button>
+          <button class="float-btn" id="floatNotesBtn" title="Notas (N)">Notas</button>
+          <button class="float-btn exit" id="floatExitBtn" title="Sair da Tela Cheia (Esc)">✕ Sair</button>
+        </div>
+      </div>
+
+      <!-- Painel de Notas -->
+      <aside class="notes-panel" id="notesPanel" aria-label="Notas do professor">
+        <div class="notes-head">
+          <strong>Notas do Professor</strong>
+          <button id="closeNotes" type="button" aria-label="Fechar notas">×</button>
+        </div>
+        <p id="notesText"></p>
+      </aside>
+
+      <!-- Visão Geral / Grid de Slides -->
+      <div class="overview" id="overview" aria-label="Visão geral dos slides">
+        <div class="overview-head">
+          <strong>Visão Geral da Apresentação</strong>
+          <button id="closeOverview" type="button" aria-label="Fechar visão geral">×</button>
+        </div>
+        <div class="overview-grid" id="overviewGrid"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
